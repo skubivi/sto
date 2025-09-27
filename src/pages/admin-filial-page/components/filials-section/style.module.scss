@@ -1,0 +1,59 @@
+.section {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loading-body {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-wrapper {
+    width: 50px;
+    height: 50px;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.col-stripe {
+    margin-right: 150px;
+    height: 10px;
+}
+
+.col-stripe2 {
+    margin-right: 150px;
+    height: 5px;
+}
+
+.filials {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.filial-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.button {
+    width: 150px;
+    align-self: flex-end;
+    margin-top: 40px;
+}

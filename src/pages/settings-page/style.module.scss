@@ -1,0 +1,13 @@
+.settings {
+    width: 100%;
+    max-width: 766px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.logout {
+    width: 100px;
+    align-self: flex-end;
+}

@@ -1,0 +1,39 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+    height: 225px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.month {
+    cursor: pointer;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+.month:hover {
+    background: color-mix(in srgb, var(--secondary2), transparent 70%);
+}
+
+.choosen {
+    background: var(--primary);
+    p {
+        color: var(--black);
+    }
+}
+
+.choosen:hover {
+    background: color-mix(in srgb, var(--primary), transparent 30%);
+}

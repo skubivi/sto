@@ -1,0 +1,30 @@
+.add-personal {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.button-container {
+    width: 231px;
+}
+
+.modal {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}

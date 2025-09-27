@@ -1,0 +1,67 @@
+.wrapper {
+    display: flex;
+    width: 100dvw;
+    height: 100dvh;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--black);
+    border-radius: 20px;
+    width: 380px;
+    overflow: hidden;
+}
+
+.stripe {
+    width: 100%;
+    height: 1px;
+    background: var(--secondary3);
+    opacity: 0.3;
+    margin-top: 7px;
+    margin-bottom: 20px;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 40px
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.back {
+    background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(255, 0, 0, 1) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    top: 20px;
+    width: 110%;
+    height: 40px;
+    filter: blur(4px);
+}
+
+.logo {
+    z-index: 1;
+}
+
+.loader {
+  width: 100px;
+}
+
+.loader-container {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

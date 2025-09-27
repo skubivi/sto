@@ -1,0 +1,14 @@
+.button {
+    height: 44px;
+    width: 44px;
+    background: var(--primary);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: color-mix(in srgb, var(--primary), transparent 30%);
+}

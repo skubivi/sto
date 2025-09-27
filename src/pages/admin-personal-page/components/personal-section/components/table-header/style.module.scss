@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.select-container {
+    width: 230px;
+}
+
+.search-container {
+    flex-grow: 1;
+}

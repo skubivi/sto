@@ -1,0 +1,24 @@
+import styles from './style.module.scss'
+
+import LogoMiniPng from '../../assets/logo-mini.png'
+import AdminRoutes from './components/admin-routes/admin-routes'
+import { useGetMeQuery } from '../../services/api/user'
+import { ERoles } from '../../services/types/user'
+
+const Sidebar = () => {
+    const {data: user} = useGetMeQuery()
+
+    return (
+        <div className={styles.sidebar}>
+            <div className={styles['logo-container']}>
+                <div className={styles.back}></div>
+                <img src={LogoMiniPng} />
+            </div>
+            {(user?.role === ERoles.Admin || user?.role === ERoles.FullAdmin) &&
+                <AdminRoutes />
+            }
+        </div>
+    )
+}
+
+export default Sidebar

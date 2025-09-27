@@ -1,0 +1,59 @@
+.select {
+    border-radius: 5px;
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 24px;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.dropdown {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.open {
+    transform: rotate(180deg);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid var(--secondary);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--black);
+
+    z-index: 1;
+}
+
+.element {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.element:hover {
+    background: color-mix(in srgb, var(--secondary2), transparent 30%)
+}
+
+.active {
+    background: color-mix(in srgb, var(--secondary2), transparent 50%)
+}

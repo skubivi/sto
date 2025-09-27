@@ -1,0 +1,15 @@
+.container {
+    width: 100%;
+    position: relative;
+    user-select: none;
+}
+
+.visibility {
+    position: absolute;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    top: 25px;
+    right: 10px;
+    cursor: pointer;
+}

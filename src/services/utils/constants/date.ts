@@ -1,0 +1,1 @@
+export const STARTING_DATE = new Date(2025, 8, 1)

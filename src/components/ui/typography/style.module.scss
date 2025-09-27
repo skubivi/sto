@@ -1,0 +1,99 @@
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.25px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.25px;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.body {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.body-small {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.caption {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+.button-text {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.note-caption {
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+.primary {
+    color: var(--primary);
+}
+
+.white {
+    color: var(--white);
+}
+
+.black {
+    color: var(--black);
+}
+
+.primary2 {
+    color: var(--primary2);
+}
+
+.secondary {
+    color: var(--secondary);
+}
+
+.secondary2 {
+    color: var(--secondary2);
+}
+
+.secondary3 {
+    color: var(--secondary3);
+}
+
+.underline {
+    text-decoration: underline;
+    cursor: pointer
+}

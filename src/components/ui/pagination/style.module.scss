@@ -1,0 +1,40 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    width: 100%;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.items-container {
+    display: flex;
+}
+
+.item {
+    border-radius: 5px;
+    width: 28px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.active {
+    background: var(--primary);
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-button {
+    cursor: pointer;
+}

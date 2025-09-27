@@ -1,0 +1,59 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+    height: 300px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.week {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37.5px;
+}
+
+.month {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+.day {
+    cursor: pointer;
+    width: 37.5px;
+    height: 37.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+.day:hover {
+    background: color-mix(in srgb, var(--secondary2), transparent 70%);
+}
+
+.choosen {
+    background: var(--primary);
+    p {
+        color: var(--black);
+    }
+}
+
+.choosen:hover {
+    background: color-mix(in srgb, var(--primary), transparent 30%);
+}
+
+.unclickable {
+    opacity: 0.5;
+}

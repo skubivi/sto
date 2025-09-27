@@ -1,0 +1,95 @@
+.menu {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    background: var(--white);
+    border-radius: 5px;
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 300px;
+    background: var(--secondary3);
+    cursor: initial;
+
+    z-index: 1;
+}
+
+.title-row {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    background: var(--secondary2);
+}
+
+.menu-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 5px;
+}
+
+.body-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.subtitle {
+    flex-grow: 1;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.subtitle:hover {
+    background: color-mix(in srgb, var(--secondary2), transparent 70%);
+}
+
+.arrows {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.next-arrow {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+}
+
+.prev-arrow {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+}
+
+.next-arrow:hover {
+    background: color-mix(in srgb, var(--secondary2), transparent 70%);
+}
+
+.prev-arrow:hover {
+    background: color-mix(in srgb, var(--secondary2), transparent 70%);
+}
+
+.unclickable {
+    opacity: 0.5;
+    cursor: unset;
+}
+
+.unclickable:hover {
+    background: none;
+}
+
+.table {
+    max-width: 300px;
+    max-height: 300px;
+}

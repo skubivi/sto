@@ -1,0 +1,43 @@
+.navigation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.svg {
+    path {
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+.element:hover {
+    background: var(--primary2);
+    .svg {
+        path {
+            fill: var(--black);
+        }
+    }
+}
+
+.active {
+    background: var(--primary) !important;
+    .svg {
+        path {
+            fill: var(--black);
+        }
+        
+    }
+}

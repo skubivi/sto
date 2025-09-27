@@ -1,0 +1,57 @@
+.row-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.stripe-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.stripe {
+    height: 5px;
+    margin-right: 100px;
+}
+
+.stripe2 {
+    height: 5px;
+    margin-right: 180px;
+}
+
+.stripe3 {
+    height: 24px;
+}
+
+.title {
+    flex-grow: 1;
+}
+
+.created-at {
+    width: 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.actions {
+    margin-top: 4px;
+    width: 100px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icon {
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+.calendar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 10px;
+    border: 1px solid var(--secondary3);
+    gap: 10px;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}

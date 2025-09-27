@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    height: 44px;
+    gap: 40px;
+    align-items: center;
+}
+
+.date-container {
+    width: 349px;
+}
+
+.search-container {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

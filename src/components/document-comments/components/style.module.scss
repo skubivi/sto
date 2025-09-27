@@ -1,0 +1,12 @@
+.comment {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid var(--secondary3);
+    border-radius: 12px;
+    width: 100%;
+}
+
+.date {
+    align-self: flex-end;
+}

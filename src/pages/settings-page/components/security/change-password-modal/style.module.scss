@@ -1,0 +1,26 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.stripe {
+    margin-top: 10px;
+    width: 100%;
+    background: var(--secondary3);
+    height: 1px;
+    opacity: 0.3;
+    margin-bottom: 20px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.button {
+    width: 100%;
+    margin-top: 40px;
+}
