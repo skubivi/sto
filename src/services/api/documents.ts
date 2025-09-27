@@ -99,6 +99,7 @@ export const documentsApi = createApi({
                             state.data.push(data)
                         }
                     ))
+                // eslint-disable-next-line no-empty
                 } catch {}
             }
         }),

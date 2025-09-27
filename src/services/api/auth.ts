@@ -55,7 +55,8 @@ export const authApi = createApi({
 
           setTokens(data);
           await dispatch(userApi.endpoints.getMe.initiate());
-        } catch (error) { }
+        // eslint-disable-next-line no-empty
+        } catch { }
       },
     }),
     getLogout: builder.mutation<void, void>({

@@ -30,6 +30,7 @@ export const personalApi = createApi({
                             }
                         )
                     )
+                // eslint-disable-next-line no-empty
                 } catch {}
             }
         }),
@@ -62,6 +63,7 @@ export const personalApi = createApi({
                             }
                         )
                     )
+                // eslint-disable-next-line no-empty
                 } catch {}
             }
         })

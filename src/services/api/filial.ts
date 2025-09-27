@@ -35,6 +35,7 @@ export const filialApi = createApi({
                             }
                         )
                     )
+                // eslint-disable-next-line no-empty
                 } catch {}
             }
         }),
@@ -60,6 +61,7 @@ export const filialApi = createApi({
                             }
                         )
                     )
+                // eslint-disable-next-line no-empty
                 } catch {}
             }
         }),
@@ -82,6 +84,7 @@ export const filialApi = createApi({
                             }
                         )
                     )
+                // eslint-disable-next-line no-empty
                 } catch {}
             }
         })

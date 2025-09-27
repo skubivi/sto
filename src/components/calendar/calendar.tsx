@@ -39,6 +39,8 @@ const Calendar: FC<ICalendar> = (props) => {
         props.chosenDate.getFullYear().toString()
     return (
         <div id='calendar' className={styles.calendar} onClick={(e) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
             if (e.target.id === 'calendar') {
                 setOpen(prev => !prev)
             }

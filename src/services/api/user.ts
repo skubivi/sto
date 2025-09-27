@@ -45,6 +45,7 @@ export const userApi = createApi({
               }
             )
           )
+        // eslint-disable-next-line no-empty
         } catch {}
       }
     })
