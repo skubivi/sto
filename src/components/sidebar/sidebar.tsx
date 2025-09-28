@@ -4,6 +4,7 @@ import LogoMiniPng from '../../assets/logo-mini.png'
 import AdminRoutes from './components/admin-routes/admin-routes'
 import { useGetMeQuery } from '../../services/api/user'
 import { ERoles } from '../../services/types/user'
+import ReceptionistRoutes from './components/receptionist-routes/receptionist-routes'
 
 const Sidebar = () => {
     const {data: user} = useGetMeQuery()
@@ -16,6 +17,9 @@ const Sidebar = () => {
             </div>
             {(user?.role === ERoles.Admin || user?.role === ERoles.FullAdmin) &&
                 <AdminRoutes />
+            }
+            {user?.role === ERoles.Receptionist &&
+                <ReceptionistRoutes />
             }
         </div>
     )

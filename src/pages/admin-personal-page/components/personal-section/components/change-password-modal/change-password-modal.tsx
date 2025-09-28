@@ -21,8 +21,7 @@ const ChangePasswordModal: FC<IChangePasswordModal> = ({id, onClose}) => {
     const handleButtonClick = () => {
         changePassword({
             id,
-            prevPassword: password,
-            newPassword: confPassword
+            password: password,
         })
         onClose()
     }

@@ -34,7 +34,9 @@ const FilialSelect = () => {
     )
 
     return (
-        <StyledSelect active={myFilial.id} options={filials.data} onChange={handleChange}/>
+        <div className={styles.select}>
+            <StyledSelect active={myFilial.id} options={filials.data} onChange={handleChange}/>
+        </div>
     )
 }
 

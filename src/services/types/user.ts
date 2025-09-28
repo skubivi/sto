@@ -2,7 +2,7 @@ export enum ERoles {
   Mechanic = 'MECH',
   Admin = 'ADMIN',
   Receptionist = 'RECEP',
-  FullAdmin = 'FULL ADMIN'
+  FullAdmin = 'FULL_ADMIN'
 }
 
 export enum ERolesWithAll {
@@ -10,7 +10,7 @@ export enum ERolesWithAll {
   Mechanic = 'MECH',
   Admin = 'ADMIN',
   Receptionist = 'RECEP',
-  FullAdmin = 'FULL ADMIN'
+  FullAdmin = 'FULL_ADMIN'
 }
 
 export interface IUserResponse {

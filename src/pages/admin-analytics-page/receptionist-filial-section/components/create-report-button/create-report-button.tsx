@@ -5,7 +5,7 @@ import DefaultButton from "../../../../../components/ui/default-button/default-b
 import { createReceptionistFilialReportBlob, downloadPdf, openPdf } from "../../../../../services/utils/helper-functions/pdf"
 import { IReceptionistFilialReport } from "../../../../../services/types/analytics"
 import StyledModal from "../../../../../components/ui/styled-modal/styled-modal"
-import { useLazyGetDocumentQuery, useUploadDocumentMutation } from "../../../../../services/api/documents"
+import { useLazyGetDocumentQuery, useUploadDocumentReportMutation } from "../../../../../services/api/documents"
 import { EReport } from "../../../../../services/types/documents"
 import Typography from "../../../../../components/ui/typography/typography"
 import Stripe from "../../../../../components/ui/stripe/stripe"
@@ -20,7 +20,7 @@ interface ICreateReportButton {
 
 const CreateReportButton: FC<ICreateReportButton> = (props) => {
     const data = useCreateDataToPostFilialReceptionists(props.data)
-    const [upload] = useUploadDocumentMutation()
+    const [upload] = useUploadDocumentReportMutation()
     const [documentId, setDocumentId] = useState<number | undefined>(undefined)
     const [getDocument, {isFetching}] = useLazyGetDocumentQuery()
 

@@ -1,0 +1,90 @@
+.row-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 24px;
+}
+
+.stripe-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 100px;
+}
+
+.stripe {
+    height: 24px;
+}
+
+.status {
+    width: 223px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-number {
+    width: 223px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.created-at {
+    width: 223px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions {
+    width: 100px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.stripe4 {
+    margin-right: 223px;
+    height: 5px;
+}
+
+.stripe3 {
+    margin-right: 223px;
+    height: 5px;
+}
+
+.stripe2 {
+    margin-right: 223px;
+    height: 5px;
+}
+
+.stripe1 {
+    margin-right: 224px;
+    height: 5px;
+}
+
+.disabled {
+    cursor: initial;
+    svg {
+        path {
+            fill: var(--secondary3)
+        }
+    }
+}

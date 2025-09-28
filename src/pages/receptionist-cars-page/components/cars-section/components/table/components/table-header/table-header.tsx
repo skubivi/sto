@@ -1,0 +1,36 @@
+import ColStripe from '../../../../../../../../components/ui/col-stripe/col-stripe'
+import Typography from '../../../../../../../../components/ui/typography/typography'
+
+import styles from './style.module.scss'
+
+const TableHeader = () => {
+    return (
+        <div className={styles['title-row']}>
+            <div className={styles['receptionist']}>
+                <Typography variant='subtitle' color='white'>Приемщик</Typography>
+            </div>
+            <ColStripe />
+            <div className={styles['client']}>
+                <Typography variant='subtitle' color='white'>Клиент</Typography>
+            </div>
+            <ColStripe />
+            <div className={styles['car-number']}>
+                <Typography variant='subtitle' color='white'>Номер машины</Typography>
+            </div>
+            <ColStripe />
+            <div className={styles['status']}>
+                <Typography variant='subtitle' color='white'>Статус</Typography>
+            </div>
+            <ColStripe />
+            <div className={styles['created-at']}>
+                <Typography variant='subtitle' color='white'>Дата создания</Typography>
+            </div>
+            <ColStripe />
+            <div className={styles['actions']}>
+                <Typography variant='subtitle' color='white'>Действия</Typography>
+            </div>
+        </div>
+    )
+}
+
+export default TableHeader

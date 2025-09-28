@@ -19,7 +19,7 @@ type TBaseRegisterRequest = {
 }
 
 export type TAdminRegister = TBaseRegisterRequest & {
-  filial_id?: number
+  filialId?: number
 }
 
 export type TMechanicRegister = TBaseRegisterRequest

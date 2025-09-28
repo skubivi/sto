@@ -34,13 +34,12 @@ export const personalApi = createApi({
                 } catch {}
             }
         }),
-        changePersonPassword: builder.mutation<void, {prevPassword: string, newPassword: string, id: number}>({
+        changePersonPassword: builder.mutation<void, {password: string, id: number}>({
             query: (body) => ({
-                url: `${PersonalEndpointRoutes.ChangePassword}${body.id}`,
+                url: `/${body.id}${PersonalEndpointRoutes.ChangePassword}`,
                 method: 'PATCH',
                 body: {
-                    newPassword: body.newPassword,
-                    prevPassword: body.prevPassword
+                    password: body.password,
                 }
             })
         }),

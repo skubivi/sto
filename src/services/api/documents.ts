@@ -53,7 +53,7 @@ export const documentsApi = createApi({
                 transformResponse: (response: Blob) => response,
             }),
         }),
-        uploadDocument: builder.mutation<{documentId: number}, IPostDocumentReport<object>>({
+        uploadDocumentReport: builder.mutation<{documentId: number}, IPostDocumentReport<object>>({
             query: (body) => {
                 const formData = new FormData();
                 formData.append("file", body.document, `${body.label}.pdf`);
@@ -62,7 +62,7 @@ export const documentsApi = createApi({
                 formData.append("data", JSON.stringify(body.data))
 
                 return {
-                    url: '/',
+                    url: '/report',
                     method: "POST",
                     body: formData,
                 };
@@ -146,5 +146,5 @@ export const {
     useGetAnalyticsDocumentsQuery,
     useGetDianosticDocumentsQuery,
     useGetReportDocumentsQuery,
-    useUploadDocumentMutation
+    useUploadDocumentReportMutation
  } = documentsApi;

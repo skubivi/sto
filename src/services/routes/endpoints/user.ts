@@ -1,5 +1,5 @@
 export enum UserEndpointRoutes {
     Base = 'user',
-    Me = '/back/me',
+    Me = '/me',
     Personal = '/personal'
 }

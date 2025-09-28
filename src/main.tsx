@@ -17,6 +17,9 @@ import AdminFilialPage from './pages/admin-filial-page/admin-filial-page.tsx'
 import AdminPersonalPage from './pages/admin-personal-page/admin-personal-page.tsx'
 import SettingsPage from './pages/settings-page/settings-page.tsx'
 import FullAdminProtectedRoute from './components/full-admin-protected-route/full-admin-protected-route.tsx'
+import ReceptionistProtectedRoute from './components/receptionist-protected-route/receptionist-protected-route.tsx'
+import ReceptionistDocumentPage from './pages/receptionist-documents-page/receptionist-documents-page.tsx'
+import ReceptionistCarsPage from './pages/receptionist-cars-page/receptionist-cars-page.tsx'
 
 const router = createBrowserRouter([
   {
@@ -73,7 +76,25 @@ const router = createBrowserRouter([
       },
       {
         path: UrlRoutes.Receptionist,
-        element: <ReceptionistPage />
+        element: <ReceptionistProtectedRoute />,
+        children: [{
+          path: UrlRoutes.Receptionist,
+          element: <ReceptionistPage />,
+          children: [
+            {
+              path: UrlRoutes.ReceptionistDocuments,
+              element: <ReceptionistDocumentPage />
+            },
+            {
+              path: UrlRoutes.ReceptionistCars,
+              element: <ReceptionistCarsPage />
+            },
+            {
+              path: UrlRoutes.ReceptionistSettings,
+              element: <SettingsPage />
+            }
+          ]
+        }]
       }
     ]
   },

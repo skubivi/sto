@@ -6,6 +6,7 @@ import { personalApi } from "./api/personal";
 import { documentsApi } from "./api/documents";
 import { clientsDataApi } from "./api/clients-data";
 import { analyticsApi } from "./api/analytics";
+import { carsApi } from "./api/cars";
 
 const rootReducer = combineReducers({
     [authApi.reducerPath]: authApi.reducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     [personalApi.reducerPath]: personalApi.reducer,
     [documentsApi.reducerPath]: documentsApi.reducer,
     [clientsDataApi.reducerPath]: clientsDataApi.reducer,
-    [analyticsApi.reducerPath]: analyticsApi.reducer
+    [analyticsApi.reducerPath]: analyticsApi.reducer,
+    [carsApi.reducerPath]: carsApi.reducer,
 })
 
 export const store = configureStore({
@@ -23,6 +25,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({
             serializableCheck: {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 isSerializable: (_: unknown) => {return true}
             }
         }).concat([
@@ -33,6 +36,7 @@ export const store = configureStore({
             documentsApi.middleware,
             clientsDataApi.middleware,
             analyticsApi.middleware,
+            carsApi.middleware,
         ])
 })
 
