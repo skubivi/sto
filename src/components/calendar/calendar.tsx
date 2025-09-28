@@ -23,13 +23,13 @@ const Calendar: FC<ICalendar> = (props) => {
         }
 
         if (open) {
-            document.addEventListener("mousedown", handleClickOutside)
+            document.addEventListener("pointerdown", handleClickOutside)
         } else {
-            document.removeEventListener("mousedown", handleClickOutside)
+            document.removeEventListener("pointerdown", handleClickOutside)
         }
 
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
+            document.removeEventListener("pointerdown", handleClickOutside)
         }
     }, [open])
 

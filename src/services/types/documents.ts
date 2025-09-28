@@ -53,9 +53,16 @@ export interface IAnalyticsDocumentsFilters {
 export interface IDocumentReport {
     id: number
     label: string
-    filialId?: number
+    filialId?: number[]
     type: EReport,
     createdAt: Date
+}
+
+export interface IPostDocumentReport<T> {
+    label: string
+    type: EReport
+    document: Blob
+    data: T
 }
 
 export interface IDiagnosticFilters {

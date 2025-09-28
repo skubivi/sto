@@ -12,6 +12,11 @@ export const filialApi = createApi({
                 url: '/'
             })
         }),
+        getMyFilial: builder.query<{filialId: number}, void>({
+            query: () => ({
+                url: FilialEndpointRoutes.My
+            })
+        }),
         getFilial: builder.query<TFilialWithId, {id: number}>({
             query: (body) => ({
                 url: `/${body.id}`
@@ -97,5 +102,6 @@ export const {
   usePatchFilialMutation,
   useDeleteFilialMutation,
   useLazyGetFilialQuery,
-  useGetFilialQuery
+  useGetFilialQuery,
+  useGetMyFilialQuery
 } = filialApi;

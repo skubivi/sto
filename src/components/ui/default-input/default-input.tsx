@@ -3,6 +3,7 @@ import styles from './style.module.scss';
 
 export type TDefaultInputProps = {
     ref?: React.Ref<HTMLInputElement>
+    rightAlign?: boolean
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const DefaultInput: FC<TDefaultInputProps> = ({className, ref, ...props}) => {

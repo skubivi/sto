@@ -9,6 +9,7 @@ import { BASE_URL } from "../utils/constants/api";
 import { deleteCookie, getCookie, setCookie } from "../utils/helper-functions/cookie";
 import { TTokenResponse } from "../types/auth";
 import { userApi } from "./user";
+import { getHeaders } from "../utils/helper-functions/headers";
 
 const mutex = new Mutex();
 
@@ -27,7 +28,7 @@ const baseQueryWithRefresh = ({ url }: { url: string }) => {
     let result = await baseQuery(
       {
         ...args,
-        headers: { authorization: getCookie("accessToken") },
+        headers: getHeaders(),
       },
       api,
       extraOptions
@@ -65,10 +66,7 @@ const baseQueryWithRefresh = ({ url }: { url: string }) => {
             result = await baseQuery(
               {
                 ...args,
-                headers: {
-                  authorization: (refreshResult.data as TTokenResponse)
-                    .accessToken,
-                },
+                headers: getHeaders((refreshResult.data as TTokenResponse).accessToken),
               },
               api,
               extraOptions
@@ -86,7 +84,7 @@ const baseQueryWithRefresh = ({ url }: { url: string }) => {
         result = await baseQuery(
           {
             ...args,
-            headers: { authorization: getCookie("accessToken") },
+            headers: getHeaders(),
           },
           api,
           extraOptions

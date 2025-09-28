@@ -11,18 +11,21 @@ import DownloadPdf from "../../../../../../../../components/download-pdf/downloa
 import CommentSvg from '../../../../../../../../assets/pages/admin-documents-page/comment.svg?react'
 
 import styles from './style.module.scss'
+import { useGetMeQuery } from "../../../../../../../../services/api/user"
+import { ERoles } from "../../../../../../../../services/types/user"
 
 interface IPersonalRow {
     data: IDiagnosticDocument
     onOpenComments: () => void
 }
 
-const DiagnosticRow: FC<IPersonalRow> = (props) => {
+const ReportRow: FC<IPersonalRow> = (props) => {
     const createdAtDate = new Date(props.data.createdAt)
     const createdAtText = 
         createdAtDate.getDate().toString().padStart(2, '0') + '.' +
         (createdAtDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
         createdAtDate.getFullYear().toString()
+    const { data: me } = useGetMeQuery()
 
     return (
         <div className={styles['row-container']}>
@@ -54,9 +57,11 @@ const DiagnosticRow: FC<IPersonalRow> = (props) => {
                 </div>
             </div>
             <div className={styles['stripe-container']}>
-                <div className={styles.stripe1}>
-                    <ColStripe />
-                </div>
+                {me?.role === ERoles.FullAdmin && 
+                    <div className={styles.stripe1}>
+                        <ColStripe />
+                    </div>
+                }
                 <div className={styles.stripe2}>
                     <ColStripe />
                 </div>
@@ -77,4 +82,4 @@ const DiagnosticRow: FC<IPersonalRow> = (props) => {
     )
 }
 
-export default DiagnosticRow
+export default ReportRow

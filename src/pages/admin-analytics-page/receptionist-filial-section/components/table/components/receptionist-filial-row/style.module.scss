@@ -1,0 +1,89 @@
+.row-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 24px;
+}
+
+.stripe-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 200px;
+}
+
+.stripe {
+    height: 24px;
+}
+
+.cars-count {
+    width: 167px;
+    display: flex;
+    justify-content: center;
+}
+
+.cars-processed {
+    width: 166px;
+    display: flex;
+    justify-content: center;
+}
+
+.processed-percent {
+    width: 167px;
+    display: flex;
+    justify-content: center;
+}
+
+.cars-given-away {
+    width: 166px;
+    display: flex;
+    justify-content: center;
+}
+
+.reports-given-away {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.reports-percent {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.stripe5 {
+    margin-right: 200px;
+    height: 5px;
+}
+
+.stripe4 {
+    margin-right: 166px;
+    height: 5px;
+}
+
+.stripe3 {
+    margin-right: 167px;
+    height: 5px;
+}
+
+.stripe2 {
+    margin-right: 166px;
+    height: 5px;
+}
+
+.stripe1 {
+    margin-right: 167px;
+    height: 5px;
+}

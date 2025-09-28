@@ -11,6 +11,8 @@ import DownloadPdf from "../../../../../../../../components/download-pdf/downloa
 import CommentSvg from '../../../../../../../../assets/pages/admin-documents-page/comment.svg?react'
 
 import styles from './style.module.scss'
+import { ERoles } from "../../../../../../../../services/types/user"
+import { useGetMeQuery } from "../../../../../../../../services/api/user"
 
 interface IPersonalRow {
     data: IDiagnosticDocument
@@ -23,6 +25,7 @@ const DiagnosticRow: FC<IPersonalRow> = (props) => {
         createdAtDate.getDate().toString().padStart(2, '0') + '.' +
         (createdAtDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
         createdAtDate.getFullYear().toString()
+    const { data: me } = useGetMeQuery()
 
     return (
         <div className={styles['row-container']}>
@@ -54,9 +57,11 @@ const DiagnosticRow: FC<IPersonalRow> = (props) => {
                 </div>
             </div>
             <div className={styles['stripe-container']}>
-                <div className={styles.stripe1}>
-                    <ColStripe />
-                </div>
+                {me?.role === ERoles.FullAdmin && 
+                    <div className={styles.stripe1}>
+                        <ColStripe />
+                    </div>
+                }
                 <div className={styles.stripe2}>
                     <ColStripe />
                 </div>

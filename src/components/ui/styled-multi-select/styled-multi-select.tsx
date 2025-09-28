@@ -40,6 +40,8 @@ function StyledMultiSelect<T>(
         else onAdd(id)
     }
 
+    if (options.length === 0) return null
+
     return (
         <div className={styles['select']}>
             {active.map(element => (

@@ -5,6 +5,7 @@ import { filialApi } from "./api/filial";
 import { personalApi } from "./api/personal";
 import { documentsApi } from "./api/documents";
 import { clientsDataApi } from "./api/clients-data";
+import { analyticsApi } from "./api/analytics";
 
 const rootReducer = combineReducers({
     [authApi.reducerPath]: authApi.reducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     [filialApi.reducerPath]: filialApi.reducer,
     [personalApi.reducerPath]: personalApi.reducer,
     [documentsApi.reducerPath]: documentsApi.reducer,
-    [clientsDataApi.reducerPath]: clientsDataApi.reducer
+    [clientsDataApi.reducerPath]: clientsDataApi.reducer,
+    [analyticsApi.reducerPath]: analyticsApi.reducer
 })
 
 export const store = configureStore({
@@ -30,6 +32,7 @@ export const store = configureStore({
             personalApi.middleware,
             documentsApi.middleware,
             clientsDataApi.middleware,
+            analyticsApi.middleware,
         ])
 })
 

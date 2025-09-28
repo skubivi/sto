@@ -7,6 +7,8 @@ import Typography from '../../../../../../../../components/ui/typography/typogra
 import DefaultButton from '../../../../../../../../components/ui/default-button/default-button'
 
 import styles from './style.module.scss'
+import { useGetMeQuery } from '../../../../../../../../services/api/user'
+import { ERoles } from '../../../../../../../../services/types/user'
 
 interface IFilterModal {
     dateFrom: Date
@@ -47,6 +49,8 @@ const FilterModal: FC<IFilterModal> = (props) => {
     const [dateTo, setDateTo] = useState(props.dateTo)
     const [chosenFilials, setChosenFilials] = useState(props.chosenFilials)
     const [chosenMechanics, setChosenMechanics] = useState(props.chosenMechanics)
+
+    const { data: me } = useGetMeQuery()
 
     const handleAddMechanic = (id: number) => {
         const mechanic = props.mechanics?.find(el => el.id === id)
@@ -117,7 +121,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                             />
                         )
                     }
-                    {
+                    {me?.role === ERoles.Admin ? null :
                         props.isFilialsLoading ? (
                             <div className={styles['loader-body']}>
                                 <div className={styles['loader-wrapper']}>

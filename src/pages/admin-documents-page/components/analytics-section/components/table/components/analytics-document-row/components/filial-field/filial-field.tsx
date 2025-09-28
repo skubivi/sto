@@ -9,16 +9,17 @@ import Typography from "../../../../../../../../../../components/ui/typography/t
 import Loader from "../../../../../../../../../../components/ui/loader/loader";
 
 interface IFilialField {
-    filialId: number | undefined
+    filialId: number[] | undefined
 }
 
 const FilialField: FC<IFilialField> = (props) => {
     const [filialTitle, setFilialTitle] = useState("");
     const {data: me} = useGetMeQuery()
-    const { data, isLoading, isSuccess } = useGetFilialQuery({id: props.filialId as number}, {skip: props.filialId === undefined})
+    const skip = props.filialId === undefined || props.filialId.length > 1
+    const { data, isLoading, isSuccess } = useGetFilialQuery({id: (props.filialId as number[])[0]}, {skip})
 
     useEffect(() => {
-        if (props.filialId === undefined) setFilialTitle("—")
+        if (skip) setFilialTitle("—")
         else if (data) setFilialTitle(data.title)
     }, [isSuccess])
 

@@ -3,14 +3,16 @@ import DateFilter from '../../../../../../../../components/date-filter/date-filt
 import Loader from '../../../../../../../../components/ui/loader/loader'
 import Stripe from '../../../../../../../../components/ui/stripe/stripe'
 import StyledMultiSelectWithLabel from '../../../../../../../../components/ui/styled-multi-select-with-label/styled-multi-select-with-label'
-import StyledSelect from '../../../../../../../../components/ui/styled-select/styled-select'
 import Typography from '../../../../../../../../components/ui/typography/typography'
 import { EReportWithAll } from '../../../../../../../../services/types/documents'
 import DefaultButton from '../../../../../../../../components/ui/default-button/default-button'
 
 import styles from './style.module.scss'
+import { useGetMeQuery } from '../../../../../../../../services/api/user'
+import { ERoles } from '../../../../../../../../services/types/user'
+import StyledSelectWithLabel from '../../../../../../../../components/ui/styled-select-with-label/styled-select-with-label'
 
-const typeOptions = [
+const fullAdminTypeOptions = [
     {
         id: EReportWithAll.All,
         title: 'Все'
@@ -31,6 +33,22 @@ const typeOptions = [
         id: EReportWithAll.RecFil,
         title: 'Принятые машины (по ст.)'
     },
+]
+
+const adminTypeOptions = [
+    {
+        id: EReportWithAll.All,
+        title: 'Все'
+    },
+    {
+        id: EReportWithAll.MechFil,
+        title: 'Проделаные работы (по ст.)'
+    },
+    {
+        id: EReportWithAll.RecFil,
+        title: 'Принятые машины (по ст.)'
+    },
+
 ]
 
 interface IFilterModal {
@@ -62,6 +80,8 @@ const FilterModal: FC<IFilterModal> = (props) => {
     const [type, setType] = useState(props.type)
     const [chosenFilials, setChosenFilials] = useState(props.chosenFilials)
 
+    const { data: me } = useGetMeQuery()
+
     const handleAddFilial = (id: number) => {
         const filial = props.filials?.find(el => el.id === id)
         if (!filial) return
@@ -87,6 +107,23 @@ const FilterModal: FC<IFilterModal> = (props) => {
         props.onClose()
     }
 
+    if (me?.role === ERoles.Admin) return (
+        <div className={styles['filters-modal']}>
+            <Typography variant='h2' color='white'>Фильтры</Typography>
+            <Stripe />
+            <div className={styles.filters}>
+                <DateFilter from={dateFrom} to={dateTo} onChoseFrom={setDateFrom} onChoseTo={setDateTo} />
+                <div className={styles['filters-without-date']}>
+                    <StyledSelectWithLabel active={type} options={adminTypeOptions} onChange={setType} label='Тип'/>
+                </div>
+                <div className={styles.buttons}>
+                    <DefaultButton variant='outline-primary' onClick={handleSubmit}>применить</DefaultButton>
+                    <DefaultButton variant='outline-secondary3' onClick={props.onClose}>Отменить</DefaultButton>
+                </div>
+            </div>
+        </div>
+    )
+
     return (
         <div className={styles['filters-modal']}>
             <Typography variant='h2' color='white'>Фильтры</Typography>
@@ -94,7 +131,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
             <div className={styles.filters}>
                 <DateFilter from={dateFrom} to={dateTo} onChoseFrom={setDateFrom} onChoseTo={setDateTo} />
                 <div className={styles['filters-without-date']}>
-                    <StyledSelect active={type} options={typeOptions} onChange={setType}/>
+                    <StyledSelectWithLabel active={type} options={fullAdminTypeOptions} onChange={setType} label='Тип'/>
                     {(type === EReportWithAll.MechFil || type === EReportWithAll.RecFil) ? null :
                         props.isFilialsLoading ? (
                             <div className={styles['loader-body']}>

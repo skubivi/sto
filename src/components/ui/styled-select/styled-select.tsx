@@ -36,6 +36,8 @@ function StyledSelect<T>(
     const activeElement = options.find(el => el.id === active)
     const activeTitle = activeElement?.title ?? ''
 
+    if (options.length === 0) return null
+
     return (
         <div className={styles['select']} onClick={() => setOpen(prev => !prev)}>
             <Typography variant='subtitle' color='secondary'>{activeTitle}</Typography>

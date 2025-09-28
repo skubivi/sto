@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import baseQueryWithRefresh from "./base-query-with-refresh";
 import { DocumentEndpointRoutes } from "../routes/endpoints/documents";
-import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, TDocumentCommentWithId } from "../types/documents";
+import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
 import { IFilterDate } from "../types/base";
 
 const getDocumentToApproveParams = (body: IFilterDate) => {
@@ -52,6 +52,21 @@ export const documentsApi = createApi({
                 }) => `${endpointName}-${queryArgs}`,
                 transformResponse: (response: Blob) => response,
             }),
+        }),
+        uploadDocument: builder.mutation<{documentId: number}, IPostDocumentReport<object>>({
+            query: (body) => {
+                const formData = new FormData();
+                formData.append("file", body.document, `${body.label}.pdf`);
+                formData.append("label", body.label);
+                formData.append("type", body.type);
+                formData.append("data", JSON.stringify(body.data))
+
+                return {
+                    url: '/',
+                    method: "POST",
+                    body: formData,
+                };
+            },
         }),
         getDocumentsToApprove: builder.query<{data: IDocumentToApprove[]}, IFilterDate>({
             query: (body) => ({
@@ -131,4 +146,5 @@ export const {
     useGetAnalyticsDocumentsQuery,
     useGetDianosticDocumentsQuery,
     useGetReportDocumentsQuery,
+    useUploadDocumentMutation
  } = documentsApi;

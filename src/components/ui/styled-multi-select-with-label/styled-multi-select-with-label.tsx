@@ -12,6 +12,8 @@ function StyledMultiSelectWithLabel<T>(
         label: string
     }
 ) {
+    if (props.options.length === 0) return null
+
     return (
         <div className={styles.select}>
             <Typography variant='caption' color='secondary'>{props.label}</Typography>

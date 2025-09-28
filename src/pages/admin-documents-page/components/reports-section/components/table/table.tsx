@@ -7,7 +7,9 @@ import ColStripe from '../../../../../../components/ui/col-stripe/col-stripe'
 import TableHeader from './components/table-header/table-header'
 import { IDiagnosticDocument } from '../../../../../../services/types/documents'
 import { paginationFilter } from '../../../../../../services/utils/helper-functions/pagination'
-import DiagnosticRow from './components/diagnostic-row/diagnostic-row'
+import { useGetMeQuery } from '../../../../../../services/api/user'
+import { ERoles } from '../../../../../../services/types/user'
+import ReportRow from './components/diagnostic-row/report-row'
 
 interface ITable {
     data: IDiagnosticDocument[] | undefined
@@ -18,14 +20,18 @@ interface ITable {
 }
 
 const Table: FC<ITable> = (props) => {
+    const { data: me } = useGetMeQuery()
+
     return (
         <div className={styles.table}>
             <TableHeader />
             <Stripe />
             <div className={styles.stripes}>
-                <div className={styles.stripe1}>
-                    <ColStripe />
-                </div>
+                {me?.role === ERoles.FullAdmin &&
+                    <div className={styles.stripe1}>
+                        <ColStripe />
+                    </div>
+                }
                 <div className={styles.stripe2}>
                     <ColStripe />
                 </div>
@@ -50,7 +56,7 @@ const Table: FC<ITable> = (props) => {
                 </div>
             }
             {props.data !== undefined && paginationFilter(props.data, props.page, props.itemsOnPage).map(el => (
-                <DiagnosticRow
+                <ReportRow
                     onOpenComments={() => props.onCommentsClick(el.id)}
                     key={el.id}
                     data={el}

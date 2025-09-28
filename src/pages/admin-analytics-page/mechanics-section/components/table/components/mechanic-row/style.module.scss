@@ -1,0 +1,74 @@
+.row-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 24px;
+}
+
+.stripe-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 221px;
+}
+
+.stripe {
+    height: 24px;
+}
+
+.dianostic-count {
+    width: 222px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.works-count {
+    width: 222px;
+    display: flex;
+    justify-content: center;
+}
+
+.average-diangostic {
+    width: 222px;
+    display: flex;
+    justify-content: center;
+}
+
+.reports-count {
+    width: 221px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.stripe4 {
+    margin-right: 222px;
+    height: 5px;
+}
+
+.stripe3 {
+    margin-right: 222px;
+    height: 5px;
+}
+
+.stripe2 {
+    margin-right: 222px;
+    height: 5px;
+}
+
+.stripe1 {
+    margin-right: 180px;
+    height: 5px;
+}

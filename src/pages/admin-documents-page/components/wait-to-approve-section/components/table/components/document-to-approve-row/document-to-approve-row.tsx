@@ -13,6 +13,8 @@ import CommentSvg from '../../../../../../../../assets/pages/admin-documents-pag
 import styles from './style.module.scss'
 import TitleField from "./components/title-field/title-field"
 import DownloadPdf from "../../../../../../../../components/download-pdf/download-pdf"
+import { useGetMeQuery } from "../../../../../../../../services/api/user"
+import { ERoles } from "../../../../../../../../services/types/user"
 
 interface IPersonalRow {
     data: IDocumentToApprove
@@ -22,6 +24,7 @@ interface IPersonalRow {
 }
 
 const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
+    const { data: me } = useGetMeQuery()
     const createdAtDate = new Date(props.data.createdAt)
     const createdAtText = 
         createdAtDate.getDate().toString().padStart(2, '0') + '.' +
@@ -71,9 +74,11 @@ const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
                 </div>
             </div>
             <div className={styles['stripe-container']}>
-                <div className={styles.stripe1}>
-                    <ColStripe />
-                </div>
+                {me?.role === ERoles.FullAdmin &&
+                    <div className={styles.stripe1}>
+                        <ColStripe />
+                    </div>
+                }
                 <div className={styles.stripe2}>
                     <ColStripe />
                 </div>

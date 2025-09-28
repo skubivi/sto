@@ -1,0 +1,61 @@
+.title-row {
+    display: flex;
+    width: 100%;
+    height: 58px;
+}
+
+.filial {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.receptionist {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.cars-count {
+    width: 121px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.cars-processed {
+    width: 121px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.processed-percent {
+    width: 121px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.cars-given-away {
+    width: 122px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.reports-given-away {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.reports-percent {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

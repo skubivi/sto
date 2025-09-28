@@ -8,6 +8,8 @@ import TableHeader from './components/table-header/table-header'
 import { IDiagnosticDocument } from '../../../../../../services/types/documents'
 import { paginationFilter } from '../../../../../../services/utils/helper-functions/pagination'
 import DiagnosticRow from './components/diagnostic-row/diagnostic-row'
+import { useGetMeQuery } from '../../../../../../services/api/user'
+import { ERoles } from '../../../../../../services/types/user'
 
 interface ITable {
     data: IDiagnosticDocument[] | undefined
@@ -18,14 +20,18 @@ interface ITable {
 }
 
 const Table: FC<ITable> = (props) => {
+    const { data: me } = useGetMeQuery()
+
     return (
         <div className={styles.table}>
             <TableHeader />
             <Stripe />
             <div className={styles.stripes}>
-                <div className={styles.stripe1}>
-                    <ColStripe />
-                </div>
+                {me?.role === ERoles.FullAdmin &&
+                    <div className={styles.stripe1}>
+                        <ColStripe />
+                    </div>
+                }
                 <div className={styles.stripe2}>
                     <ColStripe />
                 </div>

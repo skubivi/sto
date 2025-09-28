@@ -1,0 +1,83 @@
+import { FC, useState } from "react"
+
+import styles from './style.module.scss'
+import DefaultButton from "../../../../../components/ui/default-button/default-button"
+import { createMechanicFilialReportBlob, downloadPdf, openPdf } from "../../../../../services/utils/helper-functions/pdf"
+import { IMechanicFilialReport } from "../../../../../services/types/analytics"
+import StyledModal from "../../../../../components/ui/styled-modal/styled-modal"
+import { useLazyGetDocumentQuery, useUploadDocumentMutation } from "../../../../../services/api/documents"
+import { EReport } from "../../../../../services/types/documents"
+import Typography from "../../../../../components/ui/typography/typography"
+import Stripe from "../../../../../components/ui/stripe/stripe"
+
+import AssignmentSvg from '../../../../../assets/pages/admin-documents-page/assignment.svg?react'
+import { useCreateDataToPostMechanicsFilials } from "../../../../../services/hooks/use-create-data-to-post-filial-mechanics"
+
+interface ICreateReportButton {
+    data: IMechanicFilialReport[]
+    label: string
+}
+
+const CreateReportButton: FC<ICreateReportButton> = (props) => {
+    const data = useCreateDataToPostMechanicsFilials(props.data)
+    const [upload] = useUploadDocumentMutation()
+    const [documentId, setDocumentId] = useState<number | undefined>(undefined)
+    const [getDocument, {isFetching}] = useLazyGetDocumentQuery()
+
+    const handleClick = async () => {
+        const blob = await createMechanicFilialReportBlob(data)
+        try {
+            const id = await upload({
+                data: data,
+                label: props.label,
+                document: blob,
+                type: EReport.Mech
+            })
+            setDocumentId(id.data?.documentId)
+        } catch { /* empty */ }
+    }
+    
+    const handleOpenPdf = async () => {
+        if (!isFetching && documentId !== undefined) {
+            const { data } = await getDocument({id: documentId})
+
+            if (data)
+                openPdf(data)
+        }
+    }
+
+    const handleDownloadPdf = async () => {
+        if (!isFetching && documentId !== undefined) {
+            const { data } = await getDocument({id: documentId})
+
+            if (data)
+                downloadPdf(data, `${props.label}.pdf`)
+        }
+    }
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles['button-container']}>
+                <DefaultButton variant="primary" onClick={handleClick}>
+                    создать отчет
+                </DefaultButton>
+            </div>
+            {documentId !== undefined &&
+                <StyledModal open={documentId !== undefined} onClose={() => setDocumentId(undefined)}>
+                    <div className={styles.modal}>
+                        <Typography variant="h2" color="white">Отчет</Typography>
+                        <Stripe />
+                        <div className={styles.label} onClick={handleOpenPdf}>
+                            <div className={styles.icon}>
+                                <AssignmentSvg />
+                            </div>
+                            <Typography variant="subtitle" color="primary2">{props.label}</Typography>
+                        </div>
+                        <DefaultButton variant="outline-primary" onClick={handleDownloadPdf}>скачать</DefaultButton>
+                    </div>
+                </StyledModal>
+            }
+        </div>
+    )
+}
+
+export default CreateReportButton
