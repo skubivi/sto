@@ -17,16 +17,16 @@ interface ITableHeader {
     type: EReportWithAll,
     setType: (t: EReportWithAll) => void
     filials: {
-        id: number,
+        id: string,
         title: string
     }[] | undefined
     isFilialsLoading: boolean
     chosenFilials: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenFilials: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
 }

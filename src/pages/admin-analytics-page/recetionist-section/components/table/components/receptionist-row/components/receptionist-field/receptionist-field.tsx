@@ -8,7 +8,7 @@ import Typography from "../../../../../../../../../components/ui/typography/typo
 import { ERoles } from "../../../../../../../../../services/types/user";
 
 interface IReceptionistField {
-    receptionistId: number
+    receptionistId: string
 }
 
 const ReceptionistField: FC<IReceptionistField> = (props) => {

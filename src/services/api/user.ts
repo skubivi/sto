@@ -21,7 +21,7 @@ export const userApi = createApi({
         url: UserEndpointRoutes.Personal,
       })
     }),
-    getUserPersonalData: builder.query<IPersonal, {id: number}>({
+    getUserPersonalData: builder.query<IPersonal, {id: string}>({
       query: (body) => ({
         url: `/${body.id}${UserEndpointRoutes.Personal}`
       })

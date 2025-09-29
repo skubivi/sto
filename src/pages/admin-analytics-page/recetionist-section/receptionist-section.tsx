@@ -17,8 +17,8 @@ import CreateReportButton from './components/create-report-button/create-report-
 const ReceptionistSection = () => {
     const [dateFrom, setDateFrom] = useState(STARTING_DATE)
     const [dateTo, setDateTo] = useState(new Date(Date.now()))
-    const [chosenFilials, setChosenFilials] = useState<{id: number, title: string}[]>([])
-    const [chosenReceptionists, setChosenReceptionists] = useState<{id: number, title: string}[]>([])
+    const [chosenFilials, setChosenFilials] = useState<{id: string, title: string}[]>([])
+    const [chosenReceptionists, setChosenReceptionists] = useState<{id: string, title: string}[]>([])
     const [state, setState] = useState<{
         carsCount: number | undefined,
         carsCountSign: ESign,

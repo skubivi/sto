@@ -18,9 +18,9 @@ const CarsSection = () => {
     const [page, setPage] = useState(0)
     const [dateFrom, setDateFrom] = useState(STARTING_DATE)
     const [dateTo, setDateTo] = useState(new Date(Date.now()))
-    const [openInfo, setOpenInfo] = useState<number | undefined>(undefined)
-    const [openApprove, setOpenApprove] = useState<number | undefined>(undefined)
-    const [chosenReceptionists, setChosenReceptionists] = useState<{id: number, title: string}[]>([])
+    const [openInfo, setOpenInfo] = useState<string | undefined>(undefined)
+    const [openApprove, setOpenApprove] = useState<string | undefined>(undefined)
+    const [chosenReceptionists, setChosenReceptionists] = useState<{id: string, title: string}[]>([])
     const [status, setStatus] = useState(ECarStatusWithAll.All)
 
     const { data: personal, isLoading: isPersonalLoading } = useGetPersonalQuery()
@@ -36,7 +36,7 @@ const CarsSection = () => {
         title: el.lastName + ' ' + el.firstName[0] + '.' + el.middleName[0] + '.'
     }))
 
-    const getCarInfo = (id: number) => cars?.data.find(el => el.id === id) as ICar
+    const getCarInfo = (id: string) => cars?.data.find(el => el.id === id) as ICar
 
     return (
         <div className={styles.section}>

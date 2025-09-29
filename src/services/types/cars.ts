@@ -12,9 +12,9 @@ export enum ECarStatusWithAll {
 }
 
 export interface ICar {
-    id: number
-    receptionistId: number
-    clientDataId: number
+    id: string
+    receptionistId: string
+    clientDataId: string
     carNumber: string
     status: ECarStatus
     createdAt: Date
@@ -34,6 +34,6 @@ export interface ICarToPost {
 export interface ICarFilters {
     dateFrom: string
     dateTo: string
-    receptionists: number[]
+    receptionists: string[]
     status: ECarStatusWithAll
 }

@@ -6,12 +6,12 @@ import Typography from "../../../../../../../../../components/ui/typography/typo
 import { useGetFilialQuery } from "../../../../../../../../../services/api/filial";
 
 interface IFilialField {
-    filialId: number | undefined
+    filialId: string | undefined
 }
 
 const FilialField: FC<IFilialField> = (props) => {
     const [filialTitle, setFilialTitle] = useState("");
-    const { data, isLoading, isSuccess } = useGetFilialQuery({id: props.filialId as number}, {skip: props.filialId === undefined})
+    const { data, isLoading, isSuccess } = useGetFilialQuery({id: props.filialId as string}, {skip: props.filialId === undefined})
 
     useEffect(() => {
         if (props.filialId === undefined) setFilialTitle("—")

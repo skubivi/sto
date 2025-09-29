@@ -5,7 +5,7 @@ import Typography from "../../ui/typography/typography"
 import { useGetUserPersonalDataQuery } from "../../../services/api/user"
 
 interface IComment {
-    reviewerId: number
+    reviewerId: string
     comment: string
     createdAt: Date
 }

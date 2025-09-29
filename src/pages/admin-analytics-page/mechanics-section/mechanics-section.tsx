@@ -16,8 +16,8 @@ import { useGetMeQuery } from '../../../services/api/user'
 const MechanicsSection = () => {
     const [dateFrom, setDateFrom] = useState(STARTING_DATE)
     const [dateTo, setDateTo] = useState(new Date(Date.now()))
-    const [chosenFilials, setChosenFilials] = useState<{id: number, title: string}[]>([])
-    const [chosenMechanics, setChosenMechanics] = useState<{id: number, title: string}[]>([])
+    const [chosenFilials, setChosenFilials] = useState<{id: string, title: string}[]>([])
+    const [chosenMechanics, setChosenMechanics] = useState<{id: string, title: string}[]>([])
     const [state, setState] = useState<{
         diagnosticsCount: undefined | number,
         diagnosticsCountSign: ESign,

@@ -34,7 +34,7 @@ export const personalApi = createApi({
                 } catch {}
             }
         }),
-        changePersonPassword: builder.mutation<void, {password: string, id: number}>({
+        changePersonPassword: builder.mutation<void, {password: string, id: string}>({
             query: (body) => ({
                 url: `/${body.id}${PersonalEndpointRoutes.ChangePassword}`,
                 method: 'PATCH',
@@ -43,7 +43,7 @@ export const personalApi = createApi({
                 }
             })
         }),
-        deletePerson: builder.mutation<void, {id: number}>({
+        deletePerson: builder.mutation<void, {id: string}>({
             query: (body) => ({
                 url: `/${body.id}`,
                 method: 'DELETE'

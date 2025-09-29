@@ -10,7 +10,7 @@ import Loader from '../ui/loader/loader'
 import Comment from './components/comment'
 
 interface IDocumentComments {
-    documentId: number
+    documentId: string
     open: boolean
     onClose: () => void
 }

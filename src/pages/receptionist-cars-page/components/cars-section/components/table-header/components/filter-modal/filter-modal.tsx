@@ -35,16 +35,16 @@ interface IFilterModal {
     onChangeDateTo: (d: Date) => void
     onChangeDateFrom: (d: Date) => void
     receptionists: {
-        id: number
+        id: string
         title: string
     }[] | undefined
     isReceptionistsLoading: boolean
     chosenReceptionists: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenReceptionists: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     status: ECarStatusWithAll
@@ -58,7 +58,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
     const [chosenReceptionists, setChosenReceptionists] = useState(props.chosenReceptionists)
     const [status, setStatus] = useState(props.status)
 
-    const handleAddReceptionists = (id: number) => {
+    const handleAddReceptionists = (id: string) => {
         const mechanic = props.receptionists?.find(el => el.id === id)
         if (!mechanic) return
         setChosenReceptionists(prev => {
@@ -68,7 +68,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
             return prev
         })
     }
-    const handleRemoveReceptionists = (id: number) => {
+    const handleRemoveReceptionists = (id: string) => {
         setChosenReceptionists(prev => {
             const index = prev.findIndex(el => el.id === id)
             if (index === -1) return prev
@@ -101,7 +101,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                         <StyledMultiSelectWithLabel 
                             active={chosenReceptionists} 
                             options={props.receptionists as {
-                                id: number,
+                                id: string,
                                 title: string
                             }[]}
                             onAdd={handleAddReceptionists}

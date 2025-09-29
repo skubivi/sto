@@ -1,7 +1,7 @@
 export enum ERoles {
-  Mechanic = 'MECH',
+  Mechanic = 'MECHANIC',
   Admin = 'ADMIN',
-  Receptionist = 'RECEP',
+  Receptionist = 'RECEIVER',
   FullAdmin = 'FULL_ADMIN'
 }
 

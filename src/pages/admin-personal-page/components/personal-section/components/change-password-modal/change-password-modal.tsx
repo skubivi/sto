@@ -8,7 +8,7 @@ import { useChangePersonPasswordMutation } from '../../../../../../services/api/
 import styles from './style.module.scss'
 
 interface IChangePasswordModal {
-    id: number
+    id: string
     onClose: () => void
 }
 

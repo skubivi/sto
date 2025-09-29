@@ -1,11 +1,11 @@
 export enum ESign {
-    More = 'more',
-    Less = 'less'
+    More = 'MORE',
+    Less = 'LESS'
 }
 
 export interface IMechanicReport {
-    filialId: number
-    mechanicId: number
+    filialId: string
+    mechanicId: string
     diagnosticsCount: number
     worksCount: number
     worksAverage: number
@@ -15,8 +15,8 @@ export interface IMechanicReport {
 export interface IMechanicReportFilters {
     dateFrom: string
     dateTo: string
-    filials: number[]
-    mechanics: number[]
+    filials: string[]
+    mechanics: string[]
     diagnosticsCount?: number
     diagnosticsCountSign: ESign
     worksCount?: number
@@ -37,7 +37,7 @@ export interface IPostMechanicReport {
 }
 
 export interface IMechanicFilialReport {
-    filialId: number
+    filialId: string
     diagnosticsCount: number
     worksCount: number
     worksAverage: number
@@ -47,7 +47,7 @@ export interface IMechanicFilialReport {
 export interface IMechanicFilialReportFilters {
     dateFrom: string
     dateTo: string
-    filials: number[]
+    filials: string[]
     diagnosticsCount?: number
     diagnosticsCountSign: ESign
     worksCount?: number
@@ -67,8 +67,8 @@ export interface IPostMechanicFilialReport {
 }
 
 export interface IReceptionistReport {
-    filialId: number
-    receptionistId: number
+    filialId: string
+    receptionistId: string
     carsCount: number
     carsProcessed: number
     processedPercent: number
@@ -80,8 +80,8 @@ export interface IReceptionistReport {
 export interface IReceptionistReportFilters {
     dateFrom: string
     dateTo: string
-    filials: number[]
-    receptionists: number[]
+    filials: string[]
+    receptionists: string[]
     carsCount?: number
     carsCountSign: ESign
     carsProcessed?: number
@@ -108,7 +108,7 @@ export interface IPostReceptionistReport {
 }
 
 export interface IReceptionistFilialReport {
-    filialId: number
+    filialId: string
     carsCount: number
     carsProcessed: number
     processedPercent: number
@@ -120,7 +120,7 @@ export interface IReceptionistFilialReport {
 export interface IReceptionistFilialReportFilters {
     dateFrom: string
     dateTo: string
-    filials: number[]
+    filials: string[]
     carsCount?: number
     carsCountSign: ESign
     carsProcessed?: number

@@ -59,8 +59,8 @@ const PersonalSection = () => {
 
     const [filter, setFilter] = useState(ERolesWithAll.All)
     const [search, setSearch] = useState('')
-    const [openDeleteModal, setOpenDeleteModal] = useState<number | undefined>(undefined)
-    const [openChangePasswordModal, setOpenChangePasswordModal] = useState<number | undefined>(undefined)
+    const [openDeleteModal, setOpenDeleteModal] = useState<string | undefined>(undefined)
+    const [openChangePasswordModal, setOpenChangePasswordModal] = useState<string | undefined>(undefined)
     const [itemsOnPage, setItemsOnPage] = useState<5 | 10 | 20 | 50>(5)
     const [page, setPage] = useState(0)
 
@@ -97,7 +97,7 @@ const PersonalSection = () => {
                         text={`Вы действительно хотите удалить учетную запись пользователя "${nameOfSelectedPersonToDelete}"?`}
                         onClose={() => setOpenDeleteModal(undefined)}
                         onDelete={() => {
-                            deletePerson({id: openDeleteModal as number})
+                            deletePerson({id: openDeleteModal as string})
                             setOpenDeleteModal(undefined)
                         }}
                     />

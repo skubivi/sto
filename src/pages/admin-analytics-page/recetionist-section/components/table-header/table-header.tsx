@@ -12,29 +12,29 @@ interface ITableHeader {
     dateTo: Date
     onChangeDateTo: (d: Date) => void
     receptionists: {
-        id: number
+        id: string
         title: string
     }[] | undefined
     isReceptionistsLoading: boolean
     chosenReceptionists: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenReceptionists: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     filials: {
-        id: number,
+        id: string,
         title: string
     }[] | undefined
     isFilialsLoading: boolean
     chosenFilials: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenFilials: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     state: {

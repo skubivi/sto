@@ -7,7 +7,7 @@ import { openPdf } from "../../../../../../../../../../services/utils/helper-fun
 import styles from './style.module.scss'
 
 interface ITitleField {
-    documentId: number
+    documentId: string
     title: string
 }
 

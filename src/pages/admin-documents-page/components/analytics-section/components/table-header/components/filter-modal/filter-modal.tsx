@@ -59,16 +59,16 @@ interface IFilterModal {
     type: EReportWithAll,
     setType: (t: EReportWithAll) => void
     filials: {
-        id: number,
+        id: string,
         title: string
     }[] | undefined
     isFilialsLoading: boolean
     chosenFilials: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenFilials: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     onClose: () => void
@@ -82,7 +82,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
 
     const { data: me } = useGetMeQuery()
 
-    const handleAddFilial = (id: number) => {
+    const handleAddFilial = (id: string) => {
         const filial = props.filials?.find(el => el.id === id)
         if (!filial) return
         setChosenFilials(prev => {
@@ -92,7 +92,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
             return prev
         })
     }
-    const handleRemoveFilial = (id: number) => {
+    const handleRemoveFilial = (id: string) => {
         setChosenFilials(prev => {
             const index = prev.findIndex(el => el.id === id)
             if (index === -1) return prev
@@ -143,7 +143,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                             <StyledMultiSelectWithLabel 
                                 active={chosenFilials} 
                                 options={props.filials as {
-                                    id: number,
+                                    id: string,
                                     title: string
                                 }[]}
                                 onAdd={handleAddFilial}

@@ -18,9 +18,9 @@ const AnalyticsSection = () => {
     const [search, setSearch] = useState('')
     const [dateFrom, setDateFrom] = useState(STARTING_DATE)
     const [dateTo, setDateTo] = useState(new Date(Date.now()))
-    const [openComments, setOpenComments] = useState<number | undefined>(undefined)
+    const [openComments, setOpenComments] = useState<string | undefined>(undefined)
     const [type, setType] = useState<EReportWithAll>(EReportWithAll.All)
-    const [chosenFilials, setChosenFilials] = useState<{id: number, title: string}[]>([])
+    const [chosenFilials, setChosenFilials] = useState<{id: string, title: string}[]>([])
 
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const {data: documents, isLoading: isDocumentsLoading} = useGetAnalyticsDocumentsQuery({

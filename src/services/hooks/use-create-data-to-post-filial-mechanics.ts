@@ -5,7 +5,7 @@ export const useCreateDataToPostMechanicsFilials = (data: IMechanicFilialReport[
     const result: IPostMechanicFilialReport[] = []
     const { data: filials } = useGetFilialsQuery()
 
-    const getFilialName = (id: number) => {
+    const getFilialName = (id: string) => {
         return filials?.data.find(el => el.id === id)?.title
     }
     if (filials)

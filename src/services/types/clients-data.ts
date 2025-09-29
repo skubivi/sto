@@ -1,5 +1,5 @@
 export interface IClientData {
-    id: number
+    id: string
     phone: string
     firstName: string
     lastName: string

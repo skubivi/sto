@@ -7,7 +7,7 @@ import { useDeclineDocumentMutation } from '../../../../../../services/api/docum
 import styles from './style.module.scss'
 
 interface IDeclineModal {
-    documentId: number
+    documentId: string
     onClose: () => void
 }
 

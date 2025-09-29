@@ -11,7 +11,7 @@ import TitleInput from "./components/title-input/title-input"
 
 interface IFilialRow {
     title: string
-    id: number
+    id: string
     openDeleteModal: () => void
 }
 

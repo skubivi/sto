@@ -21,7 +21,7 @@ interface ICreateReportButton {
 const CreateReportButton: FC<ICreateReportButton> = (props) => {
     const data = useCreateDataToPostFilialReceptionists(props.data)
     const [upload] = useUploadDocumentReportMutation()
-    const [documentId, setDocumentId] = useState<number | undefined>(undefined)
+    const [documentId, setDocumentId] = useState<string | undefined>(undefined)
     const [getDocument, {isFetching}] = useLazyGetDocumentQuery()
 
     const handleClick = async () => {

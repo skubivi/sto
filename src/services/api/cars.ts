@@ -3,7 +3,7 @@ import baseQueryWithRefresh from "./base-query-with-refresh";
 import { CarsEndpointRoutes } from "../routes/endpoints/cars";
 import { ECarStatusWithAll, ICar, ICarFilters, ICarToPost } from "../types/cars";
 
-const arrayToString = (f: number[]) => {
+const arrayToString = (f: string[]) => {
     let result = ''
     f.forEach(element => result += `${element}_`)
     result = result.slice(0, -1)
@@ -40,7 +40,7 @@ export const carsApi = createApi({
             }),
             invalidatesTags: ["Cars"]
         }),
-        finishCar: builder.mutation<void, {carId: number}>({
+        finishCar: builder.mutation<void, {carId: string}>({
             query: (body) => ({
                 url: `/${body.carId}${CarsEndpointRoutes.Finish}`,
                 method: 'PATCH'

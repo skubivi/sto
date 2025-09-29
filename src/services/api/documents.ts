@@ -8,7 +8,7 @@ const getDocumentToApproveParams = (body: IFilterDate) => {
     return `?date-from=${body.dateFrom}&date-to=${body.dateTo}`
 }
 
-const arrayToString = (f: number[]) => {
+const arrayToString = (f: string[]) => {
     let result = ''
     f.forEach(element => result += `${element}_`)
     result = result.slice(0, -1)
@@ -39,7 +39,7 @@ export const documentsApi = createApi({
     baseQuery: baseQueryWithRefresh({ url: DocumentEndpointRoutes.Base }),
     tagTypes: ["DocumentsToApprove", "ReportDocuments", "DiagnosticDocuments"],
     endpoints: (builder) => ({
-        getDocument: builder.query<Blob, {id: number}>({
+        getDocumentLink: builder.query<{docLink: string}, {id: string}>({
             query: (body) => ({
                 url: `/${body.id}`,
                 responseHandler: async (response) => await response.blob(),
@@ -53,7 +53,23 @@ export const documentsApi = createApi({
                 transformResponse: (response: Blob) => response,
             }),
         }),
-        uploadDocumentReport: builder.mutation<{documentId: number}, IPostDocumentReport<object>>({
+        getDocument: builder.query<Blob, {id: string}>({
+            async queryFn(arg, _queryApi, _extraOptions, baseQuery) {
+                const result = await baseQuery({url: `/${arg.id}`})
+                if (result.error) return { error: result.error }
+
+                const data = result.data as { docLink: string }
+
+                try {
+                    const response = await fetch(data.docLink)
+                    const blob = await response.blob()
+                    return { data: blob }
+                } catch (err) {
+                    return { error: { status: "CUSTOM_ERROR", error: String(err) } }
+                }
+            },
+        }),
+        uploadDocumentReport: builder.mutation<{documentId: string}, IPostDocumentReport<object>>({
             query: (body) => {
                 const formData = new FormData();
                 formData.append("file", body.document, `${body.label}.pdf`);
@@ -91,7 +107,7 @@ export const documentsApi = createApi({
             }),
             providesTags: ["ReportDocuments"]
         }),
-        getComments: builder.query<{data: TDocumentCommentWithId[]}, {id: number}>({
+        getComments: builder.query<{data: TDocumentCommentWithId[]}, {id: string}>({
             query: (body) => ({
                 url: `/${body.id}${DocumentEndpointRoutes.Comments}`
             })
@@ -118,14 +134,14 @@ export const documentsApi = createApi({
                 } catch {}
             }
         }),
-        approveDocument: builder.mutation<void, {id: number}>({
+        approveDocument: builder.mutation<void, {id: string}>({
             query: (body) => ({
                 url: `${DocumentEndpointRoutes.ToApprove}/${body.id}${DocumentEndpointRoutes.Approve}`,
                 method: 'PATCH'
             }),
             invalidatesTags: ["DocumentsToApprove", "DiagnosticDocuments", "ReportDocuments"]
         }),
-        declineDocument: builder.mutation<void, {id: number}>({
+        declineDocument: builder.mutation<void, {id: string}>({
             query: (body) => ({
                 url: `${DocumentEndpointRoutes.ToApprove}/${body.id}${DocumentEndpointRoutes.Decline}`,
                 method: 'PATCH'
@@ -146,5 +162,7 @@ export const {
     useGetAnalyticsDocumentsQuery,
     useGetDianosticDocumentsQuery,
     useGetReportDocumentsQuery,
-    useUploadDocumentReportMutation
+    useUploadDocumentReportMutation,
+    useGetDocumentLinkQuery,
+    useLazyGetDocumentLinkQuery
  } = documentsApi;

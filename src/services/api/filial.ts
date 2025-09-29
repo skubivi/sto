@@ -12,12 +12,12 @@ export const filialApi = createApi({
                 url: '/'
             })
         }),
-        getMyFilial: builder.query<{filialId: number}, void>({
+        getMyFilial: builder.query<{filialId: string}, void>({
             query: () => ({
                 url: FilialEndpointRoutes.My
             })
         }),
-        getFilial: builder.query<TFilialWithId, {id: number}>({
+        getFilial: builder.query<TFilialWithId, {id: string}>({
             query: (body) => ({
                 url: `/${body.id}`
             })
@@ -44,7 +44,7 @@ export const filialApi = createApi({
                 } catch {}
             }
         }),
-        patchFilial: builder.mutation<void, {id: number, title: string}>({
+        patchFilial: builder.mutation<void, {id: string, title: string}>({
             query: (body) => ({
                 url: `/${body.id}`,
                 method: 'PATCH',
@@ -70,7 +70,7 @@ export const filialApi = createApi({
                 } catch {}
             }
         }),
-        deleteFilial: builder.mutation<void, {id: number}>({
+        deleteFilial: builder.mutation<void, {id: string}>({
             query: (body) => ({
                 url: `/${body.id}`,
                 method: 'DELETE'

@@ -16,7 +16,7 @@ interface ITable {
     isLoading: boolean
     page: number
     itemsOnPage: number
-    onCommentsClick: (n: number) => void
+    onCommentsClick: (n: string) => void
 }
 
 const Table: FC<ITable> = (props) => {

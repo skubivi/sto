@@ -7,7 +7,7 @@ import { useApproveDocumentMutation } from '../../../../../../services/api/docum
 import styles from './style.module.scss'
 
 interface IApproveModal {
-    documentId: number
+    documentId: string
     onClose: () => void
 }
 

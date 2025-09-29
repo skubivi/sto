@@ -7,24 +7,24 @@ export enum EDianostic {
 }
 
 export interface IDocumentToApprove {
-    id: number
+    id: string
     label: string
-    filialId?: number
-    mechanicId: number
-    clientDataId: number
+    filialId?: string
+    mechanicId: string
+    clientDataId: string
     carNumber: string
     type: EDianostic,
     createdAt: Date
 }
 
 export interface IDocumentComment {
-    reviewerId: number
+    reviewerId: string
     comment: string
     createdAt: Date
 }
 
 export interface IDocumentCommentToPost {
-    documentId: number
+    documentId: string
     comment: string
 }
 
@@ -47,13 +47,13 @@ export enum EReportWithAll {
 
 export interface IAnalyticsDocumentsFilters {
     type: EReportWithAll,
-    filials?: number[]
+    filials?: string[]
 }
 
 export interface IDocumentReport {
-    id: number
+    id: string
     label: string
-    filialId?: number[]
+    filialId?: string[]
     type: EReport,
     createdAt: Date
 }
@@ -66,16 +66,16 @@ export interface IPostDocumentReport<T> {
 }
 
 export interface IDiagnosticFilters {
-    filials: number[]
-    mechanics: number[]
+    filials: string[]
+    mechanics: string[]
 }
 
 export interface IDiagnosticDocument {
-    id: number
+    id: string
     label: string
-    filialId?: number
-    mechanicId: number
-    clientDataId: number
+    filialId?: string
+    mechanicId: string
+    clientDataId: string
     carNumber: string
     createdAt: Date
 }

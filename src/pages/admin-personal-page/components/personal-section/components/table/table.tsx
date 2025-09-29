@@ -10,15 +10,15 @@ import { paginationFilter } from '../../../../../../services/utils/helper-functi
 
 interface ITable {
     data: {
-        id: number
+        id: string
         createdAt: Date
         firstName: string
         lastName: string
         middleName: string
     }[] | undefined
     isLoading: boolean
-    openDeleteModal: (id: number) => void
-    openChangePasswordModal: (id: number) => void
+    openDeleteModal: (id: string) => void
+    openChangePasswordModal: (id: string) => void
     page: number
     itemsOnPage: number
 }

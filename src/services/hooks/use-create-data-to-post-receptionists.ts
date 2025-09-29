@@ -15,10 +15,10 @@ export const useCreateDataToPostReceptionists = (data: IReceptionistReport[]) =>
         if (receptionists) setFilteredReceptionists(receptionists.data.filter(el => el.role === ERoles.Mechanic))
     }, [isSuccess])
 
-    const getFilialName = (id: number) => {
+    const getFilialName = (id: string) => {
         return filials?.data.find(el => el.id === id)?.title
     }
-    const getReceptionistName = (id: number) => {
+    const getReceptionistName = (id: string) => {
         const person = filteredReceptionists.find(el => el.id === id)
         if (person) return `${person.lastName} ${person.firstName[0]}.${person.middleName[0]}`
     }

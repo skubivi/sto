@@ -12,16 +12,16 @@ interface ITableHeader {
     onChangeDateTo: (d: Date) => void
     onChangeDateFrom: (d: Date) => void
     receptionists: {
-        id: number
+        id: string
         title: string
     }[] | undefined
     isReceptionistsLoading: boolean
     chosenReceptionists: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenReceptionists: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     status: ECarStatusWithAll

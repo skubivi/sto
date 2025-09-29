@@ -7,7 +7,7 @@ export const clientsDataApi = createApi({
   reducerPath: 'clientsDataApi',
   baseQuery: baseQueryWithRefresh({ url: ClientsEndpointRoutes.Base }),
   endpoints: (builder) => ({
-    getClientsData: builder.query<IClientData, {id: number}>({
+    getClientsData: builder.query<IClientData, {id: string}>({
       query: (body) => ({
         url: `/${body.id}`,
       }),

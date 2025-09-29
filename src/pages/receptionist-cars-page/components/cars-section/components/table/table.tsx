@@ -14,8 +14,8 @@ interface ITable {
     isLoading: boolean
     page: number
     itemsOnPage: number
-    onApproveClick: (n: number) => void
-    onInfoClick: (n: number) => void
+    onApproveClick: (n: string) => void
+    onInfoClick: (n: string) => void
 }
 
 const Table: FC<ITable> = (props) => {

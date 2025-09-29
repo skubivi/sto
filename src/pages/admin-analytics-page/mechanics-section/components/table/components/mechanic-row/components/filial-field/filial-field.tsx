@@ -8,13 +8,13 @@ import { useGetMeQuery } from "../../../../../../../../../services/api/user";
 import { ERoles } from "../../../../../../../../../services/types/user";
 
 interface IFilialField {
-    filialId: number | undefined
+    filialId: string | undefined
 }
 
 const FilialField: FC<IFilialField> = (props) => {
     const [filialTitle, setFilialTitle] = useState("");
     const {data: me} = useGetMeQuery()
-    const { data, isLoading, isSuccess } = useGetFilialQuery({id: props.filialId as number}, {skip: props.filialId === undefined})
+    const { data, isLoading, isSuccess } = useGetFilialQuery({id: props.filialId as string}, {skip: props.filialId === undefined})
 
     useEffect(() => {
         if (props.filialId === undefined) setFilialTitle("—")

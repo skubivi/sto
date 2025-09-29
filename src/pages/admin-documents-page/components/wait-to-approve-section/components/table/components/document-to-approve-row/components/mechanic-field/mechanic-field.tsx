@@ -7,7 +7,7 @@ import Loader from "../../../../../../../../../../components/ui/loader/loader";
 import { useGetUserPersonalDataQuery } from "../../../../../../../../../../services/api/user";
 
 interface IFilialField {
-    mechanicId: number
+    mechanicId: string
 }
 
 const MechanicField: FC<IFilialField> = (props) => {

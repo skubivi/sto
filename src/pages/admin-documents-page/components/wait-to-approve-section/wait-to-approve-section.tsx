@@ -18,9 +18,9 @@ const WaitToApproveSection = () => {
     const [search, setSearch] = useState('')
     const [dateFrom, setDateFrom] = useState(STARTING_DATE)
     const [dateTo, setDateTo] = useState(new Date(Date.now()))
-    const [openComments, setOpenComments] = useState<number | undefined>(undefined)
-    const [openDeclineModal, setOpenDeclineModal] = useState<number | undefined>(undefined)
-    const [openApproveModal, setOpenApproveModal] = useState<number | undefined>(undefined)
+    const [openComments, setOpenComments] = useState<string | undefined>(undefined)
+    const [openDeclineModal, setOpenDeclineModal] = useState<string | undefined>(undefined)
+    const [openApproveModal, setOpenApproveModal] = useState<string | undefined>(undefined)
 
     const {data: documents, isLoading: isDocumentsLoading} = useGetDocumentsToApproveQuery({dateFrom: dateFrom.toString(), dateTo: dateTo.toString()})
 

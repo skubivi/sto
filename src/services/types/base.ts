@@ -1,5 +1,5 @@
 export interface IId {
-    id: number
+    id: string
 }
 
 export interface ICreatedAt {

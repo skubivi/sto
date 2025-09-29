@@ -16,7 +16,7 @@ const FilialSelect = () => {
 
     const myFilial = filials?.data.find(el => el.id === filial)
 
-    const handleChange = (id: number) => {
+    const handleChange = (id: string) => {
         setFilial(id)
         setFilialToLocalStorage(id)
     }

@@ -7,7 +7,7 @@ import Loader from "../../../../../../../../../../components/ui/loader/loader";
 import { useGetClientsDataQuery } from "../../../../../../../../../../services/api/clients-data";
 
 interface IFilialField {
-    clientDataId: number
+    clientDataId: string
 }
 
 const ClientField: FC<IFilialField> = (props) => {

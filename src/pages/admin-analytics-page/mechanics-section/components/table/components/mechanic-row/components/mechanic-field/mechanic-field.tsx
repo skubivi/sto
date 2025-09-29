@@ -8,7 +8,7 @@ import Typography from "../../../../../../../../../components/ui/typography/typo
 import { ERoles } from "../../../../../../../../../services/types/user";
 
 interface IFilialField {
-    mechanicId: number
+    mechanicId: string
 }
 
 const MechanicField: FC<IFilialField> = (props) => {

@@ -5,7 +5,7 @@ export const useCreateDataToPostFilialReceptionists = (data: IReceptionistFilial
     const result: IPostReceptionistFilialReport[] = []
     const { data: filials } = useGetFilialsQuery()
 
-    const getFilialName = (id: number) => {
+    const getFilialName = (id: string) => {
         return filials?.data.find(el => el.id === id)?.title
     }
 

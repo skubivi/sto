@@ -8,7 +8,7 @@ import styles from './style.module.scss'
 
 interface IDownloadPdf {
     title: string
-    documentId: number
+    documentId: string
 }
 
 const DownloadPdf: FC<IDownloadPdf> = (props) => {

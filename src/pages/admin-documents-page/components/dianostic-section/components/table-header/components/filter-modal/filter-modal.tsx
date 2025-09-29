@@ -16,29 +16,29 @@ interface IFilterModal {
     dateTo: Date
     setDateTo: (d: Date) => void
     mechanics: {
-        id: number
+        id: string
         title: string
     }[] | undefined
     isMechanicsLoading: boolean
     chosenMechanics: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenMechanics: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     filials: {
-        id: number,
+        id: string,
         title: string
     }[] | undefined
     isFilialsLoading: boolean
     chosenFilials: {
-        id: number,
+        id: string,
         title: string
     }[]
     setChosenFilials: React.Dispatch<React.SetStateAction<{
-        id: number;
+        id: string;
         title: string;
     }[]>>
     onClose: () => void
@@ -52,7 +52,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
 
     const { data: me } = useGetMeQuery()
 
-    const handleAddMechanic = (id: number) => {
+    const handleAddMechanic = (id: string) => {
         const mechanic = props.mechanics?.find(el => el.id === id)
         if (!mechanic) return
         setChosenMechanics(prev => {
@@ -62,14 +62,14 @@ const FilterModal: FC<IFilterModal> = (props) => {
             return prev
         })
     }
-    const handleRemoveMechanic = (id: number) => {
+    const handleRemoveMechanic = (id: string) => {
         setChosenMechanics(prev => {
             const index = prev.findIndex(el => el.id === id)
             if (index === -1) return prev
             return [...prev.slice(0, index), ...prev.slice(index + 1)]
         })
     }
-    const handleAddFilial = (id: number) => {
+    const handleAddFilial = (id: string) => {
         const filial = props.filials?.find(el => el.id === id)
         if (!filial) return
         setChosenFilials(prev => {
@@ -79,7 +79,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
             return prev
         })
     }
-    const handleRemoveFilial = (id: number) => {
+    const handleRemoveFilial = (id: string) => {
         setChosenFilials(prev => {
             const index = prev.findIndex(el => el.id === id)
             if (index === -1) return prev
@@ -112,7 +112,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                             <StyledMultiSelectWithLabel 
                                 active={chosenMechanics} 
                                 options={props.mechanics as {
-                                    id: number,
+                                    id: string,
                                     title: string
                                 }[]}
                                 onAdd={handleAddMechanic}
@@ -132,7 +132,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                             <StyledMultiSelectWithLabel 
                                 active={chosenFilials} 
                                 options={props.filials as {
-                                    id: number,
+                                    id: string,
                                     title: string
                                 }[]}
                                 onAdd={handleAddFilial}
