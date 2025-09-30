@@ -1,4 +1,4 @@
 export enum ClientsEndpointRoutes {
-  Base = 'clients-data',
+  Base = 'client-data',
   Check = '/check'
 }
