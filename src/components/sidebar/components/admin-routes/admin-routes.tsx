@@ -1,7 +1,7 @@
 import styles from './style.module.scss'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import AnalyticsSvg from '../../../../assets/components/sidebar/analytics.svg?react'
+// import AnalyticsSvg from '../../../../assets/components/sidebar/analytics.svg?react'
 import DocumentsSvg from '../../../../assets/components/sidebar/document.svg?react'
 import FilialSvg from '../../../../assets/components/sidebar/filial.svg?react'
 import PersonSvg from '../../../../assets/components/sidebar/person.svg?react'
@@ -35,12 +35,12 @@ const AdminRoutes = () => {
             >
                 <DocumentsSvg className={styles.svg} />
             </div>
-            <div 
+            {/* <div 
                 className={`${styles.element} ${activePage === 'Analytics' ? styles.active : ''}`}
                 onClick={() => navigate(UrlRoutes.AdminAnalytics)}
             >
                 <AnalyticsSvg className={styles.svg} />
-            </div>
+            </div> */}
             <div
                 className={`${styles.element} ${activePage === 'Personal' ? styles.active : ''}`}
                 onClick={() => navigate(UrlRoutes.AdminPersonal)}
