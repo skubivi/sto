@@ -9,6 +9,7 @@ import { EDiagnostic } from '../../services/types/documents'
 import ReportWindow from './components/report-window/report-window'
 import { createFreeReportBlob, openPdfBlob } from '../../services/utils/helper-functions/pdf'
 import { useLazyGetPersonalDataQuery } from '../../services/api/user'
+import { useUploadDocumentDiagnosticMutation } from '../../services/api/documents'
 
 const MechanicMainPage = () => {
     const { data: carsForMechanic, isLoading } = useGetMechanicCarsQuery()
@@ -16,6 +17,8 @@ const MechanicMainPage = () => {
 
     const [windowId, setWindowId] = useState<undefined | string>(undefined)
     const [windowType, setWindowType] = useState<EDiagnostic>(EDiagnostic.Metalworker)
+
+    const [uploadDiagnostic] = useUploadDocumentDiagnosticMutation()
 
     if (isLoading) return (
         <div className={styles['loading-wrapper']}>
@@ -37,6 +40,7 @@ const MechanicMainPage = () => {
     const openReportWindow = windowType === EDiagnostic.Free && windowId !== undefined
 
     const handleSubmitFreeReport = async (data: {text: string, photo: Blob | undefined}[]) => {
+        if (windowId === undefined) return null
         const personal = await getPersonal()
         if (!personal.data) return null
         const car = carsForMechanic.data.find(el => el.id === windowId)
@@ -48,7 +52,18 @@ const MechanicMainPage = () => {
             mechanicName,
             data
         })
-        openPdfBlob(blob)
+        const now = new Date(Date.now())
+        const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
+        await uploadDiagnostic({
+            label: dateText + ' - отчет',
+            type: EDiagnostic.Free,
+            file: blob,
+            carProcessingId: windowId,
+            data: {
+                worksCount: data.length
+            }
+        })
+        setWindowId(undefined)
     }
 
     return (

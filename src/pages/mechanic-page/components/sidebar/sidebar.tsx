@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import Route from "./route/route"
 import { UrlRoutes } from "../../../../services/routes/url-routes"
 import DefaultButton from "../../../../components/ui/default-button/default-button"
+import { useGetLogoutMutation } from "../../../../services/api/auth"
 
 interface ISidebar {
     open: boolean
@@ -20,6 +21,7 @@ const SideBar: FC<ISidebar> = (props) => {
         navigate(r)
         props.onClose()
     }
+    const [logout] = useGetLogoutMutation()
     return (
         <div className={`${styles.sidebar} ${props.open && styles.open}`}>
             <div className={styles.header}>
@@ -34,7 +36,7 @@ const SideBar: FC<ISidebar> = (props) => {
             </div>
             <div className={styles.logout}>
                 <div>
-                    <DefaultButton variant="primary">Выйти</DefaultButton>
+                    <DefaultButton variant="primary" onClick={() => logout()}>Выйти</DefaultButton>
                 </div>
             </div>
         </div>

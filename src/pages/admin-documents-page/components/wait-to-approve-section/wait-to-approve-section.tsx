@@ -22,7 +22,7 @@ const WaitToApproveSection = () => {
     const [openDeclineModal, setOpenDeclineModal] = useState<string | undefined>(undefined)
     const [openApproveModal, setOpenApproveModal] = useState<string | undefined>(undefined)
 
-    const {data: documents, isLoading: isDocumentsLoading} = useGetDocumentsToApproveQuery({dateFrom: dateFrom.toJSON(), dateTo: dateTo.toJSON()})
+    const {data: documents, isLoading: isDocumentsLoading} = useGetDocumentsToApproveQuery({dateFrom, dateTo})
 
     let filteredDocuments = documents?.data
     if (search.length > 0) filteredDocuments = filteredDocuments?.filter(el => {

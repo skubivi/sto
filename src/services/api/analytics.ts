@@ -10,7 +10,9 @@ const arrayToString = (f: string[]) => {
     return result
 }
 
-const getDatePart = (from: string, to: string) => `?date-from=${from}&date-to=${to}`
+const dateToString = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+
+const getDatePart = (from: Date, to: Date) => `?date-from=${dateToString(from)}&date-to=${dateToString(to)}`
 
 const getMechanicParams = (body: IMechanicReportFilters) => {
     const datePart = getDatePart(body.dateFrom, body.dateTo)

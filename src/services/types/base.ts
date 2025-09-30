@@ -7,6 +7,6 @@ export interface ICreatedAt {
 }
 
 export interface IFilterDate {
-    dateFrom: string
-    dateTo: string
+    dateFrom: Date
+    dateTo: Date
 }

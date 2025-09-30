@@ -36,8 +36,8 @@ const MechanicFilialSection = () => {
     
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const {data: analytics, isLoading: isAnalyticsLoading} = useGetMechanicFilialAnalyticsQuery({
-        dateFrom: dateFrom.toJSON(), 
-        dateTo: dateTo.toJSON(),
+        dateFrom: dateFrom, 
+        dateTo: dateTo,
         filials: chosenFilials.map(el => el.id),
         worksAverageSign: state.worksAverageSign,
         worksCountSign: state.worksCountSign,

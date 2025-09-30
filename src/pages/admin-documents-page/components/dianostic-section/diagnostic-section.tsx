@@ -26,8 +26,8 @@ const DiagnosticSection = () => {
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const { data: personal, isLoading: isPersonalLoading } = useGetPersonalQuery()
     const {data: documents, isLoading: isDocumentsLoading} = useGetDianosticDocumentsQuery({
-        dateFrom: dateFrom.toJSON(), 
-        dateTo: dateTo.toJSON(),
+        dateFrom, 
+        dateTo,
         filials: chosenFilials.map(el => el.id),
         mechanics: chosenMechanics.map(el => el.id)
     })

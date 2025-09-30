@@ -27,8 +27,8 @@ const CarsSection = () => {
 
     const { data: personal, isLoading: isPersonalLoading } = useGetPersonalQuery()
     const {data: cars, isLoading: isCarsLoading} = useGetCarsQuery({
-        dateFrom: dateFrom.toJSON(),
-        dateTo: dateTo.toJSON(),
+        dateFrom,
+        dateTo,
         receptionists: chosenReceptionists.map(el => el.id),
         status
     })

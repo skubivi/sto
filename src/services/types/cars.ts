@@ -32,8 +32,8 @@ export interface ICarToPost {
 }
 
 export interface ICarFilters {
-    dateFrom: string
-    dateTo: string
+    dateFrom: Date
+    dateTo: Date
     receptionists: string[]
     status: ECarStatusWithAll
 }

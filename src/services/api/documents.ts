@@ -9,14 +9,17 @@ const getDocumentToApproveParams = (body: IFilterDate) => {
 }
 
 const arrayToString = (f: string[]) => {
-    let result = ''
-    f.forEach(element => result += `${element}_`)
-    result = result.slice(0, -1)
+    let result = '['
+    f.forEach(element => result += `"${element}", `)
+    result = result.slice(0, -2)
+    result += ']'
     return result
 }
 
+const dateToString = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+
 const getAnalyticsDocumentsParams = (body: IFilterDate & IAnalyticsDocumentsFilters) => {
-    const datePart = `?date-from=${body.dateFrom}&date-to=${body.dateTo}`
+    const datePart = `?date-from=${dateToString(body.dateFrom)}&date-to=${dateToString(body.dateTo)}`
     const typePart = `&type=${body.type}`
     const filialsPart = body.filials && body.filials.length > 0
         ? `&filials=${arrayToString(body.filials)}`
@@ -24,7 +27,7 @@ const getAnalyticsDocumentsParams = (body: IFilterDate & IAnalyticsDocumentsFilt
     return datePart + typePart + filialsPart
 }
 const getDianosticDocumentsParams = (body: IFilterDate & IDiagnosticFilters) => {
-    const datePart = `?date-from=${body.dateFrom}&date-to=${body.dateTo}`
+    const datePart = `?date-from=${dateToString(body.dateFrom)}&date-to=${dateToString(body.dateTo)}`
     const filialPart = body.filials.length > 0
         ? `&filials=${arrayToString(body.filials)}`
         : ''

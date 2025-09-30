@@ -41,8 +41,8 @@ const MechanicsSection = () => {
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const { data: personal, isLoading: isPersonalLoading } = useGetPersonalQuery()
     const {data: analytics, isLoading: isAnalyticsLoading} = useGetMechanicAnalyticsQuery({
-        dateFrom: dateFrom.toJSON(), 
-        dateTo: dateTo.toJSON(),
+        dateFrom, 
+        dateTo,
         filials: chosenFilials.map(el => el.id),
         mechanics: chosenMechanics.map(el => el.id),
         worksAverageSign: state.worksAverageSign,

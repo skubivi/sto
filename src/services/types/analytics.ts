@@ -13,8 +13,8 @@ export interface IMechanicReport {
 }
 
 export interface IMechanicReportFilters {
-    dateFrom: string
-    dateTo: string
+    dateFrom: Date
+    dateTo: Date
     filials: string[]
     mechanics: string[]
     diagnosticsCount?: number
@@ -45,8 +45,8 @@ export interface IMechanicFilialReport {
 }
 
 export interface IMechanicFilialReportFilters {
-    dateFrom: string
-    dateTo: string
+    dateFrom: Date
+    dateTo: Date
     filials: string[]
     diagnosticsCount?: number
     diagnosticsCountSign: ESign
@@ -78,8 +78,8 @@ export interface IReceptionistReport {
 }
 
 export interface IReceptionistReportFilters {
-    dateFrom: string
-    dateTo: string
+    dateFrom: Date
+    dateTo: Date
     filials: string[]
     receptionists: string[]
     carsCount?: number
@@ -118,8 +118,8 @@ export interface IReceptionistFilialReport {
 }
 
 export interface IReceptionistFilialReportFilters {
-    dateFrom: string
-    dateTo: string
+    dateFrom: Date
+    dateTo: Date
     filials: string[]
     carsCount?: number
     carsCountSign: ESign
