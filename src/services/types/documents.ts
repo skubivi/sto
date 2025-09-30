@@ -14,7 +14,8 @@ export interface IDocumentToApprove {
     clientDataId: string
     carNumber: string
     type: EDiagnostic,
-    createdAt: string
+    createdAt: string,
+    docId: string
 }
 
 export interface IDocumentComment {
@@ -56,6 +57,7 @@ export interface IDocumentReport {
     filialId?: string[]
     type: EReport,
     createdAt: string
+    docId: string
 }
 
 export interface IPostDocumentReport<T> {
@@ -86,6 +88,7 @@ export interface IDiagnosticDocument {
     clientDataId: string
     carNumber: string
     createdAt: string
+    docId: string
 }
 
 export interface IFreeReportData {

@@ -50,7 +50,7 @@ const Table: FC<ITable> = (props) => {
             }
             {props.data !== undefined && paginationFilter(props.data, props.page, props.itemsOnPage).map(el => (
                 <AnalyticsDocumentRow
-                    onOpenComments={() => props.onCommentsClick(el.id)}
+                    onOpenComments={() => props.onCommentsClick(el.docId)}
                     key={el.id}
                     data={el}
                 />
