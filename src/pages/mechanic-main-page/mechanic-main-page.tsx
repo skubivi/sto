@@ -66,7 +66,8 @@ const MechanicMainPage = () => {
             carProcessingId: windowId,
             filialId,
             data: {
-                worksCount: data.length
+                worksCount: data.length,
+                filialId,
             }
         })
         setWindowId(undefined)
@@ -85,7 +86,7 @@ const MechanicMainPage = () => {
             carNumber: car.carNumber,
             mileage: car.mileage,
             mechanicName,
-            data,
+            data
         })
         const now = new Date(Date.now())
         const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
@@ -94,9 +95,9 @@ const MechanicMainPage = () => {
             type: EDiagnostic.Electric,
             file: blob,
             carProcessingId: windowId,
-            filialId,
             data: {
                 worksCount: data.length
+                filialId,
             }
         })
         setWindowId(undefined)

@@ -71,7 +71,6 @@ export const documentsApi = createApi({
                 formData.append("type", body.type);
                 formData.append("data", JSON.stringify(body.data))
                 formData.append("carProcessingId", body.carProcessingId)
-                formData.append("filialId", body.filialId)
 
                 return {
                     url: DocumentEndpointRoutes.DiagnosticCreate,
