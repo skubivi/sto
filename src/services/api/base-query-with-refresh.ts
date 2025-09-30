@@ -46,7 +46,7 @@ const baseQueryWithRefresh = ({ url }: { url: string }) => {
           const refreshResult = await baseQuery(
             {
               url: BASE_URL + "/refresh",
-              method: "GET",
+              method: "POST",
               headers: { authorization: getCookie("refreshToken") },
             },
             api,
