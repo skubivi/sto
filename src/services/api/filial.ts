@@ -19,7 +19,7 @@ export const filialApi = createApi({
         }),
         getFilial: builder.query<TFilialWithId, {id: string}>({
             query: (body) => ({
-                url: `/${body.id}`
+                url: `/${body.id}${FilialEndpointRoutes.Get}`
             })
         }),
         postFilial: builder.mutation<TFilialWithId, IFilial>({
