@@ -24,6 +24,13 @@ export interface IDocumentComment {
     createdAt: string
 }
 
+export interface IDocumentCommentFromPost {
+    id: string
+    reviewerId: string
+    comment: string
+    createdAt: string
+}
+
 export interface IDocumentCommentToPost {
     documentId: string
     comment: string

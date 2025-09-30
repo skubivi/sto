@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import baseQueryWithRefresh from "./base-query-with-refresh";
 import { DocumentEndpointRoutes } from "../routes/endpoints/documents";
-import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentDiagnostic, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
+import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentFromPost, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentDiagnostic, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
 import { IFilterDate } from "../types/base";
 
 const dateToString = (d: Date) => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`
@@ -107,7 +107,7 @@ export const documentsApi = createApi({
                 url: `/${body.id}${DocumentEndpointRoutes.Comments}`
             })
         }),
-        postComment: builder.mutation<TDocumentCommentWithId, IDocumentCommentToPost>({
+        postComment: builder.mutation<IDocumentCommentFromPost, IDocumentCommentToPost>({
             query: (body) => ({
                 url: `/${body.documentId}${DocumentEndpointRoutes.Comments}`,
                 method: 'POST',
@@ -122,7 +122,12 @@ export const documentsApi = createApi({
                         "getComments",
                         {id: args.documentId},
                         (state) => {
-                            state.data.push(data)
+                            state.data.push({
+                                id: data.id,
+                                userId: data.reviewerId,
+                                createdAt: data.createdAt,
+                                comment: data.comment
+                            })
                         }
                     ))
                 // eslint-disable-next-line no-empty
