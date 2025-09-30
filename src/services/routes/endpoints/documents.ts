@@ -8,5 +8,6 @@ export enum DocumentEndpointRoutes {
     Diagnostic = '/diagnostic',
     Report = '/free',
     DiagnosticCreate = '/diagnostic/create',
-    ReportCreate = '/report/create'
+    ReportCreate = '/report/create',
+    Get = '/get'
 }

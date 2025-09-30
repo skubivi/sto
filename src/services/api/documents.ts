@@ -44,7 +44,7 @@ export const documentsApi = createApi({
     endpoints: (builder) => ({
         getDocument: builder.query<{docLink: string}, {id: string}>({
             query: (body) => ({
-                url: `/${body.id}`,
+                url: `/${body.id}${DocumentEndpointRoutes.Get}`,
             }),
         }),
         uploadDocumentReport: builder.mutation<{documentId: string}, IPostDocumentReport<object>>({
