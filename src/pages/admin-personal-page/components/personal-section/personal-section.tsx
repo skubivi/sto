@@ -67,6 +67,7 @@ const PersonalSection = () => {
     if (!me) return null
 
     let filteredPersonal = personal?.data
+    filteredPersonal?.filter(el => el.id !== me.id)
     if (filter !== ERolesWithAll.All) filteredPersonal = filteredPersonal?.filter(el => el.role === filter as unknown as ERoles)
     if (search.length > 0) filteredPersonal = filteredPersonal?.filter(el => {
         if (search.split(' ').length === 1) {

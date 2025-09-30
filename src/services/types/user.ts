@@ -14,7 +14,7 @@ export enum ERolesWithAll {
 }
 
 export interface IUserResponse {
-  id: number;
+  id: string;
   role: ERoles
 }
 

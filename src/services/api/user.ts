@@ -27,9 +27,10 @@ export const userApi = createApi({
       })
     }),
     patchPersonalData: builder.mutation<void, IPersonal>({
-      query: () => ({
+      query: (body) => ({
         url: UserEndpointRoutes.Personal,
-        method: 'PUT'
+        method: 'PUT',
+        body
       }),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
