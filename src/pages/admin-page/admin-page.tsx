@@ -10,7 +10,7 @@ const AdminPage = () => {
     const location = useLocation()
 
     const { data: filial, isSuccess } = useGetMyFilialQuery()
-    const { data: me, isMeSuccess } = useGetMeQuery()
+    const { data: me, isSuccess: isMeSuccess } = useGetMeQuery()
     useEffect(() => {
         if (filial && me?.role === ERoles.Admin) setFilialToLocalStorage(filial.id)
         else if (me?.role === ERoles.FullAdmin) setFilialToLocalStorage(null)
