@@ -7,9 +7,10 @@ import CarCard from './components/car-card/car-card'
 import styles from './style.module.scss'
 import { EDiagnostic } from '../../services/types/documents'
 import ReportWindow from './components/report-window/report-window'
-import { createFreeReportBlob } from '../../services/utils/helper-functions/pdf'
+import { createElectroReportBlob, createFreeReportBlob, openPdfBlob } from '../../services/utils/helper-functions/pdf'
 import { useLazyGetPersonalDataQuery } from '../../services/api/user'
 import { useUploadDocumentDiagnosticMutation } from '../../services/api/documents'
+import ElectroWindow from './components/electro-window/electro-window'
 
 const MechanicMainPage = () => {
     const { data: carsForMechanic, isLoading } = useGetMechanicCarsQuery()
@@ -38,6 +39,7 @@ const MechanicMainPage = () => {
     const createdCars = carsForMechanic.data.filter(el => el.status === ECarStatus.Created)
 
     const openReportWindow = windowType === EDiagnostic.Free && windowId !== undefined
+    const openElectroWindow = windowType === EDiagnostic.Electric && windowId !== undefined
 
     const handleSubmitFreeReport = async (data: {text: string, photo: Blob | undefined}[]) => {
         if (windowId === undefined) return null
@@ -66,6 +68,34 @@ const MechanicMainPage = () => {
         setWindowId(undefined)
     }
 
+    const handleSubmitElectro = async (data: {text: string, photo: Blob | undefined, title: string, subtitle: string}[]) => {
+        if (windowId === undefined) return null
+        const personal = await getPersonal()
+        if (!personal.data) return null
+        const car = carsForMechanic.data.find(el => el.id === windowId)
+        if (car === undefined) return null
+        const mechanicName = personal.data.lastName + ' ' + personal.data.firstName + ' ' + personal.data.middleName
+        const blob = await createElectroReportBlob({
+            carNumber: car.carNumber,
+            mileage: car.mileage,
+            mechanicName,
+            data,
+        })
+        openPdfBlob(blob)
+        // const now = new Date(Date.now())
+        // const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
+        // await uploadDiagnostic({
+        //     label: dateText + ' - отчет',
+        //     type: EDiagnostic.Free,
+        //     file: blob,
+        //     carProcessingId: windowId,
+        //     data: {
+        //         worksCount: data.length
+        //     }
+        // })
+        // setWindowId(undefined)
+    }
+
     return (
         <div className={`${styles.wrapper} ${windowId !== undefined && styles.max}`}>
             <ReportWindow 
@@ -73,6 +103,12 @@ const MechanicMainPage = () => {
                 onClose={() => setWindowId(undefined)} 
                 open={openReportWindow} 
                 onSubmit={handleSubmitFreeReport}
+            />
+            <ElectroWindow 
+                cardId={windowId}
+                onClose={() => setWindowId(undefined)}
+                open={openElectroWindow}
+                onSubmit={handleSubmitElectro}
             />
             <div className={styles['cars-section']}>
                 <Typography variant='h2' color='black'>Нужно провести диагностику</Typography>

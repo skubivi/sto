@@ -97,3 +97,15 @@ export interface IFreeReportData {
         photo: Blob | undefined
     }[]
 }
+
+export interface IElectroDiagnosticData {
+    carNumber: string
+    mileage: number
+    mechanicName: string
+    data: {
+        title: string
+        subtitle: string
+        text: string
+        photo: Blob | undefined
+    }[]
+}

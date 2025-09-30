@@ -1,9 +1,9 @@
 export enum DocumentEndpointRoutes {
     Base = "documents",
-    ToApprove = '/to-approve',
+    ToApprove = '/to-aprove',
     Analytics = '/analytic',
     Comments = '/reviews/',
-    Approve = '/approve',
+    Approve = '/aprove',
     Decline = '/decline',
     Diagnostic = '/diagnostic',
     Report = '/free',
