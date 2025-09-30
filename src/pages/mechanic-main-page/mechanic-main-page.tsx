@@ -11,6 +11,7 @@ import { createElectroReportBlob, createFreeReportBlob } from '../../services/ut
 import { useLazyGetPersonalDataQuery } from '../../services/api/user'
 import { useUploadDocumentDiagnosticMutation } from '../../services/api/documents'
 import ElectroWindow from './components/electro-window/electro-window'
+import { getFilialFromLocalStorage } from '../../services/utils/helper-functions/filial'
 
 const MechanicMainPage = () => {
     const { data: carsForMechanic, isLoading } = useGetMechanicCarsQuery()
@@ -47,6 +48,8 @@ const MechanicMainPage = () => {
         if (!personal.data) return null
         const car = carsForMechanic.data.find(el => el.id === windowId)
         if (car === undefined) return null
+        const filialId = getFilialFromLocalStorage()
+        if (filialId === null) return null
         const mechanicName = personal.data.lastName + ' ' + personal.data.firstName + ' ' + personal.data.middleName
         const blob = await createFreeReportBlob({
             carNumber: car.carNumber,
@@ -61,6 +64,7 @@ const MechanicMainPage = () => {
             type: EDiagnostic.Free,
             file: blob,
             carProcessingId: windowId,
+            filialId,
             data: {
                 worksCount: data.length
             }
@@ -74,6 +78,8 @@ const MechanicMainPage = () => {
         if (!personal.data) return null
         const car = carsForMechanic.data.find(el => el.id === windowId)
         if (car === undefined) return null
+        const filialId = getFilialFromLocalStorage()
+        if (filialId === null) return null
         const mechanicName = personal.data.lastName + ' ' + personal.data.firstName + ' ' + personal.data.middleName
         const blob = await createElectroReportBlob({
             carNumber: car.carNumber,
@@ -88,6 +94,7 @@ const MechanicMainPage = () => {
             type: EDiagnostic.Electric,
             file: blob,
             carProcessingId: windowId,
+            filialId,
             data: {
                 worksCount: data.length
             }
