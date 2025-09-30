@@ -24,7 +24,7 @@ export const filialApi = createApi({
         }),
         postFilial: builder.mutation<TFilialWithId, IFilial>({
             query: (body) => ({
-                url: '/',
+                url: FilialEndpointRoutes.Create,
                 method: 'POST',
                 body
             }),
