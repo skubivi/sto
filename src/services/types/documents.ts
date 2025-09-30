@@ -71,7 +71,6 @@ export interface IPostDocumentDiagnostic<T> {
     type: EDiagnostic
     file: Blob
     carProcessingId: string
-    filialId: string
     data: T
 }
 
