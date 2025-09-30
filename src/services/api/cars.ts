@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import baseQueryWithRefresh from "./base-query-with-refresh";
 import { CarsEndpointRoutes } from "../routes/endpoints/cars";
-import { ECarStatusWithAll, ICar, ICarFilters, ICarToPost } from "../types/cars";
+import { ECarStatusWithAll, ICar, ICarFilters, ICarForMechanic, ICarToPost } from "../types/cars";
 
 const arrayToString = (f: string[]) => {
     let result = ''
@@ -32,9 +32,9 @@ export const carsApi = createApi({
             }),
             providesTags: ["Cars"]
         }),
-        getMechanicCars: builder.query<{data: ICar[]}, void>({
+        getMechanicCars: builder.query<{data: ICarForMechanic[]}, void>({
             query: () => ({
-                url: CarsEndpointRoutes.ToWork
+                url: CarsEndpointRoutes.ForMechanic
             })
         }),
         postCar: builder.mutation<void, ICarToPost>({
@@ -56,7 +56,7 @@ export const carsApi = createApi({
             query: (body) => ({
                 url: `/${body.carId}${CarsEndpointRoutes.Documents}`
             })
-        })
+        }),
     }),
 });
 

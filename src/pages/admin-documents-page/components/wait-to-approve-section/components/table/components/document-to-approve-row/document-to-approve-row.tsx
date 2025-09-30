@@ -1,7 +1,7 @@
 import { FC } from "react"
 import ColStripe from "../../../../../../../../components/ui/col-stripe/col-stripe"
 import Typography from "../../../../../../../../components/ui/typography/typography"
-import { EDianostic, IDocumentToApprove } from "../../../../../../../../services/types/documents"
+import { EDiagnostic, IDocumentToApprove } from "../../../../../../../../services/types/documents"
 import FilialField from "./components/filial-field/filial-field"
 import ClientField from "./components/client-field/client-field"
 import MechanicField from "./components/mechanic-field/mechanic-field"
@@ -30,7 +30,7 @@ const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
         createdAtDate.getDate().toString().padStart(2, '0') + '.' +
         (createdAtDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
         createdAtDate.getFullYear().toString()
-    const typeText = props.data.type === EDianostic.Metalworker || props.data.type === EDianostic.Electric ? 'Диагностика' : 'Отчет'
+    const typeText = props.data.type === EDiagnostic.Metalworker || props.data.type === EDiagnostic.Electric ? 'Диагностика' : 'Отчет'
 
     return (
         <div className={styles['row-container']}>

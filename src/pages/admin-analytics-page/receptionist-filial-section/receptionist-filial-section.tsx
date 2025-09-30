@@ -45,8 +45,8 @@ const ReceptionistFilialSection = () => {
 
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const {data: analytics, isLoading: isAnalyticsLoading} = useGetReceptionistFilialAnalyticsQuery({
-        dateFrom: dateFrom.toString(), 
-        dateTo: dateTo.toString(),
+        dateFrom: dateFrom.toJSON(), 
+        dateTo: dateTo.toJSON(),
         filials: chosenFilials.map(el => el.id),
         carsCount: state.carsCount,
         carsCountSign: state.carsCountSign,

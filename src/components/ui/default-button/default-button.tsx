@@ -3,7 +3,7 @@ import styles from './style.module.scss'
 
 interface IDefaultButton {
     children: ReactNode
-    variant: 'primary' | 'outline-primary' | 'outline-danger' | 'outline-secondary3'
+    variant: 'primary' | 'outline-primary' | 'outline-danger' | 'outline-secondary3' | 'outline-primary2' | 'secondary'
     onClick?: React.MouseEventHandler<HTMLButtonElement>
     disabled?: boolean
 }

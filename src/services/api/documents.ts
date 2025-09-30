@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import baseQueryWithRefresh from "./base-query-with-refresh";
 import { DocumentEndpointRoutes } from "../routes/endpoints/documents";
-import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
+import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentDiagnostic, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
 import { IFilterDate } from "../types/base";
 
 const getDocumentToApproveParams = (body: IFilterDate) => {
@@ -47,17 +47,33 @@ export const documentsApi = createApi({
         uploadDocumentReport: builder.mutation<{documentId: string}, IPostDocumentReport<object>>({
             query: (body) => {
                 const formData = new FormData();
-                formData.append("file", body.document, `${body.label}.pdf`);
+                formData.append("file", body.file, `${body.label}.pdf`);
                 formData.append("label", body.label);
                 formData.append("type", body.type);
                 formData.append("data", JSON.stringify(body.data))
 
                 return {
-                    url: '/report',
+                    url: DocumentEndpointRoutes.ReportCreate,
                     method: "POST",
                     body: formData,
                 };
             },
+        }),
+        uploadDocumentDiagnostic: builder.mutation<void, IPostDocumentDiagnostic<object>>({
+            query: (body) => {
+                const formData = new FormData();
+                formData.append("file", body.file, `${body.label}.pdf`);
+                formData.append("label", body.label);
+                formData.append("type", body.type);
+                formData.append("data", JSON.stringify(body.data))
+                formData.append("carProcessingId", body.carProcessingId)
+
+                return {
+                    url: DocumentEndpointRoutes.DiagnosticCreate,
+                    method: 'POST',
+                    body: formData
+                }
+            }
         }),
         getDocumentsToApprove: builder.query<{data: IDocumentToApprove[]}, IFilterDate>({
             query: (body) => ({
@@ -138,4 +154,5 @@ export const {
     useGetDianosticDocumentsQuery,
     useGetReportDocumentsQuery,
     useUploadDocumentReportMutation,
+    useUploadDocumentDiagnosticMutation
  } = documentsApi;

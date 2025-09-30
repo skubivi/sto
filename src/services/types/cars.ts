@@ -37,3 +37,10 @@ export interface ICarFilters {
     receptionists: string[]
     status: ECarStatusWithAll
 }
+
+export interface ICarForMechanic {
+    id: string
+    carNumber: string
+    mileage: number
+    status: ECarStatus
+}

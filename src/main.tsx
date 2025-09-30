@@ -20,8 +20,9 @@ import FullAdminProtectedRoute from './components/full-admin-protected-route/ful
 import ReceptionistProtectedRoute from './components/receptionist-protected-route/receptionist-protected-route.tsx'
 import ReceptionistDocumentPage from './pages/receptionist-documents-page/receptionist-documents-page.tsx'
 import ReceptionistCarsPage from './pages/receptionist-cars-page/receptionist-cars-page.tsx'
-import MechanicPage from './pages/mechanoc-page/mechanic-page.tsx'
+import MechanicPage from './pages/mechanic-page/mechanic-page.tsx'
 import MechanicProtectedRoute from './components/mechanic-protected-route/mechanic-protected-route.tsx'
+import MechanicMainPage from './pages/mechanic-main-page/mechanic-main-page.tsx'
 
 const router = createBrowserRouter([
   {
@@ -103,7 +104,13 @@ const router = createBrowserRouter([
         element: <MechanicProtectedRoute />,
         children: [{
           path: UrlRoutes.Mechanic,
-          element: <MechanicPage />
+          element: <MechanicPage />,
+          children: [
+            {
+              path: UrlRoutes.Mechanic,
+              element: <MechanicMainPage />
+            }
+          ]
         }]
       }
     ]

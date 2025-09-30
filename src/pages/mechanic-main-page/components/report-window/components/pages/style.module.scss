@@ -1,0 +1,41 @@
+.pages {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page {
+    border-radius: 5px;
+    border: 1px solid var(--primary);
+    padding: 5px 10px;
+}
+
+.current-page {
+    border-radius: 5px;
+    border: 1px solid var(--primary);
+    padding: 5px 10px;
+    background: var(--primary);
+}
+
+.main-pages {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dots {
+    display: flex;
+    gap: 5px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background: var(--white);
+    border-radius: 50%;
+}
+
+.hide {
+    opacity: 0;
+}

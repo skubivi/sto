@@ -7,6 +7,7 @@ import styles from './style.module.scss'
 import { useNavigate } from "react-router-dom"
 import Route from "./route/route"
 import { UrlRoutes } from "../../../../services/routes/url-routes"
+import DefaultButton from "../../../../components/ui/default-button/default-button"
 
 interface ISidebar {
     open: boolean
@@ -30,6 +31,11 @@ const SideBar: FC<ISidebar> = (props) => {
             <div className={styles.routes}>
                 <Route label="Главная" onClick={() => handleClick(UrlRoutes.Mechanic)} />
                 <Route label="Настройки" onClick={() => handleClick(UrlRoutes.Mechanic)} />
+            </div>
+            <div className={styles.logout}>
+                <div>
+                    <DefaultButton variant="primary">Выйти</DefaultButton>
+                </div>
             </div>
         </div>
     )

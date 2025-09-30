@@ -24,8 +24,8 @@ const AnalyticsSection = () => {
 
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const {data: documents, isLoading: isDocumentsLoading} = useGetAnalyticsDocumentsQuery({
-        dateFrom: dateFrom.toString(), 
-        dateTo: dateTo.toString(), 
+        dateFrom: dateFrom.toJSON(), 
+        dateTo: dateTo.toJSON(), 
         type,
         filials: chosenFilials.map(el => el.id)
     })

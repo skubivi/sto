@@ -1,6 +1,6 @@
 import { IId } from "./base"
 
-export enum EDianostic {
+export enum EDiagnostic {
     Electric = 'ELECTRIC',
     Metalworker = 'METALWORKER',
     Free = 'FREE'
@@ -13,7 +13,7 @@ export interface IDocumentToApprove {
     mechanicId: string
     clientDataId: string
     carNumber: string
-    type: EDianostic,
+    type: EDiagnostic,
     createdAt: Date
 }
 
@@ -61,7 +61,15 @@ export interface IDocumentReport {
 export interface IPostDocumentReport<T> {
     label: string
     type: EReport
-    document: Blob
+    file: Blob
+    data: T
+}
+
+export interface IPostDocumentDiagnostic<T> {
+    label: string
+    type: EDiagnostic
+    file: Blob
+    carProcessingId: string
     data: T
 }
 
@@ -78,4 +86,14 @@ export interface IDiagnosticDocument {
     clientDataId: string
     carNumber: string
     createdAt: Date
+}
+
+export interface IFreeReportData {
+    carNumber: string
+    mileage: number
+    mechanicName: string
+    data: {
+        text: string
+        photo: Blob | undefined
+    }[]
 }

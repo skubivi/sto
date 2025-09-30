@@ -6,5 +6,7 @@ export enum DocumentEndpointRoutes {
     Approve = '/approve',
     Decline = '/decline',
     Diagnostic = '/diagnostic',
-    Report = '/free'
+    Report = '/free',
+    DiagnosticCreate = '/diagnostic/create',
+    ReportCreate = '/report/create'
 }

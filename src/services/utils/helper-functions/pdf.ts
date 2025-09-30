@@ -1,13 +1,20 @@
 import { IPostMechanicFilialReport, IPostMechanicReport, IPostReceptionistFilialReport, IPostReceptionistReport } from "../../types/analytics";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
-import { getLogoBase64 } from "./logo";
+import { Content, TDocumentDefinitions } from "pdfmake/interfaces";
+import { dataToBase64, getLogoBase64 } from "./logo";
+import { IFreeReportData } from "../../types/documents";
 
 pdfMake.vfs = pdfFonts.vfs;
 
 export const openPdf = (docLink: string) => {
     window.open(docLink, "_blank")
+};
+
+export const openPdfBlob = (blob: Blob) => {
+  const url = URL.createObjectURL(blob);
+  window.open(url, "_blank");
+  URL.revokeObjectURL(url); // очистка после открытия
 };
 
 export const downloadPdf = async (docLink: string, fileName: string) => {
@@ -48,18 +55,16 @@ export const createMechanicReportBlob = async (data: IPostMechanicReport[], isFu
         }
         return base;
     });
-    const orientation = "landscape" as const;
 
     const logoBase64 = await getLogoBase64()
 
     const docDefinition: TDocumentDefinitions = {
-        pageOrientation: orientation,
         content: [
             { text: "Сводный отчет по проделанным работам (по ст.)", style: "header" },
             {
                 image: logoBase64,
-                width: 30,
-                absolutePosition: { x: 800, y: 10 }
+                width: 40,
+                absolutePosition: { x: 520, y: 10 }
             },
             {
                 table: {
@@ -87,9 +92,9 @@ export const createMechanicReportBlob = async (data: IPostMechanicReport[], isFu
         ],
         styles: {
         header: {
-            fontSize: 16,
+            fontSize: 24,
             bold: true,
-            margin: [0, 0, 0, 10],
+            margin: [0, 0, 0, 30],
         },
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
@@ -117,18 +122,16 @@ export const createMechanicFilialReportBlob = async (data: IPostMechanicFilialRe
         ];
         return base;
     });
-    const orientation = "landscape" as const;
 
     const logoBase64 = await getLogoBase64()
 
     const docDefinition: TDocumentDefinitions = {
-        pageOrientation: orientation,
         content: [
             { text: "Сводный отчет по проделанным работам (в общем)", style: "header" },
             {
                 image: logoBase64,
-                width: 30,
-                absolutePosition: { x: 800, y: 10 }
+                width: 40,
+                absolutePosition: { x: 520, y: 10 }
             },
             {
                 table: {
@@ -154,9 +157,9 @@ export const createMechanicFilialReportBlob = async (data: IPostMechanicFilialRe
         ],
         styles: {
         header: {
-            fontSize: 16,
+            fontSize: 24,
             bold: true,
-            margin: [0, 0, 0, 10],
+            margin: [0, 0, 0, 30],
         },
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
@@ -191,18 +194,16 @@ export const createReceptionistReportBlob = async (data: IPostReceptionistReport
         }
         return base;
     });
-    const orientation = "landscape" as const;
 
     const logoBase64 = await getLogoBase64()
 
     const docDefinition: TDocumentDefinitions = {
-        pageOrientation: orientation,
         content: [
             { text: "Сводный отчет по принятым машинам (по ст.)", style: "header" },
             {
                 image: logoBase64,
-                width: 30,
-                absolutePosition: { x: 800, y: 10 }
+                width: 40,
+                absolutePosition: { x: 520, y: 10 }
             },
             {
                 table: {
@@ -230,9 +231,9 @@ export const createReceptionistReportBlob = async (data: IPostReceptionistReport
         ],
         styles: {
         header: {
-            fontSize: 16,
+            fontSize: 24,
             bold: true,
-            margin: [0, 0, 0, 10],
+            margin: [0, 0, 0, 30],
         },
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
@@ -262,18 +263,16 @@ export const createReceptionistFilialReportBlob = async (data: IPostReceptionist
         ];
         return base;
     });
-    const orientation = "landscape" as const;
 
     const logoBase64 = await getLogoBase64()
 
     const docDefinition: TDocumentDefinitions = {
-        pageOrientation: orientation,
         content: [
             { text: "Сводный отчет по принятым машинам (в общем)", style: "header" },
             {
                 image: logoBase64,
-                width: 30,
-                absolutePosition: { x: 800, y: 10 }
+                width: 40,
+                absolutePosition: { x: 520, y: 10 }
             },
             {
                 table: {
@@ -299,10 +298,88 @@ export const createReceptionistFilialReportBlob = async (data: IPostReceptionist
         ],
         styles: {
         header: {
-            fontSize: 16,
+            fontSize: 24,
             bold: true,
-            margin: [0, 0, 0, 10],
+            margin: [0, 0, 0, 30],
         },
+        },
+        defaultStyle: { font: "Roboto", fontSize: 10 },
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise<Blob>((resolve, _) => {
+        const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+
+        pdfDocGenerator.getBlob(blob => {
+            resolve(blob);
+        });
+    });
+}
+
+export const createFreeReportBlob = async (data: IFreeReportData) => {
+    const logoBase64 = await getLogoBase64()
+
+    const now = new Date(Date.now())
+    const dateText = `Дата: ${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
+    const mechanicText = 'Механик: ' + data.mechanicName
+    const carNumberText = 'Гос. номер: ' + data.carNumber
+    const mileageText = 'Пробег: ' + data.mileage + ' км'
+
+    const body: Content[] = (
+        await Promise.all(
+            data.data.map(async (el, index) => {
+            const toPush = await dataToBase64(el.text, el.photo);
+            return toPush.photo
+                ? [
+                    { text: `-${index + 1}. ${toPush.text}`, style: "text" },
+                    { image: toPush.photo, style: "photo", width: 520 }
+                ]
+                : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
+            })
+        )
+    ).flat();
+
+    console.log(body)
+
+    const docDefinition: TDocumentDefinitions = {
+        content: [
+            { text: "Отчет по выполненым работам", style: "header" },
+            {
+                image: logoBase64,
+                width: 40,
+                absolutePosition: { x: 520, y: 10 }
+            },
+            {
+                text: dateText, style: "text"
+            },
+            {
+                text: mechanicText, style: "text"
+            },
+            {
+                text: carNumberText, style: "text"
+            },
+            {
+                text: mileageText, style: "mileage"
+            },
+            ...body
+        ],
+        styles: {
+            header: {
+                fontSize: 24,
+                bold: true,
+                margin: [0, 0, 0, 30],
+            },
+            mileage: {
+                fontSize: 12,
+                margin: [0, 0, 0, 30]
+            },
+            text: {
+                fontSize: 12,
+                marginBottom: 10
+            },
+            photo: {
+                marginBottom: 10
+            }
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
     };

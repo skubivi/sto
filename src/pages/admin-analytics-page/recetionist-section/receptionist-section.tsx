@@ -50,8 +50,8 @@ const ReceptionistSection = () => {
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const { data: personal, isLoading: isPersonalLoading } = useGetPersonalQuery()
     const {data: analytics, isLoading: isAnalyticsLoading} = useGetReceptionistAnalyticsQuery({
-        dateFrom: dateFrom.toString(), 
-        dateTo: dateTo.toString(),
+        dateFrom: dateFrom.toJSON(), 
+        dateTo: dateTo.toJSON(),
         filials: chosenFilials.map(el => el.id),
         receptionists: chosenReceptionists.map(el => el.id),
         carsCount: state.carsCount,

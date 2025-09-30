@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--black);
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    gap: 4px;
+
+    p {
+        white-space: nowrap;
+    }
+}
+
+.buttons {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}

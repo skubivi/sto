@@ -19,7 +19,7 @@ const MechanicPage = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <div className={styles.burger} onClick={() => setOpenSideBar(prev => !prev)}>
+                <div onClick={() => setOpenSideBar(prev => !prev)}>
                     <BurgerSvg />
                 </div>
                 <img src={logo} />

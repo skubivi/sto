@@ -1,0 +1,78 @@
+import { useState } from 'react'
+import Loader from '../../components/ui/loader/loader'
+import Typography from '../../components/ui/typography/typography'
+import { useGetMechanicCarsQuery } from '../../services/api/cars'
+import { ECarStatus } from '../../services/types/cars'
+import CarCard from './components/car-card/car-card'
+import styles from './style.module.scss'
+import { EDiagnostic } from '../../services/types/documents'
+import ReportWindow from './components/report-window/report-window'
+import { createFreeReportBlob, openPdfBlob } from '../../services/utils/helper-functions/pdf'
+import { useLazyGetPersonalDataQuery } from '../../services/api/user'
+
+const MechanicMainPage = () => {
+    const { data: carsForMechanic, isLoading } = useGetMechanicCarsQuery()
+    const [getPersonal] = useLazyGetPersonalDataQuery()
+
+    const [windowId, setWindowId] = useState<undefined | string>(undefined)
+    const [windowType, setWindowType] = useState<EDiagnostic>(EDiagnostic.Metalworker)
+
+    if (isLoading) return (
+        <div className={styles['loading-wrapper']}>
+            <div className={styles.loading}>
+                <Loader />
+            </div>
+        </div>
+    )
+
+    if (!carsForMechanic || carsForMechanic.data.length === 0) return (
+        <div className={styles.nocars}>
+            <Typography variant='h2' color='black'>Нет машин для работы</Typography>
+        </div>
+    )
+
+    const processedCars = carsForMechanic.data.filter(el => el.status === ECarStatus.Processed)
+    const createdCars = carsForMechanic.data.filter(el => el.status === ECarStatus.Created)
+
+    const openReportWindow = windowType === EDiagnostic.Free && windowId !== undefined
+
+    const handleSubmitFreeReport = async (data: {text: string, photo: Blob | undefined}[]) => {
+        const personal = await getPersonal()
+        if (!personal.data) return null
+        const car = carsForMechanic.data.find(el => el.id === windowId)
+        if (car === undefined) return null
+        const mechanicName = personal.data.lastName + ' ' + personal.data.firstName + ' ' + personal.data.middleName
+        const blob = await createFreeReportBlob({
+            carNumber: car.carNumber,
+            mileage: car.mileage,
+            mechanicName,
+            data
+        })
+        openPdfBlob(blob)
+    }
+
+    return (
+        <div className={`${styles.wrapper} ${windowId !== undefined && styles.max}`}>
+            <ReportWindow 
+                cardId={windowId} 
+                onClose={() => setWindowId(undefined)} 
+                open={openReportWindow} 
+                onSubmit={handleSubmitFreeReport}
+            />
+            <div className={styles['cars-section']}>
+                <Typography variant='h2' color='black'>Нужно провести диагностику</Typography>
+                <div className={styles.cars}>
+                    {createdCars.map(el => <CarCard data={el} key={el.id} onClick={() => setWindowId(el.id)} setType={setWindowType}/>)}
+                </div>
+            </div>
+            <div className={styles['cars-section']}>
+                <Typography variant='h2' color='black'>Продиагностированы</Typography>
+                <div className={styles.cars}>
+                    {processedCars.map(el => <CarCard data={el} key={el.id} onClick={() => setWindowId(el.id)} setType={setWindowType}/>)}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default MechanicMainPage

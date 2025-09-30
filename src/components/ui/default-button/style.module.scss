@@ -35,6 +35,16 @@
     color: var(--black)
 }
 
+.outline-primary2 {
+    border: 1px solid var(--primary2);
+    color: var(--primary);
+}
+
+.outline-primary2:hover {
+    background: var(--primary2);
+    color: var(--black)
+}
+
 .outline-danger {
     border: 1px solid var(--danger);
     color: var(--danger)
@@ -66,4 +76,9 @@
     opacity: 1;
     border: unset;
     cursor: unset;
+}
+
+.secondary {
+    background: var(--secondary);
+    color: var(--black);
 }

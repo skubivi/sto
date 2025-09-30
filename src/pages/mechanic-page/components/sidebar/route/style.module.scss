@@ -2,6 +2,10 @@
     border-radius: 10px;
     width: 190px;
     padding: 10px;
+    transition: all 0.2s ease-in-out;
+    h2 {
+        transition: all 0.2s ease-in-out;
+    }
 }
 
 .active {

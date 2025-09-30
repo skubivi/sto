@@ -58,5 +58,6 @@ export const {
   useGetPersonalDataQuery,
   usePatchPersonalDataMutation,
   useLazyGetUserPersonalDataQuery,
-  useGetUserPersonalDataQuery
+  useGetUserPersonalDataQuery,
+  useLazyGetPersonalDataQuery
 } = userApi;

@@ -26,8 +26,8 @@ const ReportsSection = () => {
     const { data: filials, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const { data: personal, isLoading: isPersonalLoading } = useGetPersonalQuery()
     const {data: documents, isLoading: isDocumentsLoading} = useGetReportDocumentsQuery({
-        dateFrom: dateFrom.toString(), 
-        dateTo: dateTo.toString(),
+        dateFrom: dateFrom.toJSON(), 
+        dateTo: dateTo.toJSON(),
         filials: chosenFilials.map(el => el.id),
         mechanics: chosenMechanics.map(el => el.id)
     })
