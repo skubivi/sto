@@ -64,7 +64,6 @@ const MechanicMainPage = () => {
             type: EDiagnostic.Free,
             file: blob,
             carProcessingId: windowId,
-            filialId,
             data: {
                 worksCount: data.length,
                 filialId,
@@ -96,7 +95,7 @@ const MechanicMainPage = () => {
             file: blob,
             carProcessingId: windowId,
             data: {
-                worksCount: data.length
+                worksCount: data.length,
                 filialId,
             }
         })
