@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQueryWithRefresh from './base-query-with-refresh';
-import { IGetPersonalResponse, TFullPerson, TNewPerson } from '../types/personal';
+import { IGetPersonalResponse } from '../types/personal';
 import { PersonalEndpointRoutes } from '../routes/endpoints/personal';
 
 export const personalApi = createApi({
@@ -11,28 +11,6 @@ export const personalApi = createApi({
             query: () => ({
                 url: '/'
             })
-        }),
-        postPerson: builder.mutation<TFullPerson, TNewPerson>({
-            query: (body) => ({
-                url: '/',
-                method: 'POST',
-                body
-            }),
-            async onQueryStarted(_, {dispatch, queryFulfilled}) {
-                try {
-                    const { data } = await queryFulfilled
-                    dispatch(
-                        personalApi.util.updateQueryData(
-                            "getPersonal",
-                            undefined,
-                            (state) => {
-                                state.data.push(data)
-                            }
-                        )
-                    )
-                // eslint-disable-next-line no-empty
-                } catch {}
-            }
         }),
         changePersonPassword: builder.mutation<void, {password: string, id: string}>({
             query: (body) => ({
@@ -72,6 +50,5 @@ export const personalApi = createApi({
 export const {
     useDeletePersonMutation,
     useGetPersonalQuery,
-    usePostPersonMutation,
     useChangePersonPasswordMutation
 } = personalApi;

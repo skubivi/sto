@@ -43,7 +43,7 @@ const CreateReportButton: FC<ICreateReportButton> = (props) => {
             const { data } = await getDocument({id: documentId})
 
             if (data)
-                openPdf(data)
+                openPdf(data.docLink)
         }
     }
 
@@ -52,7 +52,7 @@ const CreateReportButton: FC<ICreateReportButton> = (props) => {
             const { data } = await getDocument({id: documentId})
 
             if (data)
-                downloadPdf(data, `${props.label}.pdf`)
+                downloadPdf(data.docLink, `${props.label}.pdf`)
         }
     }
     return (

@@ -28,7 +28,7 @@ export interface ICarToPost {
         middleName?: string
     }
     carNumber: string
-    mileage: string
+    mileage: number
 }
 
 export interface ICarFilters {

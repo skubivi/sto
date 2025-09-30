@@ -12,10 +12,18 @@ export const clientsDataApi = createApi({
         url: `/${body.id}`,
       }),
     }),
+    checkClient: builder.mutation<{clientDataId: string}, {phone: string}>({
+      query: (body) => ({
+        url: ClientsEndpointRoutes.Check,
+        method: 'POST',
+        body
+      })
+    })
   }),
 });
 
 export const { 
     useLazyGetClientsDataQuery,
     useGetClientsDataQuery,
+    useCheckClientMutation
 } = clientsDataApi;

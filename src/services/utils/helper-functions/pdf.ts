@@ -6,24 +6,29 @@ import { getLogoBase64 } from "./logo";
 
 pdfMake.vfs = pdfFonts.vfs;
 
-export const openPdf = (blob: Blob) => {
-    const url = URL.createObjectURL(blob);
-    const newWindow = window.open();
-    if (newWindow) {
-        newWindow.location.href = url;
-    } else {
-        alert("Браузер заблокировал открытие вкладки");
-    }
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
+export const openPdf = (docLink: string) => {
+    window.open(docLink, "_blank")
 };
 
-export const downloadPdf = (blob: Blob, fileName: string) => {
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(url);
+export const downloadPdf = async (docLink: string, fileName: string) => {
+    try {
+    const response = await fetch(docLink, { credentials: "include" })
+    if (!response.ok) throw new Error(`Ошибка при загрузке: ${response.statusText}`)
+
+    const blob = await response.blob()
+
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = fileName || "file.pdf"
+    document.body.appendChild(link)
+    link.click()
+
+    link.remove()
+    URL.revokeObjectURL(url)
+  } catch (err) {
+    console.error("Не удалось скачать файл:", err)
+  }
 };
 
 export const createMechanicReportBlob = async (data: IPostMechanicReport[], isFullAdmin: boolean) => {

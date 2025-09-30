@@ -19,7 +19,7 @@ const TitleField: FC<ITitleField> = (props) => {
             const { data } = await getDocument({id: props.documentId})
 
             if (data)
-                openPdf(data)
+                openPdf(data.docLink)
         }
     }
 

@@ -39,35 +39,10 @@ export const documentsApi = createApi({
     baseQuery: baseQueryWithRefresh({ url: DocumentEndpointRoutes.Base }),
     tagTypes: ["DocumentsToApprove", "ReportDocuments", "DiagnosticDocuments"],
     endpoints: (builder) => ({
-        getDocumentLink: builder.query<{docLink: string}, {id: string}>({
+        getDocument: builder.query<{docLink: string}, {id: string}>({
             query: (body) => ({
                 url: `/${body.id}`,
-                responseHandler: async (response) => await response.blob(),
-                serializeQueryArgs: ({ 
-                    endpointName,
-                    queryArgs
-                }: {
-                    endpointName: string;
-                    queryArgs: string;
-                }) => `${endpointName}-${queryArgs}`,
-                transformResponse: (response: Blob) => response,
             }),
-        }),
-        getDocument: builder.query<Blob, {id: string}>({
-            async queryFn(arg, _queryApi, _extraOptions, baseQuery) {
-                const result = await baseQuery({url: `/${arg.id}`})
-                if (result.error) return { error: result.error }
-
-                const data = result.data as { docLink: string }
-
-                try {
-                    const response = await fetch(data.docLink)
-                    const blob = await response.blob()
-                    return { data: blob }
-                } catch (err) {
-                    return { error: { status: "CUSTOM_ERROR", error: String(err) } }
-                }
-            },
         }),
         uploadDocumentReport: builder.mutation<{documentId: string}, IPostDocumentReport<object>>({
             query: (body) => {
@@ -163,6 +138,4 @@ export const {
     useGetDianosticDocumentsQuery,
     useGetReportDocumentsQuery,
     useUploadDocumentReportMutation,
-    useGetDocumentLinkQuery,
-    useLazyGetDocumentLinkQuery
  } = documentsApi;

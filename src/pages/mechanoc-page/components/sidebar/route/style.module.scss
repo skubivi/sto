@@ -1,0 +1,12 @@
+.container {
+    border-radius: 10px;
+    width: 190px;
+    padding: 10px;
+}
+
+.active {
+    background: var(--primary);
+    h2 {
+        color: var(--black) !important
+    }
+}

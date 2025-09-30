@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 interface ITypography {
     variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-small' | 'subtitle' | 'caption' | 'button-text' | 'note-caption',
     children: ReactNode
-    color: 'primary' | 'primary2' | 'white' | 'black' | 'secondary' | 'secondary2' | 'secondary3',
+    color: 'primary' | 'primary2' | 'white' | 'black' | 'secondary' | 'secondary2' | 'secondary3' | 'danger',
     id?: string
     underline?: boolean
 }

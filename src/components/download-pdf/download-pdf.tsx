@@ -19,7 +19,7 @@ const DownloadPdf: FC<IDownloadPdf> = (props) => {
             const { data } = await getDocument({id: props.documentId})
 
             if (data)
-                downloadPdf(data, props.title + '.pdf')
+                await downloadPdf(data.docLink, props.title + '.pdf')
         }
     }
 

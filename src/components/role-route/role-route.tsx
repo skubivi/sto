@@ -11,6 +11,8 @@ const RoleRoute: FC = () => {
         return <Navigate to={UrlRoutes.Admin}/>
     if (user?.role === ERoles.Receptionist)
         return <Navigate to={UrlRoutes.Receptionist}/>
+    if (user?.role === ERoles.Mechanic)
+        return <Navigate to={UrlRoutes.Mechanic}/>
 
     return <Outlet />;
 }

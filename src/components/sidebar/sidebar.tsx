@@ -9,6 +9,8 @@ import ReceptionistRoutes from './components/receptionist-routes/receptionist-ro
 const Sidebar = () => {
     const {data: user} = useGetMeQuery()
 
+    if (user?.role === ERoles.Mechanic) return null
+
     return (
         <div className={styles.sidebar}>
             <div className={styles['logo-container']}>

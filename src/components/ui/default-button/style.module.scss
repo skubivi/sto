@@ -54,3 +54,16 @@
     background: var(--secondary3);
     color: var(--black)
 }
+
+.disabled.outline-primary {
+    background: var(--secondary3);
+    border: unset;
+    cursor: unset;
+    color: var(--black)
+}
+
+.disabled.outline-primary:hover {
+    opacity: 1;
+    border: unset;
+    cursor: unset;
+}

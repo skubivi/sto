@@ -19,7 +19,6 @@ const InputWithSign: FC<IInputWithSign> = (props) => {
         if (Number.isNaN(Number.parseFloat(e.target.value))) return
         props.setValue(Number.parseFloat(e.target.value))
     }
-    const inputValue = props.value?.toString() ?? ''
     return (
         <div className={styles.container}>
             <Typography variant='caption' color='secondary3'>{props.label}</Typography>
@@ -31,7 +30,7 @@ const InputWithSign: FC<IInputWithSign> = (props) => {
                 </div>
                 <div className={styles['input-relative-container']}>
                     <DefaultInput 
-                        value={inputValue} 
+                        value={props.value ?? ''} 
                         onChange={handleOnChange} 
                         className={`${styles.input} ${props.isPercent && styles.padding}`}
                     />

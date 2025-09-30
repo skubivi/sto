@@ -32,6 +32,11 @@ export const carsApi = createApi({
             }),
             providesTags: ["Cars"]
         }),
+        getMechanicCars: builder.query<{data: ICar[]}, void>({
+            query: () => ({
+                url: CarsEndpointRoutes.ToWork
+            })
+        }),
         postCar: builder.mutation<void, ICarToPost>({
             query: (body) => ({
                 url: '',
@@ -46,6 +51,11 @@ export const carsApi = createApi({
                 method: 'PATCH'
             }),
             invalidatesTags: ["Cars"]
+        }),
+        getCarDocuments: builder.query<{data: {id: string, label: string}[]}, {carId: string}>({
+            query: (body) => ({
+                url: `/${body.carId}${CarsEndpointRoutes.Documents}`
+            })
         })
     }),
 });
@@ -53,5 +63,7 @@ export const carsApi = createApi({
 export const {
     useGetCarsQuery,
     useFinishCarMutation,
-    usePostCarMutation
+    usePostCarMutation,
+    useGetCarDocumentsQuery,
+    useGetMechanicCarsQuery
  } = carsApi;

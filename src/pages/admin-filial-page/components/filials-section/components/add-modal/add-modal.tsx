@@ -14,12 +14,15 @@ interface IAddModal {
 const AddModal: FC<IAddModal> = ({onClose}) => {
     const [createFilial] = usePostFilialMutation()
     const [title, setTitle] = useState('')
+    const disableButton = title.length === 0
     const handleCreateFilial = () => {
-        createFilial({
-            title,
-            address: ''
-        })
-        onClose()
+        if (!disableButton) {
+            createFilial({
+                title,
+                address: ''
+            })
+            onClose()
+        }
     }
     return (
         <div className={styles.modal}>
@@ -28,7 +31,7 @@ const AddModal: FC<IAddModal> = ({onClose}) => {
             <div className={styles.info}>
                 <InputWithLabel label='Название' value={title} onChange={(e) => setTitle(e.target.value)}/>
                 <div className={styles.button}>
-                    <DefaultButton variant='outline-primary' onClick={handleCreateFilial}>
+                    <DefaultButton variant='outline-primary' onClick={handleCreateFilial} disabled={disableButton}>
                         создать
                     </DefaultButton>
                 </div>

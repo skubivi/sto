@@ -12,6 +12,8 @@ import { useGetCarsQuery } from '../../../../services/api/cars'
 import { ECarStatusWithAll, ICar } from '../../../../services/types/cars'
 import Table from './components/table/table'
 import InfoModal from './components/info-modal/info-modal'
+import ApproveModal from './components/approve-modal/approve-modal'
+import NewCar from './components/new-car/new-car'
 
 const CarsSection = () => {
     const [itemsOnPage, setItemsOnPage] = useState<5 | 10 | 20 | 50>(5)
@@ -44,7 +46,7 @@ const CarsSection = () => {
                 <InfoModal open={openInfo !== undefined} onClose={() => setOpenInfo(undefined)} data={getCarInfo(openInfo)}/>
             }
             {openApprove !== undefined &&
-                <InfoModal open={openApprove !== undefined} onClose={() => setOpenApprove(undefined)} data={getCarInfo(openApprove)}/>
+                <ApproveModal open={openApprove !== undefined} onClose={() => setOpenApprove(undefined)} data={getCarInfo(openApprove)}/>
             }
             <Typography variant='h2' color='black'>Машины в приёмке</Typography>
             <Section>
@@ -76,6 +78,7 @@ const CarsSection = () => {
                         onChangePage={setPage}
                         onChangeItemsOnPage={setItemsOnPage}
                     />
+                    <NewCar />
                 </div>
             </Section>
         </div>

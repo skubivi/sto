@@ -20,6 +20,7 @@ import FullAdminProtectedRoute from './components/full-admin-protected-route/ful
 import ReceptionistProtectedRoute from './components/receptionist-protected-route/receptionist-protected-route.tsx'
 import ReceptionistDocumentPage from './pages/receptionist-documents-page/receptionist-documents-page.tsx'
 import ReceptionistCarsPage from './pages/receptionist-cars-page/receptionist-cars-page.tsx'
+import MechanicPage from './pages/mechanoc-page/mechanic-page.tsx'
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
             }
           ]
         }]
+      },
+      {
+        path: UrlRoutes.Mechanic,
+        element: <MechanicPage />
       }
     ]
   },

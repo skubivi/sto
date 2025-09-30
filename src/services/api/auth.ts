@@ -10,6 +10,7 @@ import { userApi } from "./user";
 import { BASE_URL } from "../utils/constants/api";
 import { AuthEndpointRoutes } from "../routes/endpoints/auth";
 import { deleteCookie, getCookie, setCookie } from "../utils/helper-functions/cookie";
+import { personalApi } from "./personal";
 
 const setTokens = (tokens: TTokenResponse) => {
   setCookie("accessToken", tokens.accessToken);
@@ -27,21 +28,39 @@ export const authApi = createApi({
         url: AuthEndpointRoutes.RegisterAdmin,
         method: "POST",
         body
-      })
+      }),
+      async onQueryStarted(_, {dispatch, queryFulfilled}) {
+        try {
+          await queryFulfilled
+          dispatch(personalApi.util.resetApiState())
+        } catch { /* empty */ }
+      }
     }),
     registerMechanic: builder.mutation<undefined, TMechanicRegister>({
       query: (body) => ({
         url: AuthEndpointRoutes.RegisterMechanic,
         method: "POST",
         body
-      })
+      }),
+      async onQueryStarted(_, {dispatch, queryFulfilled}) {
+        try {
+          await queryFulfilled
+          dispatch(personalApi.util.resetApiState())
+        } catch { /* empty */ }
+      }
     }),
     registerReceptionist: builder.mutation<undefined, TReceptionistRegister>({
       query: (body) => ({
         url: AuthEndpointRoutes.RegisterReceptionist,
         method: "POST",
         body
-      })
+      }),
+      async onQueryStarted(_, {dispatch, queryFulfilled}) {
+        try {
+          await queryFulfilled
+          dispatch(personalApi.util.resetApiState())
+        } catch { /* empty */ }
+      }
     }),
     postLogin: builder.mutation<TTokenResponse, TLoginRequest>({
       query: (body) => ({

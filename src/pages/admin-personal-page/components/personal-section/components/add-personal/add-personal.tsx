@@ -4,12 +4,13 @@ import styles from './style.module.scss'
 import StyledModal from '../../../../../../components/ui/styled-modal/styled-modal'
 import Typography from '../../../../../../components/ui/typography/typography'
 import Stripe from '../../../../../../components/ui/stripe/stripe'
-import { usePostPersonMutation } from '../../../../../../services/api/personal'
 import { useGetMeQuery } from '../../../../../../services/api/user'
 import { ERoles } from '../../../../../../services/types/user'
 import InputWithLabel from '../../../../../../components/ui/input-with-label/input-with-label'
 import PasswordInput from '../../../../../../components/ui/password-input/password-input'
 import StyledSelectWithLabel from '../../../../../../components/ui/styled-select-with-label/styled-select-with-label'
+import { usePostPerson } from '../../../../../../services/hooks/use-post-person'
+import ChoseFilial from './components/chose-filial/chose-filial'
 
 const fullAdminOptions = [
     {
@@ -42,7 +43,7 @@ const adminOptions = [
 ]
 
 const AddPersonal = () => {
-    const [createPerson] = usePostPersonMutation()
+    const createPerson = usePostPerson()
     const { data: me } = useGetMeQuery()
 
     const [openModal, setOpenModal] = useState(false)
@@ -66,15 +67,30 @@ const AddPersonal = () => {
     }, [openModal])
 
     const [role, setRole] = useState(ERoles.Receptionist)
+    const [filialId, setFilialId] = useState('')
 
     if (!me) return
+
+    let buttonDisable = false
+    if (firstWindow) {
+        buttonDisable = !(password.length > 5 && identifier.length > 0)
+    }
+    else {
+        if (role === ERoles.Admin) {
+            buttonDisable = !(firstName.length > 0 && lastName.length > 0 && middleName.length > 0 && filialId.length > 0)
+        }
+        else {
+            buttonDisable = !(firstName.length > 0 && lastName.length > 0 && middleName.length > 0)
+        }
+    }
 
     const handleChangeRole = (r: ERoles) => {
         setRole(r)
     }
 
     const handlePrimaryButtonClick = () => {
-        if (firstWindow && password && identifier) setFirstWindow(false)
+        if (buttonDisable) return
+        else if (firstWindow && password && identifier) setFirstWindow(false)
         else {
             createPerson({
                 firstName,
@@ -82,7 +98,8 @@ const AddPersonal = () => {
                 middleName,
                 password,
                 identifier,
-                role
+                role,
+                filialId
             })
             setOpenModal(false)
         }
@@ -117,11 +134,14 @@ const AddPersonal = () => {
                                         options={me.role === ERoles.Admin ? adminOptions : fullAdminOptions}
                                         onChange={handleChangeRole}
                                     />
+                                    {role === ERoles.Admin &&
+                                        <ChoseFilial value={filialId} onChange={setFilialId}/>
+                                    }
                                 </>
                             )}
                         </div>
                         <div className={styles.buttons}>
-                            <DefaultButton variant='outline-primary' onClick={handlePrimaryButtonClick}>
+                            <DefaultButton variant='outline-primary' onClick={handlePrimaryButtonClick} disabled={buttonDisable}>
                                 {firstWindow ? 'Дальше' : 'Создать'}
                             </DefaultButton>
                             {!firstWindow &&

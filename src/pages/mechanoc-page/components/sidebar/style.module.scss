@@ -1,0 +1,45 @@
+.sidebar {
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    top: 0;
+    left: -100dvw;
+    overflow: hidden;
+    transition: 
+        all 0.5s ease-in-out,
+        border-radius 0.5s ease-in-out 0.2s,
+        padding-right 0.5s ease-in-out 0.2s;
+    z-index: 999;
+    background: var(--black);
+    border-radius: 0 50% 50% 0;
+    box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-right: 50dvw;
+}
+
+.open {
+    transform: translateX(100dvw);
+    border-radius: 0;
+    padding-right: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.routes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    margin-top: 80px;
+}
+
+.close {
+    padding-right: 10px;
+}
