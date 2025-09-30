@@ -7,7 +7,7 @@ import CarCard from './components/car-card/car-card'
 import styles from './style.module.scss'
 import { EDiagnostic } from '../../services/types/documents'
 import ReportWindow from './components/report-window/report-window'
-import { createElectroReportBlob, createFreeReportBlob, openPdfBlob } from '../../services/utils/helper-functions/pdf'
+import { createElectroReportBlob, createFreeReportBlob } from '../../services/utils/helper-functions/pdf'
 import { useLazyGetPersonalDataQuery } from '../../services/api/user'
 import { useUploadDocumentDiagnosticMutation } from '../../services/api/documents'
 import ElectroWindow from './components/electro-window/electro-window'
@@ -81,19 +81,18 @@ const MechanicMainPage = () => {
             mechanicName,
             data,
         })
-        openPdfBlob(blob)
-        // const now = new Date(Date.now())
-        // const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
-        // await uploadDiagnostic({
-        //     label: dateText + ' - отчет',
-        //     type: EDiagnostic.Free,
-        //     file: blob,
-        //     carProcessingId: windowId,
-        //     data: {
-        //         worksCount: data.length
-        //     }
-        // })
-        // setWindowId(undefined)
+        const now = new Date(Date.now())
+        const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
+        await uploadDiagnostic({
+            label: dateText + ' - электродиагностика',
+            type: EDiagnostic.Electric,
+            file: blob,
+            carProcessingId: windowId,
+            data: {
+                worksCount: data.length
+            }
+        })
+        setWindowId(undefined)
     }
 
     return (
