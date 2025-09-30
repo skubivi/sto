@@ -4,7 +4,7 @@ import { DocumentEndpointRoutes } from "../routes/endpoints/documents";
 import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentDiagnostic, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
 import { IFilterDate } from "../types/base";
 
-const dateToString = (d: Date) => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(0, '2')}-${d.getDate().toString().padStart(2, '0')}`
+const dateToString = (d: Date) => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`
 
 const getDocumentToApproveParams = (body: IFilterDate) => {
     return `?date-from=${dateToString(body.dateFrom)}&date-to=${dateToString(body.dateTo)}`
