@@ -47,7 +47,9 @@ const baseQueryWithRefresh = ({ url }: { url: string }) => {
             {
               url: BASE_URL + "/refresh",
               method: "POST",
-              headers: { authorization: getCookie("refreshToken") },
+              body: {
+                refreshToken: getCookie("refreshToken")
+              }
             },
             api,
             extraOptions
