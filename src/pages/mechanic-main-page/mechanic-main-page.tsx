@@ -7,7 +7,7 @@ import CarCard from './components/car-card/car-card'
 import styles from './style.module.scss'
 import { EDiagnostic } from '../../services/types/documents'
 import ReportWindow from './components/report-window/report-window'
-import { createFreeReportBlob, openPdfBlob } from '../../services/utils/helper-functions/pdf'
+import { createFreeReportBlob } from '../../services/utils/helper-functions/pdf'
 import { useLazyGetPersonalDataQuery } from '../../services/api/user'
 import { useUploadDocumentDiagnosticMutation } from '../../services/api/documents'
 
