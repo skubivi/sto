@@ -14,13 +14,13 @@ export interface IDocumentToApprove {
     clientDataId: string
     carNumber: string
     type: EDiagnostic,
-    createdAt: Date
+    createdAt: string
 }
 
 export interface IDocumentComment {
     reviewerId: string
     comment: string
-    createdAt: Date
+    createdAt: string
 }
 
 export interface IDocumentCommentToPost {
@@ -55,7 +55,7 @@ export interface IDocumentReport {
     label: string
     filialId?: string[]
     type: EReport,
-    createdAt: Date
+    createdAt: string
 }
 
 export interface IPostDocumentReport<T> {
@@ -85,7 +85,7 @@ export interface IDiagnosticDocument {
     mechanicId: string
     clientDataId: string
     carNumber: string
-    createdAt: Date
+    createdAt: string
 }
 
 export interface IFreeReportData {
