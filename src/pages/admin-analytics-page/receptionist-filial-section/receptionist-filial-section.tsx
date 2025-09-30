@@ -65,6 +65,7 @@ const ReceptionistFilialSection = () => {
     const now = new Date(Date.now())
     const documentLabel = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()} - сводный отчет по проделанным работам (по ст.)`
     
+    if (!analytics) return null
 
     return (
         <div className={styles.section}>

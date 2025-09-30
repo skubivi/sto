@@ -1,4 +1,5 @@
 export enum FilialEndpointRoutes {
     Base = "filial",
-    My = '/my'
+    My = '/my',
+    List = '/list'
 }

@@ -46,6 +46,8 @@ const ReportsSection = () => {
         return false
     })
 
+    if (!documents) return null
+
     return (
         <div className={styles.section}>
             {openComments !== undefined &&
