@@ -39,7 +39,7 @@ export const carsApi = createApi({
         }),
         postCar: builder.mutation<void, ICarToPost>({
             query: (body) => ({
-                url: '',
+                url: CarsEndpointRoutes.Create,
                 method: 'POST',
                 body
             }),

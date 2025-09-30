@@ -1,6 +1,7 @@
 export enum CarsEndpointRoutes {
-    Base = "car-processing",
+    Base = "cars-processing",
     Finish = '/finish',
     Documents = "/documents",
-    ToWork = '/to-work'
+    ToWork = '/to-work',
+    Create = '/create'
 }
