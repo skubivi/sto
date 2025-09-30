@@ -62,7 +62,6 @@ export interface IPostDocumentReport<T> {
     label: string
     type: EReport
     file: Blob
-    filialId: string
     data: T
 }
 
@@ -71,6 +70,7 @@ export interface IPostDocumentDiagnostic<T> {
     type: EDiagnostic
     file: Blob
     carProcessingId: string
+    filialId: string
     data: T
 }
 
