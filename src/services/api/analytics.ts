@@ -10,7 +10,7 @@ const arrayToString = (f: string[]) => {
     return result
 }
 
-const dateToString = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+const dateToString = (d: Date) => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`
 
 const getDatePart = (from: Date, to: Date) => `?date-from=${dateToString(from)}&date-to=${dateToString(to)}`
 
