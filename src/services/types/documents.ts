@@ -62,6 +62,7 @@ export interface IPostDocumentReport<T> {
     label: string
     type: EReport
     file: Blob
+    filialId: string
     data: T
 }
 
