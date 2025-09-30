@@ -14,3 +14,9 @@
 .select {
     width: 221px;
 }
+
+@media (max-width: 800px) {
+    .select {
+        width: 160px;
+    }
+}

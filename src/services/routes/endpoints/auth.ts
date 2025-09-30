@@ -5,4 +5,5 @@ export enum AuthEndpointRoutes {
     RegisterAdmin = "/register/admin",
     RegisterMechanic = '/register/mechanic',
     RegisterReceptionist = '/register/master-receiver',
+    ChangePassword = "/basic/change-password"
 }

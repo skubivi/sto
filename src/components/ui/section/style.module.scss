@@ -3,3 +3,9 @@
     border-radius: 20px;
     background: var(--black);
 }
+
+@media (max-width: 900px) {
+    .section {
+        padding: 20px;
+    }
+}

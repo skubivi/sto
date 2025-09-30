@@ -25,3 +25,9 @@
     height: 32px;
     justify-self: flex-end;
 }
+
+@media (max-width: 800px) {
+    .inputs {
+        flex-direction: column;
+    }
+}

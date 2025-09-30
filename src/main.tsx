@@ -108,7 +108,11 @@ const router = createBrowserRouter([
           children: [
             {
               path: UrlRoutes.Mechanic,
-              element: <MechanicMainPage />
+              element: <MechanicMainPage />,
+            },
+            {
+              path: UrlRoutes.MechanicSettings,
+              element: <SettingsPage />
             }
           ]
         }]

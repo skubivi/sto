@@ -14,3 +14,9 @@
 .button {
     width: 223px;
 }
+
+@media (max-width: 800px) {
+    .button {
+        width: 160px;
+    }
+}

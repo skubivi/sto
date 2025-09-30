@@ -32,7 +32,7 @@ const SideBar: FC<ISidebar> = (props) => {
             </div>
             <div className={styles.routes}>
                 <Route label="Главная" onClick={() => handleClick(UrlRoutes.Mechanic)} />
-                <Route label="Настройки" onClick={() => handleClick(UrlRoutes.Mechanic)} />
+                <Route label="Настройки" onClick={() => handleClick(UrlRoutes.MechanicSettings)} />
             </div>
             <div className={styles.logout}>
                 <div>

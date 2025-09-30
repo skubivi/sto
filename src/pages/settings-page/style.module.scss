@@ -5,9 +5,16 @@
     flex-direction: column;
     gap: 40px;
     margin-top: 40px;
+    margin-bottom: 200px;
 }
 
 .logout {
     width: 100px;
     align-self: flex-end;
+}
+
+@media (max-width: 800px) {
+    .settings {
+        width: 90%;
+    }
 }

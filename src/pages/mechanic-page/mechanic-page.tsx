@@ -17,7 +17,7 @@ const MechanicPage = () => {
     const [openSideBar, setOpenSideBar] = useState(false)
 
     return (
-        <div className={styles.wrapper}>
+        <div className={`${styles.wrapper} ${openSideBar && styles.max}`}>
             <div className={styles.header}>
                 <div onClick={() => setOpenSideBar(prev => !prev)}>
                     <BurgerSvg />

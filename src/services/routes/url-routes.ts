@@ -12,5 +12,6 @@ export enum UrlRoutes {
     ReceptionistDocuments = '/cabinet/receptionist/documents/',
     ReceptionistSettings = '/cabinet/receptionist/settings/',
     ReceptionistCars = '/cabinet/receptionist/cars/',
-    Mechanic = '/cabinet/mechanic/'
+    Mechanic = '/cabinet/mechanic/',
+    MechanicSettings = '/cabinet/mechanic/settings'
 }

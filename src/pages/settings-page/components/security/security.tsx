@@ -32,7 +32,7 @@ const Security = () => {
                 open={openPasswordModal}
                 onClose={handleClosePasswordModal}
             >
-                <ChangePasswordModal />
+                <ChangePasswordModal onClose={() => setOpenPasswordModal(false)}/>
             </StyledModal>
         </div>
     )

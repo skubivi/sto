@@ -1,5 +1,6 @@
 import {
   TAdminRegister,
+  TChangePassword,
   TLoginRequest,
   TMechanicRegister,
   TReceptionistRegister,
@@ -23,6 +24,13 @@ export const authApi = createApi({
     baseUrl: `${BASE_URL}/${AuthEndpointRoutes.Base}`,
   }),
   endpoints: (builder) => ({
+    changeMyPassword: builder.mutation<undefined, TChangePassword>({
+      query: (body) => ({
+        url: AuthEndpointRoutes.ChangePassword,
+        method: 'PATCH',
+        body
+      })
+    }),
     registerAdmin: builder.mutation<undefined, TAdminRegister>({
       query: (body) => ({
         url: AuthEndpointRoutes.RegisterAdmin,
@@ -104,5 +112,6 @@ export const {
   useGetLogoutMutation,
   useRegisterAdminMutation,
   useRegisterMechanicMutation,
-  useRegisterReceptionistMutation
+  useRegisterReceptionistMutation,
+  useChangeMyPasswordMutation
 } = authApi;

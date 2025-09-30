@@ -24,3 +24,8 @@ export type TAdminRegister = TBaseRegisterRequest & {
 
 export type TMechanicRegister = TBaseRegisterRequest
 export type TReceptionistRegister = TBaseRegisterRequest
+
+export type TChangePassword = {
+  prevPassword: string
+  newPassword: string
+}

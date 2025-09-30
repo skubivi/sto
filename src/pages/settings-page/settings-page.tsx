@@ -19,11 +19,13 @@ const SettingsPage = () => {
                 <Filial />
             }
             <Security />
-            <div className={styles.logout}>
-                <DefaultButton variant="primary" onClick={() => logout()}>
-                    выйти
-                </DefaultButton>
-            </div>
+            {user?.role !== ERoles.Mechanic &&
+                <div className={styles.logout}>
+                    <DefaultButton variant="primary" onClick={() => logout()}>
+                        выйти
+                    </DefaultButton>
+                </div>
+            }
         </div>
     )
 }
