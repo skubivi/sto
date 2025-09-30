@@ -9,7 +9,7 @@ const AdminPage = () => {
 
     const { data: filial, isSuccess } = useGetMyFilialQuery()
     useEffect(() => {
-        if (filial) setFilialToLocalStorage(filial.filialId)
+        if (filial) setFilialToLocalStorage(filial.id)
     }, [isSuccess])
 
     if (

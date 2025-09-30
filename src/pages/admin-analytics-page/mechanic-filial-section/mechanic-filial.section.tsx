@@ -52,6 +52,8 @@ const MechanicFilialSection = () => {
     const now = new Date(Date.now())
     const documentLabel = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()} - сводный отчет по проделанным работам (в общем)`
 
+    if (!analytics) return null
+
     return (
         <div className={styles.section}>
             <Typography variant='h2' color='black'>Сводный отчет по проделанным работам (в общем)</Typography>

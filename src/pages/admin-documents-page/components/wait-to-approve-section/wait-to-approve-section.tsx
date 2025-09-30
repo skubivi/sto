@@ -33,8 +33,6 @@ const WaitToApproveSection = () => {
         return false
     })
 
-    if (!documents) return null
-
     return (
         <div className={styles.section}>
             {openApproveModal !== undefined &&

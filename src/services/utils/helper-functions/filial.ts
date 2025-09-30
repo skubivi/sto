@@ -1,6 +1,7 @@
 import { filialLSName } from "../constants/localstorage"
 
 export const setFilialToLocalStorage = (filialId: string) => {
+    console.log(`MyFilial: ${filialId}`)
     localStorage.setItem(filialLSName, filialId)
 }
 

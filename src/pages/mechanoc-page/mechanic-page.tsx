@@ -12,7 +12,7 @@ import Sidebar from './components/sidebar/sidebar'
 const MechanicPage = () => {
     const { data: filial, isSuccess } = useGetMyFilialQuery()
     useEffect(() => {
-        if (filial) setFilialToLocalStorage(filial.filialId)
+        if (filial) setFilialToLocalStorage(filial.id)
     }, [isSuccess])
     const [openSideBar, setOpenSideBar] = useState(false)
 

@@ -68,17 +68,16 @@ const ReceptionistSection = () => {
         reportsPercentSign: state.reportsPercentSign,
     })
 
+    const { data: me } = useGetMeQuery()
+    if (!analytics) return null
+
     const filteredPersonal = personal?.data.filter(el => el.role === ERoles.Receptionist).map(el => ({
         id: el.id,
         title: el.lastName + ' ' + el.firstName[0] + '.' + el.middleName[0] + '.'
     }))
 
-    const { data: me } = useGetMeQuery()
-    
     const now = new Date(Date.now())
     const documentLabel = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()} - сводный отчет по проделанным работам (по ст.)`
-    
-    if (!analytics) return null
 
     return (
         <div className={styles.section}>

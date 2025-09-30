@@ -14,20 +14,20 @@ const FilialSelect = () => {
     const { data: filials, isLoading } = useGetFilialsQuery()
     const { data: me, isLoading: isMeDataLoading } = useGetMeQuery()
 
-    const myFilial = filials?.data.find(el => el.id === filial)
-
     const handleChange = (id: string) => {
         setFilial(id)
         setFilialToLocalStorage(id)
     }
 
-    if (isLoading || myFilial === undefined || filials === undefined || isMeDataLoading) return (
+    if (isLoading || filials === undefined || isMeDataLoading) return (
         <div className={styles['loader-body']}>
             <div className={styles['loader-wrapper']}>
                 <Loader />
             </div>
         </div>
     )
+
+    const myFilial = filials?.data.find(el => el.id === filial) ?? filials.data[0]
 
     if (me?.role === ERoles.Admin) return (
         <Typography variant="h3" color="white">{myFilial.title}</Typography>

@@ -12,7 +12,7 @@ export const filialApi = createApi({
                 url: FilialEndpointRoutes.List
             })
         }),
-        getMyFilial: builder.query<{filialId: string}, void>({
+        getMyFilial: builder.query<{id: string}, void>({
             query: () => ({
                 url: FilialEndpointRoutes.My
             })
