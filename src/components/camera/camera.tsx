@@ -20,11 +20,6 @@ const Camera: FC<ICamera> = (props) => {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const photoBlobRef = useRef<Blob | null>(null);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [error, setError] = useState<string | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [isStarting, setIsStarting] = useState(false);
-
     const stopCamera = useCallback(() => {
         const s = streamRef.current;
         if (!s) return;
@@ -52,9 +47,6 @@ const Camera: FC<ICamera> = (props) => {
     const startCamera = useCallback(async () => {
         stopCamera();
 
-        setError(null);
-        setIsStarting(true);
-
         try {
             const mediaStream = await navigator.mediaDevices.getUserMedia({
                 video: { facingMode: "environment" },
@@ -75,9 +67,6 @@ const Camera: FC<ICamera> = (props) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (e: any) {
             console.error("getUserMedia error:", e);
-            setError("Не удалось получить доступ к камере: " + (e?.message || String(e)));
-        } finally {
-            setIsStarting(false);
         }
     }, [stopCamera]);
 
@@ -105,7 +94,6 @@ const Camera: FC<ICamera> = (props) => {
 
         const ctx = canvas.getContext("2d");
         if (!ctx) {
-            setError("Не удалось получить canvas context");
             return;
         }
 
@@ -114,7 +102,6 @@ const Camera: FC<ICamera> = (props) => {
         canvas.toBlob(
             (blob) => {
                 if (!blob) {
-                    setError("Не удалось создать изображение");
                     return;
                 }
                 photoBlobRef.current = blob;
@@ -144,7 +131,6 @@ const Camera: FC<ICamera> = (props) => {
     const uploadPhoto = async () => {
         const blob = photoBlobRef.current;
         if (!blob) {
-            setError("Нет фото для загрузки");
             return;
         }
 
