@@ -49,7 +49,7 @@ const DocumentComments: FC<IDocumentComments> = (props) => {
                         ) : (
                             sortedComments.map(el =>
                                 <Comment 
-                                    reviewerId={el.reviewerId} 
+                                    reviewerId={el.userId} 
                                     comment={el.comment} 
                                     createdAt={new Date(el.createdAt)}
                                     key={el.id}

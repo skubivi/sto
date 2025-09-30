@@ -19,7 +19,7 @@ export interface IDocumentToApprove {
 }
 
 export interface IDocumentComment {
-    reviewerId: string
+    userId: string
     comment: string
     createdAt: string
 }
