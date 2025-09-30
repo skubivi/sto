@@ -30,7 +30,7 @@ const CreateReportButton: FC<ICreateReportButton> = (props) => {
             const id = await upload({
                 data: data,
                 label: props.label,
-                document: blob,
+                file: blob,
                 type: EReport.Mech
             })
             setDocumentId(id.data?.documentId)
