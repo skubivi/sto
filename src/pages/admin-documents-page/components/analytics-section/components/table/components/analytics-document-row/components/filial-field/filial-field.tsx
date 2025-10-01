@@ -15,7 +15,7 @@ interface IFilialField {
 const FilialField: FC<IFilialField> = (props) => {
     const [filialTitle, setFilialTitle] = useState("");
     const {data: me} = useGetMeQuery()
-    const skip = props.filialId === undefined || props.filialId.length > 1
+    const skip = props.filialId === undefined || props.filialId === null || props.filialId.length > 1
     const { data, isLoading, isSuccess } = useGetFilialQuery({id: (props.filialId as string[])[0]}, {skip})
 
     useEffect(() => {
