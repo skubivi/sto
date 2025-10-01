@@ -40,9 +40,9 @@ const NewCar = () => {
         if (!Number.isNaN(Number.parseFloat(e.target.value))) return setMileage(Number.parseFloat(e.target.value))
         return undefined
     }
-    const disableSubmit = phoneNumber.length < 10 || mileage === undefined || carNumber.length === 8 || carNumber.length === 9 || (!isClientExist && fio.split(' ').length !== 3)
+    const disableSubmit = phoneNumber.length < 10 || mileage === undefined || carNumber.length === 8 || carNumber.length === 9 || (!isClientExist && fio.split(' ').length !== 3) || fio.split(' ')[2] === undefined || fio.split(' ')[2] === null || fio.split(' ')[2].length === 0
     const handleSubmit = () => {
-        if (disableSubmit) return
+        if (disableSubmit) return null
         const lastName = isClientExist === true ? undefined : fio.split(' ')[0]
         const firstName = isClientExist === true ? undefined : fio.split(' ')[1]
         const middleName = isClientExist === true ? undefined : fio.split(' ')[2]
