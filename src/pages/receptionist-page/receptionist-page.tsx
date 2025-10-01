@@ -3,17 +3,28 @@ import { UrlRoutes } from "../../services/routes/url-routes"
 import { getFilialFromLocalStorage, setFilialToLocalStorage } from "../../services/utils/helper-functions/filial"
 import { useGetFilialsQuery } from "../../services/api/filial"
 import { useEffect } from "react"
+import Loader from "../../components/ui/loader/loader"
+
+import styles from './styles.module.scss'
 
 const ReceptionistPage = () => {
     const location = useLocation()
 
     const filial = getFilialFromLocalStorage()
-    const { data: filials, isSuccess } = useGetFilialsQuery()
+    const { data: filials, isSuccess, isLoading } = useGetFilialsQuery()
     useEffect(() => {
         if (filial === null) {
             if (filials && filials.data.length > 0) setFilialToLocalStorage(filials.data[0].id)
         }
     }, [isSuccess])
+
+    if (isLoading && filial === null) return (
+        <div className={styles.wrapper}>
+            <div className={styles.loader}>
+                <Loader />
+            </div>
+        </div>
+    )
 
     if (
         location.pathname !== UrlRoutes.ReceptionistCars && 

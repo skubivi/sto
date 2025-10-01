@@ -26,3 +26,16 @@
     max-height: calc(100dvh - 70px);
     overflow: hidden;
 }
+
+.loader-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100dvh;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+}
