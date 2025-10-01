@@ -12,8 +12,8 @@ import styles from './styles.module.scss'
 const AdminPage = () => {
     const location = useLocation()
 
-    const { data: filial, isSuccess } = useGetMyFilialQuery()
-    const { data: me, isSuccess: isMeSuccess } = useGetMeQuery()
+    const { data: filial, isSuccess, isLoading: isFilialLoading } = useGetMyFilialQuery()
+    const { data: me, isSuccess: isMeSuccess, isLoading: isMeLoading } = useGetMeQuery()
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const AdminPage = () => {
         else if (me?.role === ERoles.FullAdmin) setFilialToLocalStorage(null)
         
 
-        if (isSuccess && isMeSuccess)
+        if (!isFilialLoading && !isMeLoading)
             setIsLoading(false)
     }, [isSuccess, isMeSuccess])
 

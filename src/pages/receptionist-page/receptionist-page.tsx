@@ -11,7 +11,7 @@ const ReceptionistPage = () => {
     const location = useLocation()
 
     const filial = getFilialFromLocalStorage()
-    const { data: filials, isSuccess } = useGetFilialsQuery()
+    const { data: filials, isSuccess, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const ReceptionistPage = () => {
             if (filials && filials.data.length > 0) setFilialToLocalStorage(filials.data[0].id)
         }
 
-        if (isSuccess) setIsLoading(false)
+        if (!isFilialsLoading) setIsLoading(false)
     }, [isSuccess])
 
     if (isLoading || filial === null) return (

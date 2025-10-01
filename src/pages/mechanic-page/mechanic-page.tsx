@@ -12,7 +12,7 @@ import Loader from '../../components/ui/loader/loader'
 
 const MechanicPage = () => {
     const filial = getFilialFromLocalStorage()
-    const { data: filials, isSuccess } = useGetFilialsQuery()
+    const { data: filials, isSuccess, isLoading: isFilialsLoading } = useGetFilialsQuery()
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const MechanicPage = () => {
             if (filials && filials.data.length > 0) setFilialToLocalStorage(filials.data[0].id)
         }
 
-        if (isSuccess) setIsLoading(false)
+        if (!isFilialsLoading) setIsLoading(false)
     }, [isSuccess])
     const [openSideBar, setOpenSideBar] = useState(false)
 
