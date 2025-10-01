@@ -10,7 +10,7 @@ import DateFilter from "../../../../../../../components/date-filter/date-filter"
 import StyledMultiSelectWithLabel from "../../../../../../../components/ui/styled-multi-select-with-label/styled-multi-select-with-label"
 import { ERoles } from "../../../../../../../services/types/user"
 import Loader from "../../../../../../../components/ui/loader/loader"
-import InputWithSign from "../../../../../../../components/ui/input-with-sign/input-with-sign"
+// import InputWithSign from "../../../../../../../components/ui/input-with-sign/input-with-sign"
 import DefaultButton from "../../../../../../../components/ui/default-button/default-button"
 
 interface IFilterModal {
@@ -80,18 +80,18 @@ const FilterModal: FC<IFilterModal> = (props) => {
     const [dateTo, setDateTo] = useState(props.dateTo)
     const [chosenFilials, setChosenFilials] = useState(props.chosenFilials)
     const [chosenReceptionists, setChosenReceptionists] = useState(props.chosenReceptionists)
-    const [carsCount, setCarsCount] = useState(props.state.carsCount)
-    const [carsCountSign, setCarsCountSign] = useState(props.state.carsCountSign)
-    const [carsProcessed, setCarsProcessed] = useState(props.state.carsProcessed)
-    const [carsProcessedSign, setCarsProcessedSign] = useState(props.state.carsProcessedSign)
-    const [processedPercent, setProcessedPercent] = useState(props.state.processedPercent)
-    const [processedPercentSign, setProcessedPercentSign] = useState(props.state.processedPercentSign)
-    const [carsGivenAway, setCarsGivenAway] = useState(props.state.carsGivenAway)
-    const [carsGivenAwaySign, setCarsGivenAwaySign] = useState(props.state.carsGivenAwaySign)
-    const [reportsGivenAway, setReportsGivenAway] = useState(props.state.reportsGivenAway)
-    const [reportsGivenAwaySign, setReportsGivenAwaySign] = useState(props.state.reportsGivenAwaySign)
-    const [reportsPercent, setReportsPercent] = useState(props.state.reportsPercent)
-    const [reportsPercentSign, setReportsPercentSign] = useState(props.state.reportsPercentSign)
+    // const [carsCount, setCarsCount] = useState(props.state.carsCount)
+    // const [carsCountSign, setCarsCountSign] = useState(props.state.carsCountSign)
+    // const [carsProcessed, setCarsProcessed] = useState(props.state.carsProcessed)
+    // const [carsProcessedSign, setCarsProcessedSign] = useState(props.state.carsProcessedSign)
+    // const [processedPercent, setProcessedPercent] = useState(props.state.processedPercent)
+    // const [processedPercentSign, setProcessedPercentSign] = useState(props.state.processedPercentSign)
+    // const [carsGivenAway, setCarsGivenAway] = useState(props.state.carsGivenAway)
+    // const [carsGivenAwaySign, setCarsGivenAwaySign] = useState(props.state.carsGivenAwaySign)
+    // const [reportsGivenAway, setReportsGivenAway] = useState(props.state.reportsGivenAway)
+    // const [reportsGivenAwaySign, setReportsGivenAwaySign] = useState(props.state.reportsGivenAwaySign)
+    // const [reportsPercent, setReportsPercent] = useState(props.state.reportsPercent)
+    // const [reportsPercentSign, setReportsPercentSign] = useState(props.state.reportsPercentSign)
 
     const { data: me } = useGetMeQuery()
 
@@ -131,20 +131,20 @@ const FilterModal: FC<IFilterModal> = (props) => {
     }
 
     const handleSubmit = () => {
-        props.setState({
-            carsCount,
-            carsCountSign,
-            carsProcessed,
-            carsProcessedSign,
-            processedPercent,
-            processedPercentSign,
-            carsGivenAway,
-            carsGivenAwaySign,
-            reportsGivenAway,
-            reportsGivenAwaySign,
-            reportsPercent,
-            reportsPercentSign,
-        })
+        // props.setState({
+        //     carsCount,
+        //     carsCountSign,
+        //     carsProcessed,
+        //     carsProcessedSign,
+        //     processedPercent,
+        //     processedPercentSign,
+        //     carsGivenAway,
+        //     carsGivenAwaySign,
+        //     reportsGivenAway,
+        //     reportsGivenAwaySign,
+        //     reportsPercent,
+        //     reportsPercentSign,
+        // })
         props.setChosenFilials(chosenFilials)
         props.setChosenReceptionists(chosenReceptionists)
         props.setDateFrom(dateFrom)
@@ -200,7 +200,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                             />
                         )
                     }
-                    <InputWithSign 
+                    {/* <InputWithSign 
                         label="Машин принято"
                         sign={carsCountSign}
                         value={carsCount}
@@ -243,7 +243,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                         changeSign={() => setReportsPercentSign(prev => prev === ESign.More ? ESign.Less : ESign.More)}
                         setValue={setReportsPercent}
                         isPercent
-                    />
+                    /> */}
                 </div>
                 <div className={styles.buttons}>
                     <DefaultButton variant='outline-primary' onClick={handleSubmit}>применить</DefaultButton>

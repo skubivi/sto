@@ -3,7 +3,7 @@ import { FC, useState } from "react"
 import styles from './style.module.scss'
 import DateFilter from "../../../../../../../components/date-filter/date-filter"
 import DefaultButton from "../../../../../../../components/ui/default-button/default-button"
-import InputWithSign from "../../../../../../../components/ui/input-with-sign/input-with-sign"
+// import InputWithSign from "../../../../../../../components/ui/input-with-sign/input-with-sign"
 import Loader from "../../../../../../../components/ui/loader/loader"
 import Stripe from "../../../../../../../components/ui/stripe/stripe"
 import StyledMultiSelectWithLabel from "../../../../../../../components/ui/styled-multi-select-with-label/styled-multi-select-with-label"
@@ -55,14 +55,14 @@ const FilterModal: FC<IFilterModal> = (props) => {
     const [dateFrom, setDateFrom] = useState(props.dateFrom)
     const [dateTo, setDateTo] = useState(props.dateTo)
     const [chosenFilials, setChosenFilials] = useState(props.chosenFilials)
-    const [diagnosticsCount, setDiagnosticsCount] = useState(props.state.diagnosticsCount)
-    const [diagnosticsCountSign, setDiagnosticsCountSign] = useState(props.state.diagnosticsCountSign)
-    const [worksCount, setWorksCount] = useState(props.state.worksCount)
-    const [worksCountSign, setWorksCountSign] = useState(props.state.worksCountSign)
-    const [worksAverage, setWorksAverage] = useState(props.state.worksAverage)
-    const [worksAverageSign, setWorksAverageSign] = useState(props.state.worksAverageSign)
-    const [reportsCount, setReportsCount] = useState(props.state.reportsCount)
-    const [reporstCountSign, setReporstCountSign] = useState(props.state.reporstCountSign)
+    // const [diagnosticsCount, setDiagnosticsCount] = useState(props.state.diagnosticsCount)
+    // const [diagnosticsCountSign, setDiagnosticsCountSign] = useState(props.state.diagnosticsCountSign)
+    // const [worksCount, setWorksCount] = useState(props.state.worksCount)
+    // const [worksCountSign, setWorksCountSign] = useState(props.state.worksCountSign)
+    // const [worksAverage, setWorksAverage] = useState(props.state.worksAverage)
+    // const [worksAverageSign, setWorksAverageSign] = useState(props.state.worksAverageSign)
+    // const [reportsCount, setReportsCount] = useState(props.state.reportsCount)
+    // const [reporstCountSign, setReporstCountSign] = useState(props.state.reporstCountSign)
 
     const handleAddFilial = (id: string) => {
         const filial = props.filials?.find(el => el.id === id)
@@ -82,16 +82,16 @@ const FilterModal: FC<IFilterModal> = (props) => {
         })
     }
     const handleSubmit = () => {
-        props.setState({
-            diagnosticsCount,
-            diagnosticsCountSign,
-            worksCount,
-            worksCountSign,
-            worksAverage,
-            worksAverageSign,
-            reportsCount,
-            reporstCountSign,
-        })
+        // props.setState({
+        //     diagnosticsCount,
+        //     diagnosticsCountSign,
+        //     worksCount,
+        //     worksCountSign,
+        //     worksAverage,
+        //     worksAverageSign,
+        //     reportsCount,
+        //     reporstCountSign,
+        // })
         props.setChosenFilials(chosenFilials)
         props.setDateFrom(dateFrom)
         props.setDateTo(dateTo)
@@ -125,7 +125,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                             />
                         )
                     }
-                    <InputWithSign 
+                    {/* <InputWithSign 
                         label="Кол-во диагностик"
                         sign={diagnosticsCountSign}
                         value={diagnosticsCount}
@@ -152,7 +152,7 @@ const FilterModal: FC<IFilterModal> = (props) => {
                         value={reportsCount}
                         changeSign={() => setReporstCountSign(prev => prev === ESign.More ? ESign.Less : ESign.More)}
                         setValue={setReportsCount}
-                    />
+                    /> */}
                 </div>
                 <div className={styles.buttons}>
                     <DefaultButton variant='outline-primary' onClick={handleSubmit}>применить</DefaultButton>

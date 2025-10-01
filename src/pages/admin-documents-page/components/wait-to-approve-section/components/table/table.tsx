@@ -23,6 +23,7 @@ interface ITable {
 
 const Table: FC<ITable> = (props) => {
     const { data: me } = useGetMeQuery()
+
     return (
         <div className={styles.table}>
             <TableHeader />
