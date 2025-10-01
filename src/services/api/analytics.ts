@@ -4,9 +4,10 @@ import { AnalyticsEndpointRoutes } from "../routes/endpoints/analytics";
 import { IMechanicFilialReport, IMechanicFilialReportFilters, IMechanicReport, IMechanicReportFilters, IReceptionistFilialReport, IReceptionistFilialReportFilters, IReceptionistReport, IReceptionistReportFilters } from "../types/analytics";
 
 const arrayToString = (f: string[]) => {
-    let result = ''
-    f.forEach(element => result += `${element}_`)
-    result = result.slice(0, -1)
+    let result = '['
+    f.forEach(element => result += `"${element}", `)
+    result = result.slice(0, -2)
+    result += ']'
     return result
 }
 
