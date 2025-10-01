@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import baseQueryWithRefresh from "./base-query-with-refresh";
 import { DocumentEndpointRoutes } from "../routes/endpoints/documents";
-import { IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentFromPost, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentDiagnostic, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
+import { EReportWithAll, IAnalyticsDocumentsFilters, IDiagnosticDocument, IDiagnosticFilters, IDocumentCommentFromPost, IDocumentCommentToPost, IDocumentReport, IDocumentToApprove, IPostDocumentDiagnostic, IPostDocumentReport, TDocumentCommentWithId } from "../types/documents";
 import { IFilterDate } from "../types/base";
 
 const dateToString = (d: Date) => `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`
@@ -20,7 +20,7 @@ const arrayToString = (f: string[]) => {
 
 const getAnalyticsDocumentsParams = (body: IFilterDate & IAnalyticsDocumentsFilters) => {
     const datePart = `?date-from=${dateToString(body.dateFrom)}&date-to=${dateToString(body.dateTo)}`
-    const typePart = `&type=${body.type}`
+    const typePart = body.type === EReportWithAll.All ? '' : `&type=${body.type}`
     const filialsPart = body.filials && body.filials.length > 0
         ? `&filials=${arrayToString(body.filials)}`
         : ''
