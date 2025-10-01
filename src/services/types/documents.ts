@@ -61,7 +61,7 @@ export interface IAnalyticsDocumentsFilters {
 export interface IDocumentReport {
     id: string
     label: string
-    filialId?: string[]
+    filialId?: string[] | null
     type: EReport,
     createdAt: string
     docId: string
