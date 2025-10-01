@@ -12,7 +12,6 @@ import CommentSvg from '../../../../../../../../assets/pages/admin-documents-pag
 
 import styles from './style.module.scss'
 import TitleField from "./components/title-field/title-field"
-import DownloadPdf from "../../../../../../../../components/download-pdf/download-pdf"
 import { useGetMeQuery } from "../../../../../../../../services/api/user"
 import { ERoles } from "../../../../../../../../services/types/user"
 
@@ -64,7 +63,6 @@ const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
                     <div className={styles.icon} onClick={props.onApprove}>
                         <ApproveSvg />
                     </div>
-                    <DownloadPdf documentId={props.data.id} title={props.data.label}/>
                     <div className={styles.icon} onClick={props.onOpenComments}>
                         <CommentSvg />
                     </div>

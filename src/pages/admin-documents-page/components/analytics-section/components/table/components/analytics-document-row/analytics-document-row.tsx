@@ -6,7 +6,7 @@ import TitleField from "./components/title-field/title-field"
 import FilialField from "./components/filial-field/filial-field"
 
 import CommentSvg from '../../../../../../../../assets/pages/admin-documents-page/comment.svg?react'
-import DownloadPdf from "../../../../../../../../components/download-pdf/download-pdf"
+
 
 import styles from './style.module.scss'
 import { useGetMeQuery } from "../../../../../../../../services/api/user"
@@ -52,7 +52,6 @@ const AnalyticsDocumentRow: FC<IPersonalRow> = (props) => {
                     <ColStripe />
                 </div>
                 <div className={styles['actions']}>
-                    <DownloadPdf documentId={props.data.id} title={props.data.label}/>
                     <div className={styles.icon} onClick={props.onOpenComments}>
                         <CommentSvg />
                     </div>
