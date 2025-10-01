@@ -34,7 +34,7 @@ const AnalyticsDocumentRow: FC<IPersonalRow> = (props) => {
     return (
         <div className={styles['row-container']}>
             <div className={styles.row}>
-                <TitleField title={props.data.label} documentId={props.data.id} />
+                <TitleField title={props.data.label} documentId={props.data.docId} />
                 <FilialField filialId={props.data.filialId} />
                 <div className={styles.stripe}>
                     <ColStripe />
