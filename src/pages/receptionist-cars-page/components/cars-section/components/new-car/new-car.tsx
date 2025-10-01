@@ -35,12 +35,13 @@ const NewCar = () => {
         }
     }, [phoneNumber.length])
 
-    const handleSetCarNumber: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleSetCarMileage: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         if (e.target.value === '' || e.target.value === undefined) return setMileage(undefined)
         if (!Number.isNaN(Number.parseFloat(e.target.value))) return setMileage(Number.parseFloat(e.target.value))
         return undefined
     }
-    const disableSubmit = phoneNumber.length < 10 || mileage === undefined || carNumber.length < 8 || carNumber.length > 9 || (!isClientExist && (fio.split(' ').length !== 3 || fio.split(' ')[0] !== undefined || fio.split(' ')[2] !== null || fio.split(' ')[2].length !== 0))
+
+    const disableSubmit = phoneNumber.length < 10 || mileage === undefined || (carNumber.length !== 8 && carNumber.length !== 9) || (!isClientExist && (fio.split(' ').length !== 3 || fio.split(' ')[0] !== undefined || fio.split(' ')[2] !== null || fio.split(' ')[2].length !== 0))
     const handleSubmit = () => {
         if (disableSubmit) return null
         const lastName = isClientExist === true ? undefined : fio.split(' ')[0]
@@ -89,7 +90,7 @@ const NewCar = () => {
                                 <InputWithLabel label='ФИО клиента' onChange={(e) => setFio(e.target.value)} value={fio}/>
                             }
                             <InputWithLabel label='Номер машины' onChange={(e) => setCarNumber(e.target.value)} value={carNumber}/>
-                            <InputWithLabel label='Пробег' onChange={handleSetCarNumber} value={mileage ?? ''}/>
+                            <InputWithLabel label='Пробег' onChange={handleSetCarMileage} value={mileage ?? ''}/>
                         </div>
                         <DefaultButton variant='outline-primary' disabled={disableSubmit} onClick={handleSubmit}>создать</DefaultButton>
                     </div>
