@@ -33,7 +33,7 @@ const CreateReportButton: FC<ICreateReportButton> = (props) => {
                 file: blob,
                 type: EReport.Mech
             })
-            setDocumentId(id.data?.documentId)
+            setDocumentId(id.data?.docId)
         } catch { /* empty */ }
     }
     

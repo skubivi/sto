@@ -47,7 +47,7 @@ export const documentsApi = createApi({
                 url: `/${body.id}${DocumentEndpointRoutes.Get}`,
             }),
         }),
-        uploadDocumentReport: builder.mutation<{documentId: string}, IPostDocumentReport<object>>({
+        uploadDocumentReport: builder.mutation<{docId: string}, IPostDocumentReport<object>>({
             query: (body) => {
                 const formData = new FormData();
                 formData.append("file", body.file, `${body.label}.pdf`);
