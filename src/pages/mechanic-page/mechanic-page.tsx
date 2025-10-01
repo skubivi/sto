@@ -24,7 +24,7 @@ const MechanicPage = () => {
     }, [isSuccess])
     const [openSideBar, setOpenSideBar] = useState(false)
 
-    if (isLoading || filial === null) return (
+    if (isLoading) return (
         <div className={styles['loader-wrapper']}>
             <div className={styles.loader}>
                 <Loader />

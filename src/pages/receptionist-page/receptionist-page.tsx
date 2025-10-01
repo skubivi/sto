@@ -22,7 +22,7 @@ const ReceptionistPage = () => {
         if (!isFilialsLoading) setIsLoading(false)
     }, [isSuccess])
 
-    if (isLoading || filial === null) return (
+    if (isLoading) return (
         <div className={styles.wrapper}>
             <div className={styles.loader}>
                 <Loader />
