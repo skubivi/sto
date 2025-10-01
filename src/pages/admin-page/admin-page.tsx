@@ -25,7 +25,7 @@ const AdminPage = () => {
             setIsLoading(false)
     }, [isSuccess, isMeSuccess])
 
-    if (isLoading) return (
+    if (isLoading && me?.role === ERoles.Admin) return (
         <div className={styles.wrapper}>
             <div className={styles.loader}>
                 <Loader />
