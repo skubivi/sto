@@ -57,8 +57,6 @@ const MechanicsSection = () => {
 
     const { data: me } = useGetMeQuery()
 
-    if (!analytics) return null
-
     const filteredPersonal = personal?.data.filter(el => el.role === ERoles.Mechanic).map(el => ({
         id: el.id,
         title: el.lastName + ' ' + el.firstName[0] + '.' + el.middleName[0] + '.'

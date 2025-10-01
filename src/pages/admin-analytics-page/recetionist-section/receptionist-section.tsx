@@ -69,7 +69,6 @@ const ReceptionistSection = () => {
     })
 
     const { data: me } = useGetMeQuery()
-    if (!analytics) return null
 
     const filteredPersonal = personal?.data.filter(el => el.role === ERoles.Receptionist).map(el => ({
         id: el.id,
