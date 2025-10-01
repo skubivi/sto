@@ -23,7 +23,7 @@ const InfoModal: FC<IInfoModal> = (props) => {
     const statusText 
         = props.data.status === ECarStatus.Created ? 'В приемке'
         : props.data.status === ECarStatus.Processed ? 'Продиагностирована'
-        : 'Jnlfyf'
+        : 'Отдана'
     const createdAt = new Date(props.data.createdAt)
     const createdAtText = `${createdAt.getDate().toString().padStart(2, '0')}.${(createdAt.getMonth() + 1).toString().padStart(2, '0')}.${createdAt.getFullYear()}`
     return (
