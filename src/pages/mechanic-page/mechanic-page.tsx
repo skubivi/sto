@@ -12,15 +12,19 @@ import Loader from '../../components/ui/loader/loader'
 
 const MechanicPage = () => {
     const filial = getFilialFromLocalStorage()
-    const { data: filials, isSuccess, isLoading } = useGetFilialsQuery()
+    const { data: filials, isSuccess } = useGetFilialsQuery()
+    const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
         if (filial === null) {
             if (filials && filials.data.length > 0) setFilialToLocalStorage(filials.data[0].id)
         }
+
+        if (isSuccess) setIsLoading(false)
     }, [isSuccess])
     const [openSideBar, setOpenSideBar] = useState(false)
 
-    if (isLoading && filial === null) return (
+    if (isLoading || filial === null) return (
         <div className={styles['loader-wrapper']}>
             <div className={styles.loader}>
                 <Loader />
