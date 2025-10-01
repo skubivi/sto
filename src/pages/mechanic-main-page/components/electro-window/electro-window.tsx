@@ -41,6 +41,8 @@ const ElectroWindow: FC<IElectroWindow> = (props) => {
         setOpenModal(false)
         setData([])
         setPhoto(undefined)
+        setIsFinal(false)
+        setQuestion({row: 0, number: 0})
         props.onClose()
     }
 
