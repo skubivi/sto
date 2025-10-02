@@ -1,33 +1,36 @@
 import { FC, useState } from "react"
 
 import styles from './style.module.scss'
-import Camera from "../../../../components/camera/camera"
 import StyledModal from "../../../../components/ui/styled-modal/styled-modal"
 import Typography from "../../../../components/ui/typography/typography"
 import Stripe from "../../../../components/ui/stripe/stripe"
 import DefaultButton from "../../../../components/ui/default-button/default-button"
 
 import BackSvg from '../../../../assets/pages/mechanic-main-page/arrow_back_ios.svg?react'
+import { METALWORKER_QUESTIONS } from "../../../../services/utils/constants/diagnostic-data"
+import Question from "./components/question/question"
 
 interface IDiagnosticWindow {
     open: boolean
     cardId: string | undefined
     onClose: () => void
-    onSubmit: (d: {text: string, photo: Blob | undefined}[]) => void
+    onSubmit: (d: {title: string, subtitle: string, text: string, photo: Blob | undefined}[]) => void
 }
 
 const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
-    const [data, setData] = useState<{text: string, photo: Blob | undefined}[]>([])
+    const [data, setData] = useState<{title: string, subtitle: string, text: string, photo: Blob | undefined}[]>([])
     const [openModal, setOpenModal] = useState(false)
-    const [inputValue, setInputValue] = useState('')
     const [photo, setPhoto] = useState<Blob | undefined>(undefined)
-    const [openCamera, setOpenCamera] = useState(false)
+    const [question, setQuestion] = useState(0)
+    const [skip, setSkip] = useState<number[]>([])
+    const [isFinal, setIsFinal] = useState(false)
 
     const handleClose = () => {
-        if (data.length === 0 && inputValue === '' && photo === undefined) {
+        if (data.length === 0 && photo === undefined) {
             setData([])
             setPhoto(undefined)
-            setInputValue('')
+            setIsFinal(false)
+            setQuestion(0)
             props.onClose()
         }
         else setOpenModal(true)
@@ -37,28 +40,48 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
         setOpenModal(false)
         setData([])
         setPhoto(undefined)
-        setInputValue('')
+        setIsFinal(false)
+        setQuestion(0)
         props.onClose()
     }
 
-    const handleSave = () => {
-        setData(prev => [...prev, {text: inputValue, photo}])
-        setInputValue('')
-        setPhoto(undefined)
+    const handleSubmit = async () => {
+        if (isFinal) props.onSubmit(data)
     }
 
-    const handleSubmit = async () => {
-        if (inputValue)
-            props.onSubmit([...data, {
-                text: inputValue,
-                photo
-            }])
-        else props.onSubmit(data)
+    const handleNextQuestion = () => {
+            setQuestion(prev => {
+                for (let i = prev + 1; i < METALWORKER_QUESTIONS.length; i++) {
+                    if (!skip.includes(i)) return i
+                }
+                setIsFinal(true)
+                return 0
+            })
+        }
+
+    const handleOnDefect = (text: string, title: string, subtitle: string, photo: Blob | undefined) => {
+        setData(prev => [...prev, {
+            title,
+            subtitle,
+            text,
+            photo
+        }])
+
+        handleNextQuestion()
+    }
+
+    const handleAddSkip = (ids: number[]) => {
+        setSkip(prev => {
+            const temp = prev.slice()
+            ids.forEach(el => {
+                if (!temp.includes(el)) temp.push(el)
+            })
+            return temp
+        })
     }
 
     return (
         <div className={`${styles.wrapper} ${props.open && styles.open}`}>
-            {openCamera && <Camera open={openCamera} onClose={() => setOpenCamera(false)} onUpload={setPhoto} />}
             {openModal &&
                 <StyledModal open={openModal} onClose={() => setOpenModal(false)}>
                     <div className={styles.modal}>
@@ -81,17 +104,21 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
                 <Typography variant="h2" color="white">Создание отчета</Typography>
             </div>
             <div className={styles.main}>
-                <div className={styles.button}>
-                    <DefaultButton variant="primary" onClick={() => setOpenCamera(true)}>{photo ? 'Изменить фото' : 'Добавить фото'}</DefaultButton>
-                </div>
-                <div className={styles.button}>
-                    <DefaultButton variant="secondary" onClick={handleSave}>Продолжить</DefaultButton>
-                </div>
+                {!isFinal && props.open &&
+                    <Question 
+                        onNorm={handleNextQuestion}
+                        onDefect={handleOnDefect}
+                        question={METALWORKER_QUESTIONS[question]}
+                        onAddSkip={handleAddSkip}
+                    />
+                }
             </div>
             <div className={styles.bottom}>
-                <div className={styles.button}>
-                    <DefaultButton variant="outline-primary" onClick={handleSubmit}>Сформировать отчет</DefaultButton>
-                </div>
+                {isFinal &&
+                    <div className={styles.button}>
+                        <DefaultButton variant="outline-primary" onClick={handleSubmit}>Сформировать отчет</DefaultButton>
+                    </div>
+                }
             </div>
         </div>
     )

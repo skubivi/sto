@@ -12,6 +12,7 @@ import { useLazyGetPersonalDataQuery } from '../../services/api/user'
 import { useUploadDocumentDiagnosticMutation } from '../../services/api/documents'
 import ElectroWindow from './components/electro-window/electro-window'
 import { getFilialFromLocalStorage } from '../../services/utils/helper-functions/filial'
+import DiagnosticWindow from './components/diagnostic-window/diagnostic-window'
 
 const MechanicMainPage = () => {
     const { data: carsForMechanic, isLoading } = useGetMechanicCarsQuery()
@@ -41,6 +42,7 @@ const MechanicMainPage = () => {
 
     const openReportWindow = windowType === EDiagnostic.Free && windowId !== undefined
     const openElectroWindow = windowType === EDiagnostic.Electric && windowId !== undefined
+    const openDiagnosticWindow = windowType === EDiagnostic.Metalworker && windowId !== undefined
 
     const handleSubmitFreeReport = async (data: {text: string, photo: Blob | undefined}[]) => {
         if (windowId === undefined) return null
@@ -62,6 +64,36 @@ const MechanicMainPage = () => {
         await uploadDiagnostic({
             label: dateText + ' - отчет',
             type: EDiagnostic.Free,
+            file: blob,
+            carProcessingId: windowId,
+            data: {
+                worksCount: data.length,
+                filialId,
+            }
+        })
+        setWindowId(undefined)
+    }
+
+    const handleSubmitMetalworker = async (data: {text: string, photo: Blob | undefined, title: string, subtitle: string}[]) => {
+        if (windowId === undefined) return null
+        const personal = await getPersonal()
+        if (!personal.data) return null
+        const car = carsForMechanic.data.find(el => el.id === windowId)
+        if (car === undefined) return null
+        const filialId = getFilialFromLocalStorage()
+        if (filialId === null) return null
+        const mechanicName = personal.data.lastName + ' ' + personal.data.firstName + ' ' + personal.data.middleName
+        const blob = await createElectroReportBlob({
+            carNumber: car.carNumber,
+            mileage: car.mileage,
+            mechanicName,
+            data
+        })
+        const now = new Date(Date.now())
+        const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
+        await uploadDiagnostic({
+            label: dateText + ' - слесарная диагностика',
+            type: EDiagnostic.Metalworker,
             file: blob,
             carProcessingId: windowId,
             data: {
@@ -115,6 +147,12 @@ const MechanicMainPage = () => {
                 onClose={() => setWindowId(undefined)}
                 open={openElectroWindow}
                 onSubmit={handleSubmitElectro}
+            />
+            <DiagnosticWindow 
+                cardId={windowId}
+                onClose={() => setWindowId(undefined)}
+                open={openDiagnosticWindow}
+                onSubmit={handleSubmitMetalworker}
             />
             <div className={styles['cars-section']}>
                 <Typography variant='h2' color='black'>Нужно провести диагностику</Typography>

@@ -417,11 +417,85 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
         )
     ).flat();
 
-    console.log(body)
-
     const docDefinition: TDocumentDefinitions = {
         content: [
             { text: "Отчет по электродиагностике", style: "header" },
+            {
+                image: logoBase64,
+                width: 40,
+                absolutePosition: { x: 520, y: 10 }
+            },
+            {
+                text: dateText, style: "text"
+            },
+            {
+                text: mechanicText, style: "text"
+            },
+            {
+                text: carNumberText, style: "text"
+            },
+            {
+                text: mileageText, style: "mileage"
+            },
+            ...body
+        ],
+        styles: {
+            header: {
+                fontSize: 24,
+                bold: true,
+                margin: [0, 0, 0, 30],
+            },
+            mileage: {
+                fontSize: 12,
+                margin: [0, 0, 0, 30]
+            },
+            text: {
+                fontSize: 12,
+                marginBottom: 10
+            },
+            photo: {
+                marginBottom: 10
+            }
+        },
+        defaultStyle: { font: "Roboto", fontSize: 10 },
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise<Blob>((resolve, _) => {
+        const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+
+        pdfDocGenerator.getBlob(blob => {
+            resolve(blob);
+        });
+    });
+}
+
+export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
+    const logoBase64 = await getLogoBase64()
+
+    const now = new Date(Date.now())
+    const dateText = `Дата: ${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
+    const mechanicText = 'Механик: ' + data.mechanicName
+    const carNumberText = 'Гос. номер: ' + data.carNumber
+    const mileageText = 'Пробег: ' + data.mileage + ' км'
+
+    const body: Content[] = (
+        await Promise.all(
+            data.data.map(async (el, index) => {
+            const toPush = await dataToBase64(el.text, el.photo);
+            return toPush.photo
+                ? [
+                    { text: `-${index + 1}. ${el.title}: ${toPush.text}`, style: "text" },
+                    { image: toPush.photo, style: "photo", width: 520 }
+                ]
+                : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
+            })
+        )
+    ).flat();
+
+    const docDefinition: TDocumentDefinitions = {
+        content: [
+            { text: "Отчет по слесарной диагностике", style: "header" },
             {
                 image: logoBase64,
                 width: 40,
