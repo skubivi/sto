@@ -11,7 +11,6 @@ import CommentSvg from '../../../../../../../../assets/pages/admin-documents-pag
 
 import styles from './style.module.scss'
 import TitleField from "./components/title-field/title-field"
-import DownloadPdf from "../../../../../../../../components/download-pdf/download-pdf"
 
 interface IPersonalRow {
     data: IDocumentToApprove
@@ -31,7 +30,7 @@ const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
     return (
         <div className={styles['row-container']}>
             <div className={styles.row}>
-                <TitleField title={props.data.label} documentId={props.data.id} />
+                <TitleField title={props.data.label} documentId={props.data.docId} />
                 <MechanicField mechanicId={props.data.mechanicId}/>
                 <ClientField clientDataId={props.data.clientDataId}/>
                 <div className={styles.stripe}>
@@ -59,7 +58,6 @@ const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
                     <div className={styles.icon} onClick={props.onApprove}>
                         <ApproveSvg />
                     </div>
-                    <DownloadPdf documentId={props.data.id} title={props.data.label}/>
                     <div className={styles.icon} onClick={props.onOpenComments}>
                         <CommentSvg />
                     </div>

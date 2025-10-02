@@ -31,6 +31,7 @@ const InfoDocuments: FC<IInfoDocuments> = (props) => {
             </div>
         </div>
     )
+    
     return (
         <>
             <Typography variant="caption" color="secondary3">Список документов</Typography>

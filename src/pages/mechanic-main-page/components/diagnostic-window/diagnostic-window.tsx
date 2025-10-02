@@ -18,7 +18,13 @@ interface IDiagnosticWindow {
 }
 
 const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
-    const [data, setData] = useState<{title: string, subtitle: string, text: string, photo: Blob | undefined}[]>([])
+    const [data, setData] = useState<{
+        id: number
+        title: string, 
+        subtitle: string, 
+        text: string, 
+        photo: Blob | undefined}[]
+    >([])
     const [openModal, setOpenModal] = useState(false)
     const [photo, setPhoto] = useState<Blob | undefined>(undefined)
     const [question, setQuestion] = useState(0)
@@ -59,13 +65,20 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
             })
         }
 
-    const handleOnDefect = (text: string, title: string, subtitle: string, photo: Blob | undefined) => {
-        setData(prev => [...prev, {
-            title,
-            subtitle,
-            text,
-            photo
-        }])
+    const handleOnDefect = (id: number, text: string, title: string, subtitle: string, photo: Blob | undefined) => {
+        setData(prev =>  {
+            const index = prev.findIndex(el => el.id === id)
+            if (index === -1)
+                return [...prev, {
+                    id,
+                    title,
+                    subtitle,
+                    text,
+                    photo
+                }]
+            return [...prev.slice(0, index), {id, title, subtitle, text, photo}, ...prev.slice(index + 1)]
+        })
+            
 
         handleNextQuestion()
     }
@@ -106,6 +119,7 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
             <div className={styles.main}>
                 {!isFinal && props.open &&
                     <Question 
+                        id={question}
                         onNorm={handleNextQuestion}
                         onDefect={handleOnDefect}
                         question={METALWORKER_QUESTIONS[question]}

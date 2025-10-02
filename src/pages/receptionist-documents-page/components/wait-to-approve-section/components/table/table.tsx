@@ -53,7 +53,7 @@ const Table: FC<ITable> = (props) => {
             }
             {props.data !== undefined && paginationFilter(props.data, props.page, props.itemsOnPage).map(el => (
                 <DocumentToApproveRow
-                    onOpenComments={() => props.onCommentsClick(el.id)}
+                    onOpenComments={() => props.onCommentsClick(el.docId)}
                     onDecline={() => props.onDeclineClick(el.id)}
                     onApprove={() => props.onApproveClick(el.id)}
                     key={el.id}
