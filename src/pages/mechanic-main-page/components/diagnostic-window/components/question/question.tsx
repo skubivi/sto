@@ -26,7 +26,7 @@ const Question: FC<IQuestion> = (props) => {
     const [isDefect, setIsDefect] = useState(false)
 
     const handleDefect = () => {
-        if (text.length > 0 && photo) {
+        if (text.length > 0) {
             props.onDefect(text, props.question.docTitle, '', photo)
             setText('')
             setIsDefect(false)
@@ -117,7 +117,7 @@ const Question: FC<IQuestion> = (props) => {
                     <MultiSelect data={props.question} onSelect={handleInput} photo={photo}/>
                 }
                 
-                {isDefect && photo !== undefined && props.question.type === EQuestionType.Select && text.length > 0 &&
+                {isDefect && props.question.type === EQuestionType.Select && text.length > 0 &&
                     <div className={styles.button}>
                         <DefaultButton variant="secondary" onClick={handleDefect}>Продолжить</DefaultButton>
                     </div>
