@@ -406,14 +406,16 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
     const body: Content[] = (
         await Promise.all(
             data.data.map(async (el, index) => {
-            const toPush = await dataToBase64(el.text, el.photo);
-            return toPush.photo
-                ? [
-                    { text: `-${index + 1}. ${el.subtitle}: ${toPush.text}`, style: "text" },
-                    { image: toPush.photo, style: "photo", width: 520 }
-                ]
-                : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
-            })
+                const text = `${el.title}: ${el.text}`
+                const toPush = await dataToBase64(text, el.photo);
+                return toPush.photo
+                    ? [
+                        { text: `-${index + 1}. ${toPush.text}`, style: "text" },
+                        { image: toPush.photo, style: "photo", width: 520 }
+                    ]
+                    : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
+                }
+            )
         )
     ).flat();
 
@@ -482,14 +484,16 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
     const body: Content[] = (
         await Promise.all(
             data.data.map(async (el, index) => {
-            const toPush = await dataToBase64(el.text, el.photo);
-            return toPush.photo
-                ? [
-                    { text: `-${index + 1}. ${el.title}: ${toPush.text}`, style: "text" },
-                    { image: toPush.photo, style: "photo", width: 520 }
-                ]
-                : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
-            })
+                const text = `${el.title}: ${el.text}`
+                const toPush = await dataToBase64(text, el.photo);
+                return toPush.photo
+                    ? [
+                        { text: `-${index + 1}. ${toPush.text}`, style: "text" },
+                        { image: toPush.photo, style: "photo", width: 520 }
+                    ]
+                    : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
+                }
+            )
         )
     ).flat();
 

@@ -51,7 +51,7 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
 
     const handleNextQuestion = () => {
             setQuestion(prev => {
-                for (let i = prev + 1; i < 10; i++) {
+                for (let i = prev + 1; i < METALWORKER_QUESTIONS.length; i++) {
                     if (!skip.includes(i)) return i
                 }
                 setIsFinal(true)

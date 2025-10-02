@@ -24,7 +24,8 @@ const MultiSelect: FC<IMultiSelect> = (props) => {
         })
     }
     let text = ''
-    options.forEach(el => text += (el + ' '))
+    options.forEach(el => text += (el + ', '))
+    text = text.slice(0, -2)
     return (
         <div className={styles.wrapper}>
             <Typography variant='h4' color='white'>Выберите несколько</Typography>

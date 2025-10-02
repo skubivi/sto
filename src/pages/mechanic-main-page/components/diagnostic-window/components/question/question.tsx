@@ -32,7 +32,6 @@ const Question: FC<IQuestion> = (props) => {
             setIsDefect(false)
             setPhoto(undefined)
         }
-        
     }
 
     const handleNorm = () => {
