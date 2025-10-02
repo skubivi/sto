@@ -15,7 +15,7 @@ const Input: FC<IInput> = (props) => {
     return (
         <div className={styles.wrapper}>
             <DefaultInput value={value} onChange={(e) => setValue(e.target.value)} placeholder={props.data.input}/>
-            {value.length > 0 && props.photo &&
+            {value.length > 0 &&
                 <DefaultButton variant='primary' onClick={() => props.onInput(value)}>Продолжить</DefaultButton>
             }
         </div>
