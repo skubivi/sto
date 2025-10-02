@@ -58,7 +58,8 @@ export const METALWORKER_QUESTIONS: TMetallworkerQuestion[] = [
         title: 'Проверьте лампы неисправности на панели приборов',
         docTitle: 'Лампы приборов на панели приборов',
         ok: 'Не горят',
-        fault: 'Горят'
+        fault: 'Горят',
+        defectOptions: ['CHECK ENGINE', 'SRS', 'ABS', 'АКБ']
     },
     {
         id: 3,

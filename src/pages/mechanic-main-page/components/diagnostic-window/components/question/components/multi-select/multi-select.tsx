@@ -36,7 +36,7 @@ const MultiSelect: FC<IMultiSelect> = (props) => {
                     </div>
                 ))}
             </div>
-            {options.length > 0 && props.photo &&
+            {options.length > 0 &&
                 <DefaultButton variant='primary' onClick={() => props.onSelect(text)}>Продолжить</DefaultButton>
             }
         </div>
