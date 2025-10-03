@@ -332,7 +332,7 @@ export const createFreeReportBlob = async (data: IFreeReportData) => {
             return toPush.photo
                 ? [
                     { text: `-${index + 1}. ${toPush.text}`, style: "text" },
-                    { image: toPush.photo, style: "photo", width: 520, fit: [174, 120] }
+                    { image: toPush.photo, style: "photo", width: 520, fit: [174, 250] }
                 ]
                 : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
             })
@@ -412,7 +412,7 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
                 return toPush.photo
                     ? [
                         { text: `-${index + 1}. ${toPush.text}`, style: "text" },
-                        { image: toPush.photo, style: "photo", fit: [174, 120] }
+                        { image: toPush.photo, style: "photo", fit: [174, 250] }
                     ]
                     : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
                 }
@@ -491,7 +491,7 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
                 return toPush.photo
                     ? [
                         { text: `-${index + 1}. ${toPush.text}`, style: "text" },
-                        { image: toPush.photo, style: "photo", fit: [174, 120] }
+                        { image: toPush.photo, style: "photo", fit: [174, 250] }
                     ]
                     : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
                 }
