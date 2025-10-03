@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .loading-wrapper {
@@ -12,5 +13,5 @@
 }
 
 .stripe {
-    height: 24px;
+    flex-shrink: 1;
 }
