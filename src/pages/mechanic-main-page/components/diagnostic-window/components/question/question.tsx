@@ -117,7 +117,7 @@ const Question: FC<IQuestion> = (props) => {
                     <MultiSelect data={props.question} onSelect={handleInput} photo={photo}/>
                 }
                 
-                {isDefect && props.question.type === EQuestionType.Select && text.length > 0 &&
+                {isDefect && props.question.type === EQuestionType.Select && text.length > 0 && photo &&
                     <div className={styles.button}>
                         <DefaultButton variant="secondary" onClick={handleDefect}>Продолжить</DefaultButton>
                     </div>
