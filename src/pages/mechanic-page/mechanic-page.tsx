@@ -1,6 +1,6 @@
 import styles from './style.module.scss'
 
-import logo from '../../assets/logo-mini.png'
+import logo from '../../assets/logo-mini1.svg'
 import { Outlet } from 'react-router-dom'
 import { useGetFilialsQuery } from '../../services/api/filial'
 import { useEffect, useState } from 'react'

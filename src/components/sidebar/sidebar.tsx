@@ -1,6 +1,6 @@
 import styles from './style.module.scss'
 
-import LogoMiniPng from '../../assets/logo-mini.png'
+import LogoMiniPng from '../../assets/logo-mini1.svg'
 import AdminRoutes from './components/admin-routes/admin-routes'
 import { useGetMeQuery } from '../../services/api/user'
 import { ERoles } from '../../services/types/user'

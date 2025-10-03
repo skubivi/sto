@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100">
+  <!-- Прозрачный фон -->
+  <defs>
+    <style>
+      .shadow { filter: none; }
+    </style>
+  </defs>
+
+  <!-- Внешний белый круг с чёрным тонким контуром -->
+  <circle cx="50" cy="50" r="48" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+
+  <!-- Внутренний чёрный круг -->
+  <circle cx="50" cy="50" r="38" fill="#000000"/>
+
+  <!-- Красная плашка -->
+  <rect x="24" y="62" width="52" height="10" fill="#ff0000" rx="1" ry="1"/>
+
+  <!-- Упрощённая буква "М" без тонких граней, рассчитана на малые размеры -->
+  <path d="
+    M 26 64
+    L 26 36
+    L 40 36
+    L 50 49
+    L 60 36
+    L 74 36
+    L 74 64
+    L 64 64
+    L 64 48
+    L 52 62
+    L 48 62
+    L 36 48
+    L 36 64
+    Z" fill="#ffffff"/>
+</svg>
