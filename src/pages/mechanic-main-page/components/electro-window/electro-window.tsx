@@ -88,6 +88,20 @@ const ElectroWindow: FC<IElectroWindow> = (props) => {
         handleNextQuestion()
     }
 
+    const handleBack = () => {
+        if (question.row === 0 && question.number === 0) return null
+        setQuestion(prev => {
+            if (prev.number === 0) return {
+                row: prev.row - 1,
+                number: ELECTRO_QUESTIONS[prev.row - 1].questions.length - 1
+            }
+            return {
+                row: prev.row,
+                number: prev.number - 1
+            }
+        })
+    }
+
     return (
         <div className={`${styles.wrapper} ${props.open && styles.open}`}>
             {openCamera && <Camera open={openCamera} onClose={() => setOpenCamera(false)} onUpload={setPhoto} />}
@@ -126,6 +140,11 @@ const ElectroWindow: FC<IElectroWindow> = (props) => {
                 }
             </div>
             <div className={styles.bottom}>
+                {!(question.number === 0 && question.row === 0) &&
+                    <div className={styles.button}>
+                        <DefaultButton variant="outline-secondary3" onClick={handleBack}>Предыдущий вопрос</DefaultButton>
+                    </div>
+                }
                 {isFinal &&
                     <div className={styles.button}>
                         <DefaultButton variant="outline-primary" onClick={handleSubmit} disabled={props.isUploadingDocument}>Сформировать отчет</DefaultButton>

@@ -324,7 +324,7 @@ export const METALWORKER_QUESTIONS: TMetallworkerQuestion[] = [
         type: EQuestionType.Select, 
         title: 'Износ задних тормозных дисков (толщина)\nМенее 1мм(<25%) - норма',
         docTitle: 'Износ задних тормозных дисков (толщина)',
-        options: ['1-2мм (25-50%)', '2-3мм (50-75%)', 'Более 3мм (>75%)'], 
+        defectOptions: ['1-2мм (25-50%)', '2-3мм (50-75%)', 'Более 3мм (>75%)'], 
     },
     {
         id: 37,

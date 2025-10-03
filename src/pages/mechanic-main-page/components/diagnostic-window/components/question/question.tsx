@@ -13,11 +13,10 @@ import Choise from "./components/choise/choise"
 import MultiSelect from "./components/multi-select/multi-select"
 
 interface IQuestion {
-    onDefect: (id: number, text: string, title: string, subtitle: string, photo: Blob | undefined) => void
+    onDefect: (text: string, title: string, subtitle: string, photo: Blob | undefined) => void
     onNorm: () => void
     question: TMetallworkerQuestion
     onAddSkip: (ids: number[]) => void
-    id: number
 }
 
 const Question: FC<IQuestion> = (props) => {
@@ -28,7 +27,7 @@ const Question: FC<IQuestion> = (props) => {
 
     const handleDefect = () => {
         if (text.length > 0) {
-            props.onDefect(props.id, text, props.question.docTitle, '', photo)
+            props.onDefect(text, props.question.docTitle, '', photo)
             setText('')
             setIsDefect(false)
             setPhoto(undefined)
@@ -49,7 +48,7 @@ const Question: FC<IQuestion> = (props) => {
 
     const handleInput = (s: string) => {
         if (s.length > 0) {
-            props.onDefect(props.id, s, props.question.docTitle, '', photo)
+            props.onDefect(s, props.question.docTitle, '', photo)
             setText('')
             setIsDefect(false)
             setPhoto(undefined)
@@ -58,7 +57,7 @@ const Question: FC<IQuestion> = (props) => {
 
     const handleFinal = (s: string) => {
         if (s.length > 0) {
-            props.onDefect(props.id, s, props.question.docTitle, '', photo)
+            props.onDefect(s, props.question.docTitle, '', photo)
         }
         else props.onNorm()
     }

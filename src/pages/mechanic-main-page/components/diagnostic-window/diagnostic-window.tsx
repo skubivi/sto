@@ -20,7 +20,6 @@ interface IDiagnosticWindow {
 
 const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
     const [data, setData] = useState<{
-        id: number
         title: string, 
         subtitle: string, 
         text: string, 
@@ -66,22 +65,15 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
         })
     }
 
-    const handleOnDefect = (id: number, text: string, title: string, subtitle: string, photo: Blob | undefined) => {
+    const handleOnDefect = (text: string, title: string, subtitle: string, photo: Blob | undefined) => {
         if (!photo) return null
-        setData(prev =>  {
-            const index = prev.findIndex(el => el.id === id)
-            if (index === -1)
-                return [...prev, {
-                    id,
-                    title,
-                    subtitle,
-                    text,
-                    photo
-                }]
-            return [...prev.slice(0, index), {id, title, subtitle, text, photo}, ...prev.slice(index + 1)]
-        })
-            
-
+        setData(prev =>  [...prev, {
+            title,
+            subtitle,
+            text,
+            photo
+        }])
+        
         handleNextQuestion()
     }
 
@@ -93,6 +85,12 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
             })
             return temp
         })
+    }
+
+    const handleBack = () => {
+        if (question !== 0)
+            setData(prev => prev.slice(0, -1))
+            setQuestion(prev => prev - 1)
     }
 
     return (
@@ -121,7 +119,6 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
             <div className={styles.main}>
                 {!isFinal && props.open &&
                     <Question 
-                        id={question}
                         onNorm={handleNextQuestion}
                         onDefect={handleOnDefect}
                         question={METALWORKER_QUESTIONS[question]}
@@ -130,6 +127,11 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
                 }
             </div>
             <div className={styles.bottom}>
+                {question !== 0 &&
+                    <div className={styles.button}>
+                        <DefaultButton variant="outline-secondary3" onClick={handleBack}>Предыдущий вопрос</DefaultButton>
+                    </div>
+                }
                 {isFinal &&
                     <div className={styles.button}>
                         <DefaultButton variant="outline-primary" onClick={handleSubmit} disabled={props.isUploadingDocument}>Сформировать отчет</DefaultButton>
