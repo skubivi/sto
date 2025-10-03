@@ -55,7 +55,7 @@ export const carsApi = createApi({
             }),
             invalidatesTags: ["Cars"]
         }),
-        getCarDocuments: builder.query<{data: {id: string, label: string}[]}, {carId: string}>({
+        getCarDocuments: builder.query<{data: {id: string, label: string, docId: string}[]}, {carId: string}>({
             query: (body) => ({
                 url: `/${body.carId}${CarsEndpointRoutes.Documents}`
             })

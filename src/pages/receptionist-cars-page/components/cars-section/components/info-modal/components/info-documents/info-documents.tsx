@@ -37,7 +37,7 @@ const InfoDocuments: FC<IInfoDocuments> = (props) => {
             <Typography variant="caption" color="secondary3">Список документов</Typography>
             <div className={styles.documents}>
                 {documents.data.map(el => (
-                    <div className={styles.title} onClick={() => handleOpen(el.id)}>
+                    <div className={styles.title} onClick={() => handleOpen(el.docId)}>
                         <div className={styles.icon}>
                             <AssignmentSvg />
                         </div>
