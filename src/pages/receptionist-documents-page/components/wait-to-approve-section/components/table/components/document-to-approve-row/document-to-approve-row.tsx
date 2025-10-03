@@ -55,13 +55,13 @@ const DocumentToApproveRow: FC<IPersonalRow> = (props) => {
                     <ColStripe />
                 </div>
                 <div className={styles['actions']}>
-                    <div className={styles.icon} onClick={props.onApprove}>
+                    <div className={styles.icon} onClick={props.onApprove} title="Утвердить">
                         <ApproveSvg />
                     </div>
-                    <div className={styles.icon} onClick={props.onOpenComments}>
+                    <div className={styles.icon} onClick={props.onOpenComments} title="Комментарии">
                         <CommentSvg />
                     </div>
-                    <div className={styles.icon} onClick={props.onDecline}>
+                    <div className={styles.icon} onClick={props.onDecline} title="Отклонить">
                         <CancelSvg />
                     </div>
                 </div>

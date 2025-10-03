@@ -57,10 +57,10 @@ const CarRow: FC<IPersonalRow> = (props) => {
                     <ColStripe />
                 </div>
                 <div className={styles['actions']}>
-                    <div className={`${styles.icon} ${props.data.status === ECarStatus.Finished && styles.disabled}`} onClick={handleApprove}>
+                    <div className={`${styles.icon} ${props.data.status === ECarStatus.Finished && styles.disabled}`} onClick={handleApprove} title="Машина готова">
                         <ApproveSvg />
                     </div>
-                    <div className={styles.icon} onClick={props.onOpenInfo}>
+                    <div className={styles.icon} onClick={props.onOpenInfo} title="Информация">
                         <InfoSvg />
                     </div>
                 </div>

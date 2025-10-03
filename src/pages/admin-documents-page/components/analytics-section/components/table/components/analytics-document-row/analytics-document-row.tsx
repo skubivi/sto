@@ -52,7 +52,7 @@ const AnalyticsDocumentRow: FC<IPersonalRow> = (props) => {
                     <ColStripe />
                 </div>
                 <div className={styles['actions']}>
-                    <div className={styles.icon} onClick={props.onOpenComments}>
+                    <div className={styles.icon} onClick={props.onOpenComments} title="Комментарии">
                         <CommentSvg />
                     </div>
                 </div>
