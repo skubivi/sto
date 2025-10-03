@@ -7,9 +7,9 @@ export enum ERoles {
 
 export enum ERolesWithAll {
   All = 'ALL',
-  Mechanic = 'MECH',
+  Mechanic = 'MECHANIC',
   Admin = 'ADMIN',
-  Receptionist = 'RECEP',
+  Receptionist = 'RECEIVER',
   FullAdmin = 'FULL_ADMIN'
 }
 
