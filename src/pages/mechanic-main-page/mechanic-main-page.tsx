@@ -63,7 +63,7 @@ const MechanicMainPage = () => {
         const now = new Date(Date.now())
         const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
         await uploadDiagnostic({
-            label: dateText + ' - отчет',
+            label: car.carNumber + ' ' + dateText + ' - отчет',
             type: EDiagnostic.Free,
             file: blob,
             carProcessingId: windowId,
@@ -95,7 +95,7 @@ const MechanicMainPage = () => {
         const now = new Date(Date.now())
         const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
         await uploadDiagnostic({
-            label: dateText + ' - слесарная диагностика',
+            label: car.carNumber + ' ' + dateText + ' - слесарная диагностика',
             type: EDiagnostic.Metalworker,
             file: blob,
             carProcessingId: windowId,
@@ -126,7 +126,7 @@ const MechanicMainPage = () => {
         const now = new Date(Date.now())
         const dateText = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
         await uploadDiagnostic({
-            label: dateText + ' - электродиагностика',
+            label: car.carNumber + ' ' + dateText + ' - электродиагностика',
             type: EDiagnostic.Electric,
             file: blob,
             carProcessingId: windowId,

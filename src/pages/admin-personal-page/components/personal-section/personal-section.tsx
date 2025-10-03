@@ -21,11 +21,11 @@ const fullAdminFilterOptions = [
     },
     {
         id: ERolesWithAll.FullAdmin,
-        title: 'Администраторы'
+        title: 'Руководители сети'
     },
     {
         id: ERolesWithAll.Admin,
-        title: 'Администраторы фил.'
+        title: 'Руководители станции'
     },
     {
         id: ERolesWithAll.Receptionist,
