@@ -16,6 +16,7 @@ interface IReportWindow {
     cardId: string | undefined
     onClose: () => void
     onSubmit: (d: {text: string, photo: Blob | undefined}[]) => void
+    isUploadingDocument: boolean
 }
 
 const ReportWindow: FC<IReportWindow> = (props) => {
@@ -121,7 +122,7 @@ const ReportWindow: FC<IReportWindow> = (props) => {
             <div className={styles.bottom}>
                 <Pages current={page} length={data.length + 1} onChange={handleSetPage}/>
                 <div className={styles.button}>
-                    <DefaultButton variant="outline-primary" onClick={handleSubmit}>Сформировать отчет</DefaultButton>
+                    <DefaultButton variant="outline-primary" onClick={handleSubmit} disabled={props.isUploadingDocument}>Сформировать отчет</DefaultButton>
                 </div>
             </div>
         </div>

@@ -406,7 +406,7 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
     const body: Content[] = (
         await Promise.all(
             data.data.map(async (el, index) => {
-                const text = `${el.title}: ${el.text}`
+                const text = `${el.subtitle}: ${el.text}`
                 const toPush = await dataToBase64(text, el.photo);
                 return toPush.photo
                     ? [

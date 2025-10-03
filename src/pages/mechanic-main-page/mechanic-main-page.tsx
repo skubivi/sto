@@ -21,7 +21,7 @@ const MechanicMainPage = () => {
     const [windowId, setWindowId] = useState<undefined | string>(undefined)
     const [windowType, setWindowType] = useState<EDiagnostic>(EDiagnostic.Metalworker)
 
-    const [uploadDiagnostic] = useUploadDocumentDiagnosticMutation()
+    const [uploadDiagnostic, {isLoading: isUploadingDocument}] = useUploadDocumentDiagnosticMutation()
 
     if (isLoading) return (
         <div className={styles['loading-wrapper']}>
@@ -45,6 +45,7 @@ const MechanicMainPage = () => {
     const openDiagnosticWindow = windowType === EDiagnostic.Metalworker && windowId !== undefined
 
     const handleSubmitFreeReport = async (data: {text: string, photo: Blob | undefined}[]) => {
+        if (isUploadingDocument) return null
         if (windowId === undefined) return null
         const personal = await getPersonal()
         if (!personal.data) return null
@@ -75,6 +76,7 @@ const MechanicMainPage = () => {
     }
 
     const handleSubmitMetalworker = async (data: {text: string, photo: Blob | undefined, title: string, subtitle: string}[]) => {
+        if (isUploadingDocument) return null
         if (windowId === undefined) return null
         const personal = await getPersonal()
         if (!personal.data) return null
@@ -106,6 +108,7 @@ const MechanicMainPage = () => {
     }
 
     const handleSubmitElectro = async (data: {text: string, photo: Blob | undefined, title: string, subtitle: string}[]) => {
+        if (isUploadingDocument) return null
         if (windowId === undefined) return null
         const personal = await getPersonal()
         if (!personal.data) return null
@@ -142,18 +145,21 @@ const MechanicMainPage = () => {
                 onClose={() => setWindowId(undefined)} 
                 open={openReportWindow} 
                 onSubmit={handleSubmitFreeReport}
+                isUploadingDocument={isUploadingDocument}
             />
             <ElectroWindow 
                 cardId={windowId}
                 onClose={() => setWindowId(undefined)}
                 open={openElectroWindow}
                 onSubmit={handleSubmitElectro}
+                isUploadingDocument={isUploadingDocument}
             />
             <DiagnosticWindow 
                 cardId={windowId}
                 onClose={() => setWindowId(undefined)}
                 open={openDiagnosticWindow}
                 onSubmit={handleSubmitMetalworker}
+                isUploadingDocument={isUploadingDocument}
             />
             <div className={styles['cars-section']}>
                 <Typography variant='h2' color='black'>Нужно провести диагностику</Typography>

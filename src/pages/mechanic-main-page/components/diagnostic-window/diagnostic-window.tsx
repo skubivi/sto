@@ -15,6 +15,7 @@ interface IDiagnosticWindow {
     cardId: string | undefined
     onClose: () => void
     onSubmit: (d: {title: string, subtitle: string, text: string, photo: Blob | undefined}[]) => void
+    isUploadingDocument: boolean
 }
 
 const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
@@ -131,7 +132,7 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
             <div className={styles.bottom}>
                 {isFinal &&
                     <div className={styles.button}>
-                        <DefaultButton variant="outline-primary" onClick={handleSubmit}>Сформировать отчет</DefaultButton>
+                        <DefaultButton variant="outline-primary" onClick={handleSubmit} disabled={props.isUploadingDocument}>Сформировать отчет</DefaultButton>
                     </div>
                 }
             </div>

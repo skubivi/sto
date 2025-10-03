@@ -16,6 +16,7 @@ interface IElectroWindow {
     cardId: string | undefined
     onClose: () => void
     onSubmit: (d: {title: string, subtitle: string, text: string, photo: Blob | undefined}[]) => void
+    isUploadingDocument: boolean
 }
 
 const ElectroWindow: FC<IElectroWindow> = (props) => {
@@ -127,7 +128,7 @@ const ElectroWindow: FC<IElectroWindow> = (props) => {
             <div className={styles.bottom}>
                 {isFinal &&
                     <div className={styles.button}>
-                        <DefaultButton variant="outline-primary" onClick={handleSubmit}>Сформировать отчет</DefaultButton>
+                        <DefaultButton variant="outline-primary" onClick={handleSubmit} disabled={props.isUploadingDocument}>Сформировать отчет</DefaultButton>
                     </div>
                 }
             </div>
