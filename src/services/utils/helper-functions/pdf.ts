@@ -325,14 +325,14 @@ export const createFreeReportBlob = async (data: IFreeReportData) => {
     const carNumberText = 'Гос. номер: ' + data.carNumber
     const mileageText = 'Пробег: ' + data.mileage + ' км'
 
-    const body: Content[] = (
+    const body = (
         await Promise.all(
             data.data.map(async (el, index) => {
             const toPush = await dataToBase64(el.text, el.photo);
             return toPush.photo
                 ? [
                     { text: `-${index + 1}. ${toPush.text}`, style: "text" },
-                    { image: toPush.photo, style: "photo", width: 520 }
+                    { image: toPush.photo, style: "photo", width: 520, fit: [174, 120] }
                 ]
                 : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
             })
@@ -361,7 +361,7 @@ export const createFreeReportBlob = async (data: IFreeReportData) => {
             {
                 text: mileageText, style: "mileage"
             },
-            ...body
+            ...body as Content[]
         ],
         styles: {
             header: {
@@ -378,7 +378,8 @@ export const createFreeReportBlob = async (data: IFreeReportData) => {
                 marginBottom: 10
             },
             photo: {
-                marginBottom: 10
+                marginBottom: 10,
+                alignment: 'center'
             }
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
@@ -403,7 +404,7 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
     const carNumberText = 'Гос. номер: ' + data.carNumber
     const mileageText = 'Пробег: ' + data.mileage + ' км'
 
-    const body: Content[] = (
+    const body = (
         await Promise.all(
             data.data.map(async (el, index) => {
                 const text = `${el.subtitle}: ${el.text}`
@@ -411,7 +412,7 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
                 return toPush.photo
                     ? [
                         { text: `-${index + 1}. ${toPush.text}`, style: "text" },
-                        { image: toPush.photo, style: "photo", width: 520 }
+                        { image: toPush.photo, style: "photo", fit: [174, 120] }
                     ]
                     : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
                 }
@@ -439,7 +440,7 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
             {
                 text: mileageText, style: "mileage"
             },
-            ...body
+            ...body as Content[]
         ],
         styles: {
             header: {
@@ -456,7 +457,8 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
                 marginBottom: 10
             },
             photo: {
-                marginBottom: 10
+                marginBottom: 10,
+                alignment: 'center'
             }
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
@@ -481,7 +483,7 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
     const carNumberText = 'Гос. номер: ' + data.carNumber
     const mileageText = 'Пробег: ' + data.mileage + ' км'
 
-    const body: Content[] = (
+    const body = (
         await Promise.all(
             data.data.map(async (el, index) => {
                 const text = `${el.title}: ${el.text}`
@@ -489,7 +491,7 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
                 return toPush.photo
                     ? [
                         { text: `-${index + 1}. ${toPush.text}`, style: "text" },
-                        { image: toPush.photo, style: "photo", width: 520 }
+                        { image: toPush.photo, style: "photo", fit: [174, 120] }
                     ]
                     : [{ text: `-${index + 1}. ${toPush.text}`, style: "text" }];
                 }
@@ -517,7 +519,7 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
             {
                 text: mileageText, style: "mileage"
             },
-            ...body
+            ...body as Content[]
         ],
         styles: {
             header: {
@@ -534,7 +536,8 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
                 marginBottom: 10
             },
             photo: {
-                marginBottom: 10
+                marginBottom: 10,
+                alignment: 'center'
             }
         },
         defaultStyle: { font: "Roboto", fontSize: 10 },
