@@ -43,7 +43,13 @@ const NewCar = () => {
         return undefined
     }
 
-    const disableSubmit = phoneNumber.length < 10 || mileage === undefined || (carNumber.length !== 8 && carNumber.length !== 9) || (!isClientExist && (fio.split(' ').length !== 3 || fio.split(' ')[0] === undefined || fio.split(' ')[2] === null || fio.split(' ')[2].length === 0))
+    const disableSubmit = 
+        phoneNumber.length < 10 || 
+        mileage === undefined || 
+        brand.length === 0 || 
+        model.length === 0 || 
+        (carNumber.length !== 8 && carNumber.length !== 9) || 
+        (!isClientExist && (fio.split(' ').length !== 3 || fio.split(' ')[0] === undefined || fio.split(' ')[2] === null || fio.split(' ')[2].length === 0))
     
     const handleSubmit = () => {
         if (disableSubmit) return null
