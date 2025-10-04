@@ -18,6 +18,8 @@ export interface ICar {
     carNumber: string
     status: ECarStatus
     createdAt: Date
+    model: string
+    brand: string
 }
 
 export interface ICarToPost {
@@ -29,6 +31,8 @@ export interface ICarToPost {
     }
     carNumber: string
     mileage: number
+    model: string
+    brand: string
 }
 
 export interface ICarFilters {
@@ -43,4 +47,11 @@ export interface ICarForMechanic {
     carNumber: string
     mileage: number
     status: ECarStatus
+    client: {
+        firstName: string
+        lastName: string
+        middleName: string
+    }
+    model: string
+    brand: string
 }

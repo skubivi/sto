@@ -16,6 +16,8 @@ const NewCar = () => {
     const [isClientExist, setIsClientExist] = useState<boolean | undefined>(undefined)
     const [clientData, setClientData] = useState<IClientData | undefined>(undefined)
     const [carNumber, setCarNumber] = useState('')
+    const [brand, setBrand] = useState('')
+    const [model, setModel] = useState('')
     const [mileage, setMileage] = useState<number | undefined>()
     const [fio, setFio] = useState('')
     const [checkClient] = useCheckClientMutation()
@@ -62,7 +64,9 @@ const NewCar = () => {
         newCar({
             carNumber,
             mileage,
-            client: clientToPost
+            client: clientToPost,
+            brand,
+            model
         })
         setPhoneNumber('')
         setCarNumber('')
@@ -90,6 +94,8 @@ const NewCar = () => {
                             {isClientExist === false && phoneNumber.length === 10 &&
                                 <InputWithLabel label='ФИО клиента' onChange={(e) => setFio(e.target.value)} value={fio}/>
                             }
+                            <InputWithLabel label='Марка машины' onChange={(e) => setBrand(e.target.value)} value={brand}/>
+                            <InputWithLabel label='Модель машины' onChange={(e) => setModel(e.target.value)} value={model}/>
                             <InputWithLabel label='Номер машины' onChange={(e) => setCarNumber(e.target.value)} value={carNumber}/>
                             <InputWithLabel label='Пробег' onChange={handleSetCarMileage} value={mileage ?? ''}/>
                         </div>

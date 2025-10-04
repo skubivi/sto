@@ -58,7 +58,7 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
     const handleNextQuestion = () => {
         setQuestion(prev => {
             for (let i = prev + 1; i < METALWORKER_QUESTIONS.length; i++) {
-                if (!skip.includes(i)) return i
+                if (!skip.includes(METALWORKER_QUESTIONS[i].id)) return i
             }
             setIsFinal(true)
             return 0
@@ -66,7 +66,6 @@ const DiagnosticWindow: FC<IDiagnosticWindow> = (props) => {
     }
 
     const handleOnDefect = (text: string, title: string, subtitle: string, photo: Blob | undefined) => {
-        if (!photo) return null
         setData(prev =>  [...prev, {
             title,
             subtitle,

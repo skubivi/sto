@@ -321,9 +321,10 @@ export const createFreeReportBlob = async (data: IFreeReportData) => {
 
     const now = new Date(Date.now())
     const dateText = `Дата: ${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
-    const mechanicText = 'Механик: ' + data.mechanicName
+    const clientText = 'Клиент: ' + data.clientNames
     const carNumberText = 'Гос. номер: ' + data.carNumber
     const mileageText = 'Пробег: ' + data.mileage + ' км'
+    const car = `Машина: ${data.brand} ${data.model}`
 
     const body = (
         await Promise.all(
@@ -351,7 +352,10 @@ export const createFreeReportBlob = async (data: IFreeReportData) => {
                 text: dateText, style: "text"
             },
             {
-                text: mechanicText, style: "text"
+                text: clientText, style: "text"
+            },
+            {
+                text: car, style: "text"
             },
             {
                 text: carNumberText, style: "text"
@@ -398,9 +402,10 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
 
     const now = new Date(Date.now())
     const dateText = `Дата: ${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
-    const mechanicText = 'Механик: ' + data.mechanicName
+    const clientText = 'Клиент: ' + data.clientNames
     const carNumberText = 'Гос. номер: ' + data.carNumber
     const mileageText = 'Пробег: ' + data.mileage + ' км'
+    const car = `Машина: ${data.brand} ${data.model}`
 
     const body = (
         await Promise.all(
@@ -430,7 +435,10 @@ export const createElectroReportBlob = async (data: IElectroDiagnosticData) => {
                 text: dateText, style: "text"
             },
             {
-                text: mechanicText, style: "text"
+                text: clientText, style: "text"
+            },
+            {
+                text: car, style: "text"
             },
             {
                 text: carNumberText, style: "text"
@@ -477,9 +485,10 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
 
     const now = new Date(Date.now())
     const dateText = `Дата: ${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()}`
-    const mechanicText = 'Механик: ' + data.mechanicName
+    const clientText = 'Клиент: ' + data.clientNames
     const carNumberText = 'Гос. номер: ' + data.carNumber
     const mileageText = 'Пробег: ' + data.mileage + ' км'
+    const car = `Машина: ${data.brand} ${data.model}`
 
     const body = (
         await Promise.all(
@@ -509,7 +518,10 @@ export const createMetalReportBlob = async (data: IElectroDiagnosticData) => {
                 text: dateText, style: "text"
             },
             {
-                text: mechanicText, style: "text"
+                text: clientText, style: "text"
+            },
+            {
+                text: car, style: "text"
             },
             {
                 text: carNumberText, style: "text"

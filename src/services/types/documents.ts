@@ -101,21 +101,25 @@ export interface IDiagnosticDocument {
 export interface IFreeReportData {
     carNumber: string
     mileage: number
-    mechanicName: string
+    clientNames: string
     data: {
         text: string
         photo: Blob | undefined
     }[]
+    brand: string
+    model: string
 }
 
 export interface IElectroDiagnosticData {
     carNumber: string
     mileage: number
-    mechanicName: string
+    clientNames: string
     data: {
         title: string
         subtitle: string
         text: string
         photo: Blob | undefined
     }[]
+    brand: string
+    model: string
 }
